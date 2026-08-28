@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HTML Lab | DevLab</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">DevLab</a>
+
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <main>
+
+        <section class="lab-header">
+
+            <p class="eyebrow">
+                &lt;/&gt; LABORATORIO
+            </p>
+
+            <h1>
+                HTML Lab
+            </h1>
+
+            <p>
+                Experimentá con la estructura de una página
+                y descubrí cómo funciona HTML.
+            </p>
+
+        </section>
+
+
+        <section class="html-lab">
+
+            <!-- CONTROLES -->
+
+            <div class="html-controls">
+
+                <h2>
+                    Elementos
+                </h2>
+
+                <p>
+                    Elegí un elemento y agregalo al contenido.
+                </p>
+
+                <div class="html-buttons">
+                   
+
+                    <button id="add-title">
+                        Agregar título
+                    </button>
+
+                    <button id="add-text">
+                        Agregar párrafo
+                    </button>
+
+                    <button id="add-button">
+                        Agregar botón
+                    </button>
+                     <button id="add-link">
+    Agregar enlace
+</button>
+                    <button id="add-image">
+    Agregar imagen
+</button>
+
+                    <button id="clear-content">
+                        Limpiar
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PREVIEW -->
+
+            <div class="html-preview">
+
+                <p class="preview-label">
+                    PREVIEW
+                </p>
+
+                <div id="html-canvas">
+
+                    <p class="empty-message">
+                        Tu página está vacía.
+                        <br>
+                        Agregá un elemento.
+                    </p>
+
+                </div>
+
+            </div>
+            <div class="element-info" id="element-info">
+    <strong>Elemento seleccionado:</strong>
+    <span id="selected-tag">Ninguno</span>
+</div>
+<div class="attribute-panel" id="attribute-panel">
+
+    <h3>Atributos</h3>
+
+    <div id="button-attribute" class="attribute-group">
+        <label for="button-text">Texto del botón</label>
+        <input type="text" id="button-text">
+    </div>
+
+    <div id="image-attribute" class="attribute-group">
+        <label for="image-alt">Texto alternativo</label>
+        <input type="text" id="image-alt">
+    </div>
+
+</div>
+<div id="link-attribute" class="attribute-group">
+
+    <label for="link-text">
+        Texto del enlace
+    </label>
+
+    <input type="text" id="link-text">
+
+    <label for="link-url">
+        Dirección (URL)
+    </label>
+
+    <input type="text" id="link-url">
+
+</div>
+
+            <!-- CÓDIGO -->
+
+            <div class="code-area">
+
+                <div class="code-header">
+
+                    <h2>
+                        HTML generado
+                    </h2>
+
+                    <button id="copy-html" aria-label="Copiar estructura HTML al portapapeles" title="Copiar estructura HTML al portapapeles">📋 Copiar HTML</button>
+
+                </div>
+
+                <pre><code id="generated-html"></code></pre>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="./html-lab.js"></script>
+
+    <script type="module" src="navbar.js"></script>
+</body>
+
+</html>

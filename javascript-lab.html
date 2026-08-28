@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JavaScript Lab | DevLab</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">DevLab</a>
+
+        <div class="nav-links">
+    <a href="index.html">Inicio</a>
+    <a href="aprender.html">Aprender</a>
+    <a href="practicar.html">Practicar</a>
+     <a href="herramientas.html">Herramientass</a>
+    <a href="laboratorios.html">Laboratorios</a>
+</div>
+        </nav>
+    </header>
+
+
+    <main>
+
+        <section class="lab-header">
+
+            <p class="eyebrow">
+                ⚡ LABORATORIO
+            </p>
+
+            <h1>
+                JavaScript Lab
+            </h1>
+
+            <p>
+                Experimentá con JavaScript y descubrí cómo
+                tus acciones pueden modificar una página.
+            </p>
+
+        </section>
+
+
+        <section class="js-lab">
+
+            <div class="js-controls">
+
+                <h2>
+                    Probá JavaScript
+                </h2>
+
+                <p>
+                    Tocá los botones y observá qué sucede.
+                </p>
+
+                <div class="js-buttons">
+
+                    <button id="change-text">
+                        Cambiar texto
+                    </button>
+
+                    <button id="change-color">
+                        Cambiar color
+                    </button>
+
+                    <button id="counter-button">
+                        Contador
+                        </button>
+                
+
+                </div>
+
+            </div>
+
+
+            <div class="js-preview">
+
+                <p class="preview-label">
+                    PREVIEW
+                </p>
+
+                <div id="js-card">
+
+                    <h3 id="js-title">
+                        ¡Hola, JavaScript!
+                    </h3>
+
+                    <p id="js-message">
+                        Interactuá con los botones
+                        para modificarme.
+                    </p>
+
+                    <span id="counter">
+                        0
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="code-area">
+
+                <div class="code-header">
+
+                    <h2>
+                        ¿Qué está pasando?
+                    </h2>
+
+                </div>
+
+                <pre><code id="js-code">
+document.getElementById("change-text");
+
+element.textContent = "Nuevo texto";
+
+element.style.backgroundColor = "red";
+                </code></pre>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="./js-lab.js"></script>
+
+    <script type="module" src="navbar.js"></script>
+</body>
+
+</html>

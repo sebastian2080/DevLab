@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practicar | DevLab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">DevLab</a>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="practice-header">
+            <p class="eyebrow">🎮 PRÁCTICA</p>
+            <h1>Poné a prueba lo que aprendiste.</h1>
+            <p>Resolvé desafíos de Desarrollo Web y comprobá cuánto aprendiste.</p>
+        </section>
+
+ <!-- PORTAL AL MUNDO ARCADE -->
+<section style="max-width: 1100px; margin: 0 auto 40px auto; padding: 0 20px;">
+    <a href="arcade-hub.html" class="arcade-portal-card">
+        <div class="portal-glitch-bg"></div>
+        <div class="portal-content">
+            <div class="portal-icon">🎮</div>
+            <div class="portal-texts">
+                <span class="portal-badge">NUEVA EXPERIENCIA INTERACTIVA</span>
+                <h3 class="portal-title">¿Listo para subir de nivel?</h3>
+                <p class="portal-desc">Entrá a DevLab Arcade: poné a prueba tus reflejos, corregí bugs contra el reloj y dominá la terminal en modo juego.</p>
+            </div>
+            <div class="portal-action">
+                <span class="portal-btn">Jugar Arcade ⚡</span>
+            </div>
+        </div>
+    </a>
+</section>
+
+    </div>
+</section>
+
+        <section class="practice-grid">
+
+            <!-- HTML -->
+            <article class="practice-card">
+                <div class="practice-top">
+                    <span class="practice-icon">&lt;/&gt;</span>
+                    <span class="practice-level">PRINCIPIANTE</span>
+                </div>
+                <h2>HTML</h2>
+                <p>Poné a prueba tus conocimientos sobre estructura y elementos HTML.</p>
+                <div class="progress">
+                    <div class="progress-bar" id="html-progress-bar"></div>
+                </div>
+                <p id="html-progress-text" class="practice-progress">0 / 6 desafíos completados</p>
+                <a href="html-desafios.html" class="practice-button">Ver desafíos →</a>
+            </article>
+
+            <!-- CSS -->
+            <article class="practice-card">
+                <div class="practice-top">
+                    <span class="practice-icon">#</span>
+                    <span class="practice-level">PRINCIPIANTE</span>
+                </div>
+                <h2>CSS</h2>
+                <p>Resolvé ejercicios sobre estilos, colores, tamaños y diseño.</p>
+                <div class="progress">
+                    <div class="progress-bar" id="css-progress-bar"></div>
+                </div>
+                <p id="css-progress-text" class="practice-progress">0 / 6 desafíos completados</p>
+                <a href="css-desafios.html" class="practice-button">Ver desafíos →</a>
+            </article>
+
+            <!-- JAVASCRIPT -->
+            <article class="practice-card">
+                <div class="practice-top">
+                    <span class="practice-icon">JS</span>
+                    <span class="practice-level">INTERMEDIO</span>
+                </div>
+                <h2>JavaScript</h2>
+                <p>Comprobá tus conocimientos sobre lógica e interacción con JavaScript.</p>
+                <div class="progress">
+                    <div class="progress-bar" id="js-progress-bar"></div>
+                </div>
+                <p id="js-progress-text" class="practice-progress">0 / 6 desafíos completados</p>
+                <a href="js-desafios.html" class="practice-button">Ver desafíos →</a>
+            </article>
+
+            <!-- GIT & GITHUB -->
+            <article class="practice-card">
+                <div class="practice-top">
+                    <span class="practice-icon">↗</span>
+                    <span class="practice-level">INTERMEDIO</span>
+                </div>
+                <h2>Git & GitHub</h2>
+                <p>Practicá comandos esenciales sobre repositorios, commits y control de versiones.</p>
+                <div class="progress">
+                    <div class="progress-bar" id="git-progress-bar"></div>
+                </div>
+                <p id="git-progress-text" class="practice-progress">0 / 6 desafíos completados</p>
+                <a href="git-desafios.html" class="practice-button">Ver desafíos →</a>
+            </article>
+
+        </section>
+
+    </main>
+
+    <script type="module" src="sync.js"></script>
+    <script type="module" src="practicar.js"></script>
+    <!-- OVERLAY DE TRANSICIÓN TÚNEL WARP -->
+<div id="warp-overlay" class="warp-overlay">
+    <canvas id="warp-canvas"></canvas>
+    <div class="warp-text">ENTRANDO A DEVLAB ARCADE...</div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const portalBtn = document.querySelector(".arcade-portal-card");
+    const overlay = document.getElementById("warp-overlay");
+    const canvas = document.getElementById("warp-canvas");
+    if (!portalBtn || !overlay || !canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    let animationFrame;
+    let stars = [];
+    const numStars = 500;
+    let speed = 2;
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    function initStars() {
+        stars = [];
+        for (let i = 0; i < numStars; i++) {
+            stars.push({
+                x: (Math.random() - 0.5) * canvas.width * 2,
+                y: (Math.random() - 0.5) * canvas.height * 2,
+                z: Math.random() * canvas.width,
+                color: ["#6366f1", "#a855f7", "#38bdf8", "#ffffff"][Math.floor(Math.random() * 4)]
+            });
+        }
+    }
+
+    function renderWarp() {
+        ctx.fillStyle = "rgba(11, 15, 25, 0.25)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        speed += 0.8; // Aceleración progresiva
+
+        stars.forEach(star => {
+            star.z -= speed;
+            if (star.z <= 0) {
+                star.z = canvas.width;
+                star.x = (Math.random() - 0.5) * canvas.width * 2;
+                star.y = (Math.random() - 0.5) * canvas.height * 2;
+            }
+
+            const k = 250 / star.z;
+            const px = star.x * k + cx;
+            const py = star.y * k + cy;
+
+            if (px >= 0 && px <= canvas.width && py >= 0 && py <= canvas.height) {
+                const size = Math.max(1, (1 - star.z / canvas.width) * 4);
+                ctx.beginPath();
+                ctx.arc(px, py, size, 0, Math.PI * 2);
+                ctx.fillStyle = star.color;
+                ctx.fill();
+            }
+        });
+
+        animationFrame = requestAnimationFrame(renderWarp);
+    }
+
+    portalBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const targetUrl = portalBtn.getAttribute("href");
+
+        resizeCanvas();
+        initStars();
+        overlay.classList.add("active");
+        renderWarp();
+
+        setTimeout(() => {
+            window.location.href = targetUrl;
+        }, 1300);
+    });
+
+    window.addEventListener("resize", resizeCanvas);
+});
+</script>
+<script type="module" src="navbar.js"></script>
+</body>
+
+</html>

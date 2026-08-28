@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevLab · Plataforma Interactiva de Desarrollo Web</title>
+   <link rel="stylesheet" href="style.css?v=4">
+</head>
+
+<body>
+
+    <!-- NAVEGACIÓN -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">DevLab</a>
+            <div class="nav-links">
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- 1. HERO SPLIT -->
+        <section class="hero-split">
+            <div class="hero-text-col">
+                <p class="eyebrow">APRENDÉ · EXPERIMENTÁ · PRACTICÁ</p>
+                <h1>Aprendé Desarrollo Web experimentando.</h1>
+                <p class="hero-description">
+                    Recursos, desafíos y laboratorios interactivos para dominar HTML, CSS, JavaScript y Git mientras escribís código real.
+                </p>
+                <div class="hero-actions">
+                    <a href="html-aprender.html" class="hero-button">Empezar desde cero 🚀</a>
+                    <a href="laboratorios.html" class="hero-button secondary">Explorar laboratorios 🧪</a>
+                </div>
+            </div>
+
+            <!-- TARJETA VISUAL / CÓDIGO INTERACTIVO -->
+            <div class="hero-preview-col">
+                <div class="hero-code-card">
+                    <div class="code-card-header">
+                        <div class="code-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="code-card-title">index.html</span>
+                    </div>
+                    <pre class="code-card-body"><code><span class="c-tag">&lt;button</span> <span class="c-attr">class</span>=<span class="c-str">"btn-devlab"</span><span class="c-tag">&gt;</span>
+  Aprender haciendo 🚀
+<span class="c-tag">&lt;/button&gt;</span>
+
+<span class="c-comment">/* Vista previa en vivo: */</span></code></pre>
+                    <div class="hero-live-preview">
+                        <a href="playground.html" class="preview-sample-btn" style="text-decoration: none;">DevLab.run() ➔</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. PILARES -->
+        <section class="pillars">
+            <div class="section-title">
+                <p class="eyebrow">TODO EN UN SOLO LUGAR</p>
+                <h2>Aprendé haciendo.</h2>
+                <p>Explorá conceptos, experimentá con código y poné a prueba lo que aprendiste.</p>
+            </div>
+
+            <div class="pillar-grid">
+                <article class="pillar-card">
+                    <span class="pillar-icon">🧠</span>
+                    <h3>Aprender</h3>
+                    <p>Conceptos de Desarrollo Web explicados de forma simple y directa.</p>
+                </article>
+
+                <article class="pillar-card">
+                    <span class="pillar-icon">🧪</span>
+                    <h3>Experimentar</h3>
+                    <p>Modificá código y propiedades para descubrir qué sucede en tiempo real.</p>
+                </article>
+
+                <article class="pillar-card">
+                    <span class="pillar-icon">🎮</span>
+                    <h3>Practicar</h3>
+                    <p>Resolvé desafíos y quizzes para comprobar lo que realmente aprendiste.</p>
+                </article>
+
+                <article class="pillar-card">
+                    <span class="pillar-icon">🛠️</span>
+                    <h3>Resolver</h3>
+                    <p>Usá herramientas útiles para tus propios proyectos mientras programás.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- 3. LABORATORIO DESTACADO -->
+        <section class="featured-lab-container">
+            <div class="featured-lab-card">
+                <div class="lab-card-content">
+                    <div class="lab-badge">🧪 EXPERIMENTO DESTACADO</div>
+                    <h2>CSS Lab Interactivo</h2>
+                    <p>
+                        Ajustá propiedades como padding, border-radius, sombras y flexbox en tiempo real. Copiá el código listo para tus proyectos.
+                    </p>
+                    <a href="css-lab.html" class="lab-cta-btn">
+                        <span>Entrar al CSS Lab</span>
+                        <span class="cta-arrow">→</span>
+                    </a>
+                </div>
+
+                <div class="lab-card-interactive">
+                    <div class="interactive-preview-box">
+                        <div class="preview-tag">&lt;div class="box"&gt;</div>
+                        <div class="preview-shape pulse-shape"></div>
+                        <div class="preview-tag">&lt;/div&gt;</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. RUTA DE APRENDIZAJE / DESAFÍOS -->
+        <section class="learning">
+            <div class="learning-header">
+                <div>
+                    <p class="eyebrow">RUTA PRÁCTICA</p>
+                    <h2>¿Qué querés practicar hoy?</h2>
+                </div>
+                <a href="practicar.html" class="text-link">Ver todo →</a>
+            </div>
+
+            <div class="learning-grid">
+                <!-- HTML -->
+                <article class="topic-card topic-html">
+                    <div class="topic-top">
+                        <span class="topic-icon">&lt;/&gt;</span>
+                        <span class="topic-level">Principiante · 6 Desafíos</span>
+                    </div>
+                    <h3>HTML5</h3>
+                    <p>Dominá la estructura de la web: etiquetas semánticas, formularios y enlaces.</p>
+                    <a href="html-desafios.html" class="topic-btn">Empezar HTML →</a>
+                </article>
+
+                <!-- CSS -->
+                <article class="topic-card topic-css">
+                    <div class="topic-top">
+                        <span class="topic-icon">#</span>
+                        <span class="topic-level">Principiante · 6 Desafíos</span>
+                    </div>
+                    <h3>CSS3</h3>
+                    <p>Diseño responsivo, maquetación moderna con Flexbox, efectos visuales y estilos.</p>
+                    <a href="css-desafios.html" class="topic-btn">Empezar CSS →</a>
+                </article>
+
+                <!-- JS -->
+                <article class="topic-card topic-js">
+                    <div class="topic-top">
+                        <span class="topic-icon">JS</span>
+                        <span class="topic-level">Intermedio · 6 Desafíos</span>
+                    </div>
+                    <h3>JavaScript</h3>
+                    <p>Lógica, variables, funciones, eventos y manipulación interactiva del DOM.</p>
+                    <a href="js-desafios.html" class="topic-btn">Empezar JS →</a>
+                </article>
+
+                <!-- GIT -->
+                <article class="topic-card topic-git">
+                    <div class="topic-top">
+                        <span class="topic-icon">↗</span>
+                        <span class="topic-level">Principiante · 6 Desafíos</span>
+                    </div>
+                    <h3>Git & GitHub</h3>
+                    <p>Control de versiones, commits limpios, manejo de ramas y repositorios remotos.</p>
+                    <a href="git-desafios.html" class="topic-btn">Empezar Git →</a>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo">DevLab</a>
+                <p>
+                    Plataforma interactiva para aprender, experimentar y ejercitar desarrollo web con laboratorios en tiempo real.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Aprender</h4>
+                <ul>
+                    <li><a href="html-aprender.html">HTML5</a></li>
+                    <li><a href="css-aprender.html">CSS3</a></li>
+                    <li><a href="js-aprender.html">JavaScript</a></li>
+                    <li><a href="git-aprender.html">Git & GitHub</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Práctica & Labs</h4>
+                <ul>
+                    <li><a href="practicar.html">Desafíos de Código</a></li>
+                    <li><a href="laboratorios.html">Laboratorios Interactivos</a></li>
+                    <li><a href="arcade-hub.html">DevLab Arcade</a></li>
+                    <li><a href="playground.html">Playground en Vivo</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Herramientas</h4>
+                <ul>
+                    <li><a href="color-tool.html">Selector de Colores</a></li>
+                    <li><a href="unit-tool.html">Conversor de Unidades</a></li>
+                    <li><a href="shadow-tool.html">Generador de Sombras</a></li>
+                    <li><a href="code-tool.html">Formateador de Código</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>&copy; 2026 <strong>DevLab</strong>. Desarrollado para estudiantes y desarrolladores web.</span>
+            <span>Hecho con código nativo (HTML, CSS, JS).</span>
+        </div>
+    </footer>
+
+    <!-- =========================================
+         BOTONES FLOTANTES APILADOS A LA DERECHA
+    ========================================= -->
+    <div class="floating-stack-container">
+        
+        <!-- VENTANA FLOTANTE DEL CHAT -->
+        <div id="coach-chat-window" class="coach-chat-window hidden">
+            <div class="coach-header">
+                <div class="coach-header-info">
+                    <div class="coach-avatar">🤖</div>
+                    <div>
+                        <strong>DevBot</strong>
+                        <span class="coach-status">● En línea</span>
+                    </div>
+                </div>
+                <button id="coach-close-btn" class="coach-close-btn" type="button" aria-label="Cerrar chat">&times;</button>
+            </div>
+
+            <div id="coach-messages" class="coach-messages">
+                <div class="coach-msg bot">
+                    👋 ¡Hola! Soy tu asistente en <strong>DevLab</strong>. ¿Tenés dudas sobre HTML, CSS, JavaScript o Git?
+                </div>
+            </div>
+
+            <div class="coach-chips">
+                <button class="chip-btn" type="button" data-query="¿Cómo centrar un div en CSS?">Centrar div</button>
+                <button class="chip-btn" type="button" data-query="¿Qué es una etiqueta semántica?">HTML semántico</button>
+                <button class="chip-btn" type="button" data-query="¿Diferencia entre let y const?">let vs const</button>
+                <button class="chip-btn" type="button" data-query="¿Cómo funciona Git?">Git básico</button>
+            </div>
+
+            <form id="coach-form" class="coach-input-area">
+                <input type="text" id="coach-input" placeholder="Preguntale a DevBot..." autocomplete="off">
+                <button type="submit" id="coach-send-btn">➔</button>
+            </form>
+        </div>
+
+        <!-- 1. Botón Superior: Playground -->
+        <a href="playground.html" class="floating-btn-pill btn-pill-playground" aria-label="Abrir Playground de código">
+            <span class="pill-icon">⚡</span>
+            <span>Playground</span>
+        </a>
+
+        <!-- 2. Botón Inferior: DevBot IA -->
+        <button id="coach-toggle-btn" class="floating-btn-pill btn-pill-devbot" type="button" aria-label="Abrir DevBot IA">
+            <span class="pill-icon">🤖</span>
+            <span>DevBot IA</span>
+        </button>
+
+    </div>
+
+    <!-- SCRIPTS -->
+    <script type="module" src="index.js"></script>
+    <script type="module" src="navbar.js"></script>
+    <script type="module" src="coach.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Lander · DevLab Arcade</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #05070f;
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            user-select: none;
+            overflow-x: hidden;
+        }
+
+        .game-wrapper {
+            width: 100%;
+            max-width: 850px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .game-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .back-link {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+        }
+        .back-link:hover { color: #fff; }
+
+        .hud-bar {
+            display: flex;
+            gap: 16px;
+            font-family: monospace;
+            font-size: 15px;
+            background: #111827;
+            padding: 8px 18px;
+            border-radius: 10px;
+            border: 1px solid #374151;
+        }
+
+        /* ESCENARIO DE CAÍDA */
+        .stage-box {
+            width: 100%;
+            height: 480px;
+            background: radial-gradient(circle at top, #1e1b4b 0%, #030712 100%);
+            border: 2px solid #6366f1;
+            border-radius: 20px;
+            position: relative;
+            box-shadow: 0 0 35px rgba(99, 102, 241, 0.2);
+            overflow: hidden;
+        }
+
+        /* NAVE ESPACIAL */
+        .ship-track {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            padding: 0 20px;
+            box-sizing: border-box;
+            z-index: 5;
+            transition: top 0.05s linear;
+        }
+
+        .rocket {
+            width: 50px;
+            height: 50px;
+            background: rgba(30, 41, 59, 0.95);
+            border: 2px solid #38bdf8;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+            margin: 0 auto;
+            transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* 9 HUECOS DE ATERRIZAJE ABAJO */
+        .landing-grid-9 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            gap: 6px;
+            padding: 0 20px 10px 20px;
+            box-sizing: border-box;
+            border-top: 2px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .bay {
+            height: 100%;
+            border-top: 4px solid #ef4444;
+            background: rgba(239, 68, 68, 0.08);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-family: monospace;
+            font-weight: 700;
+            color: #ef4444;
+            transition: all 0.2s ease;
+        }
+
+        .bay.safe-zone {
+            border-top: 4px solid #10b981;
+            background: rgba(16, 185, 129, 0.25);
+            color: #34d399;
+            box-shadow: 0 -8px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        /* ÚNICOS 3 BOTONES DE CONTROL */
+        .dashboard {
+            width: 100%;
+            margin-top: 16px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .flex-cmd-btn {
+            background: #111827;
+            color: #e2e8f0;
+            border: 2px solid #374151;
+            padding: 16px 10px;
+            border-radius: 12px;
+            font-family: monospace;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.15s;
+            line-height: 1.4;
+        }
+
+        .flex-cmd-btn:hover {
+            border-color: #6366f1;
+            background: #1e1b4b;
+            transform: translateY(-2px);
+        }
+
+        .flex-cmd-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* OVERLAYS */
+        .modal-screen {
+            position: absolute;
+            inset: 0;
+            background: rgba(3, 7, 18, 0.94);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .btn-play {
+            background: #6366f1;
+            color: #fff;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 16px;
+        }
+
+        #save-status {
+            font-size: 12px;
+            margin-top: 10px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-wrapper">
+        <div class="game-header">
+            <a href="arcade-hub.html" class="back-link">← Volver al Hub Arcade</a>
+            <div class="hud-bar">
+                <span>PUNTOS: <strong id="hud-score" style="color: #38bdf8;">0</strong></span>
+                <span>VIDAS: <strong id="hud-lives" style="color: #ef4444;">❤️❤️❤️</strong></span>
+            </div>
+        </div>
+
+        <div class="stage-box" id="stage-box">
+            <!-- NAVE -->
+            <div class="ship-track" id="ship-track">
+                <div class="rocket" id="rocket" style="grid-column: 5;">🚀</div>
+            </div>
+
+            <!-- 9 COMPUERTAS INFERIORES -->
+            <div class="landing-grid-9" id="bays-grid"></div>
+
+            <!-- INICIO -->
+            <div id="start-modal" class="modal-screen">
+                <span style="font-size: 45px; margin-bottom: 6px;">🛸</span>
+                <h1 style="font-size: 26px; font-weight: 900; margin: 0 0 6px 0; color: #fff;">FLEXBOX LANDER</h1>
+                <p style="color: #94a3b8; max-width: 460px; font-size: 13px; line-height: 1.4;">
+                    La nave cae desde el centro (5). Presioná los comandos de izquierda o derecha las veces necesarias para alinear la nave sobre la compuerta verde antes del impacto.
+                </p>
+                <button id="btn-start" class="btn-play">INICIAR DESCENSO ⚡</button>
+            </div>
+
+            <!-- GAME OVER -->
+            <div id="gameover-modal" class="modal-screen" style="display: none;">
+                <span style="font-size: 45px; margin-bottom: 6px;">💥</span>
+                <h2 style="font-size: 26px; font-weight: 900; color: #ef4444; margin: 0 0 6px 0;">¡COLISIÓN EN BASE!</h2>
+                <p style="color: #94a3b8; font-size: 14px;">Aterrizajes completados: <strong id="final-score" style="color: #fff;">0</strong></p>
+                <p id="save-status" style="color: #94a3b8; display: none;"></p>
+                <button id="btn-restart" class="btn-play">REINTENTAR 🔄</button>
+            </div>
+        </div>
+
+        <!-- ÚNICOS 3 BOTONES -->
+        <div class="dashboard">
+            <div class="options-grid">
+                <button class="flex-cmd-btn" id="btn-left">
+                    ← Mover a la Izquierda<br>
+                    <strong style="color: #38bdf8;">justify-content: flex-start;</strong>
+                </button>
+                <button class="flex-cmd-btn" id="btn-center">
+                    🎯 Centrar Posición<br>
+                    <strong style="color: #a855f7;">justify-content: center;</strong>
+                </button>
+                <button class="flex-cmd-btn" id="btn-right">
+                    Mover a la Derecha →<br>
+                    <strong style="color: #38bdf8;">justify-content: flex-end;</strong>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DEL JUEGO DIRECTAMENTE INTEGRADO CON FIREBASE -->
+    <script type="module">
+        import { saveGameStats } from "./sync-games.js";
+
+        const TOTAL_BAYS = 9;
+        let targetCol = 5;
+        let currentCol = 5;
+        let shipY = -50;
+        
+        const INITIAL_SPEED = 1.3;
+        const SPEED_INCREMENT = 0.25;
+        let fallSpeed = INITIAL_SPEED;
+        
+        let score = 0;
+        let lives = 3;
+        let isPlaying = false;
+        let isResetting = false;
+        let animId;
+
+        const rocket = document.getElementById("rocket");
+        const shipTrack = document.getElementById("ship-track");
+        const stageBox = document.getElementById("stage-box");
+        const baysGrid = document.getElementById("bays-grid");
+        const hudScore = document.getElementById("hud-score");
+        const hudLives = document.getElementById("hud-lives");
+        const finalScore = document.getElementById("final-score");
+        const saveStatus = document.getElementById("save-status");
+        const startModal = document.getElementById("start-modal");
+        const gameoverModal = document.getElementById("gameover-modal");
+
+        function buildBays() {
+            baysGrid.innerHTML = "";
+            for (let i = 1; i <= TOTAL_BAYS; i++) {
+                const bay = document.createElement("div");
+                bay.className = "bay";
+                bay.id = `bay-${i}`;
+                bay.innerHTML = `<span>#${i}</span><span>🚧</span>`;
+                baysGrid.appendChild(bay);
+            }
+        }
+
+        function startGame() {
+            score = 0;
+            lives = 3;
+            fallSpeed = INITIAL_SPEED;
+            isPlaying = true;
+            isResetting = false;
+            startModal.style.display = "none";
+            gameoverModal.style.display = "none";
+            saveStatus.style.display = "none";
+            updateHUD();
+            spawnNewShip();
+            loop();
+        }
+
+        function setSafeZone() {
+            targetCol = Math.floor(Math.random() * TOTAL_BAYS) + 1;
+
+            for (let i = 1; i <= TOTAL_BAYS; i++) {
+                const b = document.getElementById(`bay-${i}`);
+                if (i === targetCol) {
+                    b.className = "bay safe-zone";
+                    b.innerHTML = `<span>#${i}</span><span>🟢</span>`;
+                } else {
+                    b.className = "bay";
+                    b.innerHTML = `<span>#${i}</span><span>🚧</span>`;
+                }
+            }
+        }
+
+        function spawnNewShip() {
+            isResetting = true;
+            shipTrack.style.transition = "none";
+            shipTrack.style.opacity = "0";
+            shipY = -60;
+            currentCol = 5;
+            rocket.style.gridColumn = currentCol;
+            shipTrack.style.top = `${shipY}px`;
+            setSafeZone();
+
+            setTimeout(() => {
+                if (!isPlaying) return;
+                shipTrack.style.opacity = "1";
+                isResetting = false;
+            }, 250);
+        }
+
+        function stepShip(delta) {
+            if (!isPlaying || isResetting) return;
+            currentCol = Math.max(1, Math.min(TOTAL_BAYS, currentCol + delta));
+            rocket.style.gridColumn = currentCol;
+        }
+
+        function centerShip() {
+            if (!isPlaying || isResetting) return;
+            currentCol = 5;
+            rocket.style.gridColumn = currentCol;
+        }
+
+        function loop() {
+            if (!isPlaying) return;
+
+            if (!isResetting) {
+                shipY += fallSpeed;
+                shipTrack.style.top = `${shipY}px`;
+
+                const impactY = stageBox.clientHeight - 130;
+
+                if (shipY >= impactY) {
+                    if (currentCol === targetCol) {
+                        score += 15;
+                        fallSpeed += SPEED_INCREMENT;
+                        updateHUD();
+                        flashStage("#10b981");
+                    } else {
+                        lives--;
+                        updateHUD();
+                        flashStage("#ef4444");
+
+                        if (lives <= 0) {
+                            endGame();
+                            return;
+                        }
+                    }
+                    spawnNewShip();
+                }
+            }
+
+            animId = requestAnimationFrame(loop);
+        }
+
+        function flashStage(color) {
+            stageBox.style.borderColor = color;
+            setTimeout(() => { stageBox.style.borderColor = "#6366f1"; }, 200);
+        }
+
+        function updateHUD() {
+            hudScore.textContent = score;
+            hudLives.textContent = "❤️".repeat(Math.max(0, lives));
+        }
+
+        async function endGame() {
+            isPlaying = false;
+            cancelAnimationFrame(animId);
+            
+            finalScore.textContent = `${score} pts (Velocidad: ${fallSpeed.toFixed(1)}x)`;
+            gameoverModal.style.display = "flex";
+
+            // Sincronización con Firebase
+            saveStatus.style.display = "block";
+            saveStatus.style.color = "#94a3b8";
+            saveStatus.textContent = "Sincronizando puntuación con el ranking...";
+
+            try {
+                const currentRunData = {
+                    score: score,
+                    velocity: parseFloat(fallSpeed.toFixed(1))
+                };
+
+                const result = await saveGameStats("flexbox-lander", currentRunData);
+                
+                if (result && result.isNewMaxScore) {
+                    saveStatus.textContent = "¡Nuevo récord personal guardado! 🏆";
+                    saveStatus.style.color = "#10b981";
+                } else if (result) {
+                    saveStatus.textContent = "Puntuación registrada en el ranking.";
+                    saveStatus.style.color = "#64748b";
+                } else {
+                    saveStatus.textContent = "Jugando en modo invitado (Iniciá sesión para rankear).";
+                }
+            } catch (error) {
+                console.error("Error al guardar puntuación:", error);
+                saveStatus.textContent = "No se pudo sincronizar la puntuación.";
+                saveStatus.style.color = "#ef4444";
+            }
+        }
+
+        // Asignación de eventos de botones
+        document.getElementById("btn-left").addEventListener("click", () => stepShip(-1));
+        document.getElementById("btn-center").addEventListener("click", centerShip);
+        document.getElementById("btn-right").addEventListener("click", () => stepShip(1));
+
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowLeft") stepShip(-1);
+            if (e.key === "ArrowRight") stepShip(1);
+            if (e.key === "ArrowDown" || e.key === " ") centerShip();
+        });
+
+        buildBays();
+        document.getElementById("btn-start").addEventListener("click", startGame);
+        document.getElementById("btn-restart").addEventListener("click", startGame);
+    </script>
+    <script type="module" src="navbar.js"></script>
+</body>
+</html>

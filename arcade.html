@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speedrun Frontend | DevLab</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .arcade-wrapper {
+            max-width: 720px;
+            margin: 40px auto 80px;
+            padding: 0 20px;
+        }
+
+        .arcade-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 32px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .arcade-hud {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #0f172a;
+            color: #ffffff;
+            padding: 14px 20px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+
+        .hud-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.2;
+        }
+
+        .hud-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #94a3b8;
+            font-weight: 700;
+        }
+
+        .hud-value {
+            font-size: 20px;
+            font-weight: 800;
+            color: #38bdf8;
+        }
+
+        .hud-timer {
+            color: #f87171;
+            font-size: 24px;
+        }
+
+        .streak-badge {
+            background: #f59e0b;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 999px;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        .code-challenge-box {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 12px;
+            font-family: monospace;
+            font-size: 16px;
+            margin-bottom: 24px;
+            line-height: 1.5;
+            border-left: 4px solid #6366f1;
+        }
+
+        .arcade-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .arcade-btn {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e293b;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.1s ease;
+        }
+
+        .arcade-btn:hover:not(:disabled) {
+            border-color: #6366f1;
+            background: #eef2ff;
+        }
+
+        .arcade-btn.correct-hit {
+            background: #22c55e !important;
+            border-color: #16a34a !important;
+            color: #ffffff !important;
+        }
+
+        .arcade-btn.wrong-hit {
+            background: #ef4444 !important;
+            border-color: #dc2626 !important;
+            color: #ffffff !important;
+        }
+
+        .time-penalty {
+            animation: shake 0.3s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+
+        @media (max-width: 600px) {
+            .arcade-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">DevLab</a>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="arcade-wrapper">
+
+        <!-- PANTALLA INICIAL -->
+        <div id="arcade-start" class="arcade-card" style="text-align: center;">
+            <p class="eyebrow">🔥 MODO SPEEDRUN</p>
+            <h1>Desafío Contrarreloj</h1>
+            <p style="color: #64748b; margin: 12px 0 24px; font-size: 15px;">
+                Resolvé la mayor cantidad de desafíos en <strong>60 segundos</strong>.<br>
+                Las respuestas correctas consecutivas multiplican tu puntaje, pero <strong>cada error te descuenta 3 segundos</strong>.
+            </p>
+            <button id="start-arcade-btn" class="hero-button" style="font-size: 16px; padding: 14px 28px;">
+                Iniciar Modo Arcade 🚀
+            </button>
+        </div>
+
+        <!-- PANTALLA DE JUEGO -->
+        <div id="arcade-game" class="arcade-card" style="display: none;">
+            
+            <div class="arcade-hud" id="hud-bar">
+                <div class="hud-item">
+                    <span class="hud-label">Puntaje</span>
+                    <span class="hud-value" id="arcade-score">0</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">Tiempo</span>
+                    <span class="hud-value hud-timer" id="arcade-timer">60s</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">Multiplicador</span>
+                    <span class="hud-value" id="arcade-multiplier">x1</span>
+                    <span class="streak-badge" id="arcade-streak" style="display: none;">🔥 0</span>
+                </div>
+            </div>
+
+            <p id="challenge-prompt" style="font-size: 15px; font-weight: 700; color: #475569; margin-bottom: 8px;">Completá el código:</p>
+            <div class="code-challenge-box" id="challenge-code"></div>
+
+            <div class="arcade-grid" id="arcade-options"></div>
+        </div>
+
+        <!-- PANTALLA FINAL -->
+        <div id="arcade-result" class="arcade-card" style="text-align: center; display: none;">
+            <p class="eyebrow">TIEMPO AGOTADO</p>
+            <h2>¡Partida Finalizada!</h2>
+            
+            <div style="margin: 24px 0;">
+                <span style="font-size: 14px; color: #64748b; font-weight: 600;">Puntaje Final</span>
+                <div style="font-size: 52px; font-weight: 800; color: #6366f1;" id="final-arcade-score">0</div>
+                <p id="personal-record-msg" style="font-size: 13px; font-weight: 700; color: #16a34a; margin-top: 6px;"></p>
+                <p id="sync-status-msg" style="font-size: 12px; color: #64748b; margin-top: 4px; font-family: monospace;"></p>
+            </div>
+
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <button id="retry-arcade-btn" class="hero-button">Jugar de Nuevo</button>
+                <a href="arcade-hub.html" class="action-btn" style="text-decoration: none; padding: 12px 20px;">Ir al Arcade Hub</a>
+            </div>
+        </div>
+
+    </main>
+
+    <script type="module" src="navbar.js"></script>
+    <script type="module" src="arcade.js"></script>
+</body>
+
+</html>

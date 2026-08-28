@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Selector de colores | DevLab</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <nav>
+
+            <a href="index.html" class="logo">
+                DevLab
+            </a>
+
+            <div class="nav-links">
+
+                <a href="index.html">Inicio</a>
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="tool-page-header">
+
+            <a href="herramientas.html" class="course-back">
+                ← Volver a herramientas
+            </a>
+
+            <p class="eyebrow">
+                🎨 HERRAMIENTA
+            </p>
+
+            <h1>
+                Selector de colores
+            </h1>
+
+            <p>
+                Elegí un color y obtené sus valores
+                para utilizarlo en tus proyectos.
+            </p>
+
+        </section>
+
+
+        <section class="color-tool">
+
+            <div class="color-preview" id="color-preview">
+            </div>
+
+
+            <div class="color-controls">
+
+                <label for="color-picker">
+                    Elegí un color
+                </label>
+
+                <input
+                    type="color"
+                    id="color-picker"
+                    value="#6366f1">
+
+
+                <div class="color-values">
+
+                    <div class="color-value">
+
+                        <span>
+                            HEX
+                        </span>
+
+                        <strong id="hex-value">
+                            #6366F1
+                        </strong>
+
+                        <button
+                            class="copy-color"
+                            data-copy="hex">
+                            Copiar
+                        </button>
+
+                    </div>
+
+
+                    <div class="color-value">
+
+                        <span>
+                            RGB
+                        </span>
+
+                        <strong id="rgb-value">
+                            rgb(99, 102, 241)
+                        </strong>
+
+                        <button
+                            class="copy-color"
+                            data-copy="rgb">
+                            Copiar
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="color-tool.js"></script>
+
+    <script type="module" src="navbar.js"></script>
+</body>
+
+</html>

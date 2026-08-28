@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking de Alumnos | DevLab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">DevLab</a>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+                <a href="ranking.html" style="color: #6366f1; font-weight: 700;">🏆 Ranking</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="ranking-container">
+
+            <div class="tool-page-header" style="text-align: center; max-width: 700px; margin: 0 auto 40px;">
+                <p class="eyebrow">🏆 CLASIFICACIÓN</p>
+                <h1>Tabla de Posiciones</h1>
+                <p>Completá desafíos en tiempo y forma para subir puestos en el ranking de la cursada.</p>
+            </div>
+
+            <!-- PODIO TOP 3 -->
+            <div class="podium-container" id="podium-container">
+                <!-- Se llena dinámicamente con JS -->
+            </div>
+
+            <!-- TABLA DE CLASIFICACIÓN COMPLETA -->
+            <div class="admin-table-container ranking-table-box">
+                <div class="ranking-table-header">
+                    <span>Posiciones Generales</span>
+                    <span id="ranking-total-badge">Cargando alumnos...</span>
+                </div>
+
+                <table class="admin-table">
+    <thead>
+        <tr>
+            <th style="width: 70px; text-align: center;">Pos</th>
+            <th>Alumno</th>
+            <th style="text-align: center;">HTML</th>
+            <th style="text-align: center;">CSS</th>
+            <th style="text-align: center;">JS</th>
+            <th style="text-align: center;">Git</th>
+            <th style="text-align: center;">Total</th>
+            <th>Progreso</th>
+        </tr>
+    </thead>
+    <tbody id="ranking-table-body">
+        <tr>
+            <td colspan="8" style="text-align: center; padding: 30px; color: #6b7280;">Cargando clasificación...</td>
+        </tr>
+    </tbody>
+</table>
+            </div>
+
+        </section>
+    </main>
+
+    <script type="module" src="ranking.js"></script>
+    <script type="module" src="navbar.js"></script>
+</body>
+
+</html>

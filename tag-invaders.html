@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tag Invaders · DevLab Arcade</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #080b11;
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            user-select: none;
+        }
+
+        .game-wrapper {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* HEADER & STATS */
+        .game-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .back-link {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: #fff; }
+
+        .hud-panel {
+            display: flex;
+            gap: 20px;
+            background: #111827;
+            padding: 10px 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-family: monospace;
+            font-size: 16px;
+        }
+
+        .hud-val {
+            color: #6366f1;
+            font-weight: 900;
+        }
+
+        /* PANTALLA DE JUEGO */
+        .game-screen {
+            width: 100%;
+            height: 480px;
+            background: radial-gradient(circle at 50% 50%, #0f172a 0%, #030712 100%);
+            border: 2px solid #312e81;
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.15), inset 0 0 40px rgba(0, 0, 0, 0.8);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* LÍNEA DE IMPACTO */
+        .danger-line {
+            position: absolute;
+            bottom: 60px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ef4444, transparent);
+            box-shadow: 0 0 10px #ef4444;
+        }
+
+        /* BLOQUES QUE CAEN */
+        .falling-tag {
+            position: absolute;
+            background: rgba(17, 24, 39, 0.9);
+            border: 1px solid #6366f1;
+            color: #a5b4fc;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 15px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            white-space: nowrap;
+            transition: border-color 0.1s;
+        }
+
+        .falling-tag.target {
+            border-color: #38bdf8;
+            box-shadow: 0 0 18px #38bdf8;
+            color: #ffffff;
+        }
+
+        /* ZONA DE DISPARO / INPUT */
+        .control-dock {
+            width: 100%;
+            margin-top: 16px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .terminal-input {
+            flex: 1;
+            background: #111827;
+            border: 2px solid #374151;
+            color: #38bdf8;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-family: monospace;
+            font-size: 18px;
+            font-weight: 700;
+            outline: none;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .terminal-input:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        }
+
+        /* OVERLAY INICIO / GAME OVER */
+        .overlay-screen {
+            position: absolute;
+            inset: 0;
+            background: rgba(3, 7, 18, 0.92);
+            backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .btn-arcade-play {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: #fff;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+            transition: transform 0.15s;
+            margin-top: 16px;
+        }
+
+        .btn-arcade-play:hover { transform: scale(1.05); }
+
+        .save-status-msg {
+            font-size: 13px;
+            font-family: monospace;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-wrapper">
+        <div class="game-header">
+            <a href="arcade-hub.html" class="back-link">← Volver al Hub Arcade</a>
+            <div class="hud-panel">
+                <span>PUNTOS: <strong id="hud-score" class="hud-val">0</strong></span>
+                <span>VIDAS: <strong id="hud-lives" class="hud-val">❤️❤️❤️</strong></span>
+                <span>COMBO: <strong id="hud-combo" class="hud-val">x0</strong></span>
+            </div>
+        </div>
+
+        <div class="game-screen" id="game-screen">
+            <div class="danger-line"></div>
+
+            <!-- PANTALLA INICIO -->
+            <div id="start-overlay" class="overlay-screen">
+                <span style="font-size: 40px; margin-bottom: 8px;">👾</span>
+                <h1 style="font-size: 32px; font-weight: 900; margin: 0 0 8px 0; color: #fff;">TAG INVADERS</h1>
+                <p style="color: #94a3b8; max-width: 440px; font-size: 14px; margin-bottom: 12px;">
+                    Las etiquetas HTML caen sin control. Tipeá exactamente el código de cada bloque antes de que toque la línea láser roja.
+                </p>
+                <button id="btn-start" class="btn-arcade-play">COMENZAR MISIÓN ⚡</button>
+            </div>
+
+            <!-- GAME OVER -->
+            <div id="gameover-overlay" class="overlay-screen" style="display: none;">
+                <span style="font-size: 40px; margin-bottom: 8px;">💥</span>
+                <h2 style="font-size: 28px; font-weight: 900; color: #ef4444; margin: 0 0 8px 0;">SISTEMA DESTRUIDO</h2>
+                <p style="color: #94a3b8; font-size: 15px; margin: 0;">Puntuación Final: <strong id="final-score" style="color: #fff;">0</strong></p>
+                <p id="save-status" class="save-status-msg" style="color: #94a3b8; display: none;"></p>
+                <button id="btn-restart" class="btn-arcade-play">REINTENTAR 🔄</button>
+            </div>
+        </div>
+
+        <div class="control-dock">
+            <input type="text" id="code-input" class="terminal-input" placeholder="Tipeá la etiqueta acá..." autocomplete="off" spellcheck="false" disabled>
+        </div>
+    </div>
+
+    <!-- SCRIPT DEL JUEGO INTEGRADO CON FIREBASE Y LOGROS -->
+    <script type="module">
+        import { saveGameStats } from "./sync-games.js";
+
+        const TAG_POOL = [
+            "<div>", "</div>", "<h1>", "<p>", "</p>", "<a>",
+            "<span>", "<button>", "<input>", "<img>", "<section>",
+            "<header>", "<footer>", "<main>", "<ul>", "<li>",
+            "<form>", "<label>", "<table>", "<tr>", "<td>", "<nav>"
+        ];
+
+        let score = 0;
+        let lives = 3;
+        let combo = 0;
+        let maxCombo = 0;
+        let speed = 0.9;
+        let spawnInterval = 2100;
+        let isPlaying = false;
+        let activeTags = [];
+        let loopId, spawnTimer;
+
+        const screen = document.getElementById("game-screen");
+        const input = document.getElementById("code-input");
+        const hudScore = document.getElementById("hud-score");
+        const hudLives = document.getElementById("hud-lives");
+        const hudCombo = document.getElementById("hud-combo");
+        const startOverlay = document.getElementById("start-overlay");
+        const gameoverOverlay = document.getElementById("gameover-overlay");
+        const finalScore = document.getElementById("final-score");
+        const saveStatus = document.getElementById("save-status");
+
+        function startGame() {
+            score = 0;
+            lives = 3;
+            combo = 0;
+            maxCombo = 0;
+            speed = 0.9;
+            spawnInterval = 2100;
+            activeTags.forEach(t => t.el.remove());
+            activeTags = [];
+            isPlaying = true;
+
+            updateHUD();
+            startOverlay.style.display = "none";
+            gameoverOverlay.style.display = "none";
+            saveStatus.style.display = "none";
+            input.disabled = false;
+            input.value = "";
+            input.focus();
+
+            spawnTag();
+            loop();
+        }
+
+        function spawnTag() {
+            if (!isPlaying) return;
+
+            const text = TAG_POOL[Math.floor(Math.random() * TAG_POOL.length)];
+            const el = document.createElement("div");
+            el.className = "falling-tag";
+            el.textContent = text;
+
+            const maxLeft = screen.clientWidth - 120;
+            const left = Math.max(20, Math.floor(Math.random() * maxLeft));
+
+            el.style.left = `${left}px`;
+            el.style.top = "-40px";
+            screen.appendChild(el);
+
+            activeTags.push({ el, text, y: -40, x: left });
+
+            spawnInterval = Math.max(1200, spawnInterval - 10);
+            clearTimeout(spawnTimer);
+            spawnTimer = setTimeout(spawnTag, spawnInterval);
+        }
+
+        function loop() {
+            if (!isPlaying) return;
+
+            const dangerY = screen.clientHeight - 85;
+
+            for (let i = activeTags.length - 1; i >= 0; i--) {
+                const tag = activeTags[i];
+                tag.y += speed;
+                tag.el.style.top = `${tag.y}px`;
+
+                if (tag.y >= dangerY) {
+                    tag.el.remove();
+                    activeTags.splice(i, 1);
+                    lives--;
+                    combo = 0;
+                    updateHUD();
+
+                    screen.style.borderColor = "#ef4444";
+                    setTimeout(() => { screen.style.borderColor = "#312e81"; }, 150);
+
+                    if (lives <= 0) {
+                        endGame();
+                        return;
+                    }
+                }
+            }
+
+            loopId = requestAnimationFrame(loop);
+        }
+
+        input.addEventListener("input", () => {
+            const val = input.value.trim();
+            const matchedIndex = activeTags.findIndex(t => t.text === val);
+
+            if (matchedIndex !== -1) {
+                const matched = activeTags[matchedIndex];
+                
+                matched.el.style.background = "#10b981";
+                matched.el.style.borderColor = "#34d399";
+                matched.el.style.transform = "scale(1.2)";
+                setTimeout(() => matched.el.remove(), 100);
+
+                activeTags.splice(matchedIndex, 1);
+                input.value = "";
+
+                combo++;
+                if (combo > maxCombo) maxCombo = combo;
+
+                score += 10 * (combo > 1 ? combo : 1);
+                speed += 0.02;
+                updateHUD();
+            }
+        });
+
+        function updateHUD() {
+            hudScore.textContent = score;
+            hudCombo.textContent = `x${combo}`;
+            hudLives.textContent = "❤️".repeat(Math.max(0, lives));
+        }
+
+        async function endGame() {
+            isPlaying = false;
+            cancelAnimationFrame(loopId);
+            clearTimeout(spawnTimer);
+            input.disabled = true;
+            finalScore.textContent = score;
+            gameoverOverlay.style.display = "flex";
+
+            if (score > 0) {
+                saveStatus.style.display = "block";
+                saveStatus.style.color = "#94a3b8";
+                saveStatus.textContent = "Sincronizando puntuación con el ranking...";
+
+                try {
+                    const res = await saveGameStats("tag-invaders", {
+                        score: score,
+                        velocity: parseFloat(speed.toFixed(1)),
+                        combo: maxCombo
+                    });
+
+                    if (res && res.isNewMaxScore) {
+                        saveStatus.textContent = "¡Nuevo récord personal guardado! 🏆";
+                        saveStatus.style.color = "#10b981";
+                    } else if (res) {
+                        saveStatus.textContent = "Puntuación sincronizada.";
+                        saveStatus.style.color = "#64748b";
+                    } else {
+                        saveStatus.textContent = "Modo invitado (Iniciá sesión para rankear).";
+                    }
+                } catch (error) {
+                    console.error("Error al guardar tag-invaders:", error);
+                    saveStatus.textContent = "No se pudo sincronizar la puntuación.";
+                    saveStatus.style.color = "#ef4444";
+                }
+            }
+        }
+
+        document.getElementById("btn-start").addEventListener("click", startGame);
+        document.getElementById("btn-restart").addEventListener("click", startGame);
+    </script>
+    <script type="module" src="navbar.js"></script>
+</body>
+</html>

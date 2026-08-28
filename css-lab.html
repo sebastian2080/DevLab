@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSS Lab | DevLab</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVEGACIÓN -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">DevLab</a>
+
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <main>
+
+        <!-- ENCABEZADO DEL LAB -->
+        <section class="lab-header">
+
+            <p class="eyebrow">
+                🧪 LABORATORIO
+            </p>
+
+            <h1>
+                CSS Lab
+            </h1>
+
+            <p>
+                Experimentá con propiedades CSS y observá
+                los cambios en tiempo real.
+            </p>
+
+        </section>
+
+
+        <!-- LABORATORIO -->
+        <section class="css-lab">
+
+
+            <!-- CONTROLES -->
+            <div class="lab-controls">
+
+                <h2>
+                    Controles
+                </h2>
+
+
+                <!-- COLOR -->
+                <div class="control-group">
+
+                    <label for="background-color">
+                        Color de fondo
+                    </label>
+
+                    <input
+                        type="color"
+                        id="background-color"
+                        value="#6366f1"
+                    >
+
+                    <button
+                        class="info-button"
+                        data-info="background-color">
+                        ¿Qué hace?
+                    </button>
+
+                </div>
+
+
+                <!-- ANCHO -->
+                <div class="control-group">
+
+                    <label for="card-width">
+                        Ancho
+                    </label>
+
+                    <input
+                        type="range"
+                        id="card-width"
+                        min="200"
+                        max="500"
+                        value="320"
+                    >
+
+                    <span id="width-value">
+                        320px
+                    </span>
+
+                    <button
+                        class="info-button"
+                        data-info="width">
+                        ¿Qué hace?
+                    </button>
+
+                </div>
+
+
+                <!-- BORDER RADIUS -->
+                <div class="control-group">
+
+                    <label for="border-radius">
+                        Border radius
+                    </label>
+
+                    <input
+                        type="range"
+                        id="border-radius"
+                        min="0"
+                        max="50"
+                        value="20"
+                    >
+
+                    <span id="radius-value">
+                        20px
+                    </span>
+
+                    <button
+                        class="info-button"
+                        data-info="border-radius">
+                        ¿Qué hace?
+                    </button>
+
+                </div>
+
+
+                <!-- PADDING -->
+                <div class="control-group">
+
+                    <label for="padding">
+                        Padding
+                    </label>
+
+                    <input
+                        type="range"
+                        id="padding"
+                        min="0"
+                        max="50"
+                        value="24"
+                    >
+
+                    <span id="padding-value">
+                        24px
+                    </span>
+
+                    <button
+                        class="info-button"
+                        data-info="padding">
+                        ¿Qué hace?
+                    </button>
+
+                </div>
+
+
+                <button id="reset-button">
+                    Restablecer
+                </button>
+
+            </div>
+
+
+            <!-- PREVIEW -->
+            <div class="lab-preview-area">
+
+                <h2>
+                    Preview
+                </h2>
+
+                <div class="preview-container">
+
+                    <div id="preview-card">
+
+                        <h3>
+                            Experimentá conmigo
+                        </h3>
+
+                        <p>
+                            Modificá las propiedades y observá
+                            cómo cambia este componente.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- INFORMACIÓN -->
+
+            <div id="info-box" class="info-box">
+
+                <h3 id="info-title">
+                    ¿Qué estás modificando?
+                </h3>
+
+                <p id="info-text">
+                    Elegí una propiedad para conocer qué hace.
+                </p>
+
+            </div>
+
+
+            <!-- CÓDIGO GENERADO -->
+
+            <div class="code-area">
+
+                <div class="code-header">
+
+                    <h2>
+                        CSS generado
+                    </h2>
+
+                    <button id="copy-button">
+                        📋 Copiar CSS
+                    </button>
+
+                </div>
+
+                <pre><code id="generated-code"></code></pre>
+
+            </div>
+
+
+            <!-- DESAFÍOS -->
+
+            <section class="challenges">
+
+                <div class="challenges-header">
+
+                    <p class="eyebrow">
+                        DESAFÍOS
+                    </p>
+
+                    <h2>
+                        Poné a prueba lo que aprendiste.
+                    </h2>
+
+                    <p>
+                        Completá los desafíos modificando las propiedades
+                        de la tarjeta.
+                    </p>
+
+                </div>
+
+
+                <!-- DESAFÍO 01 -->
+
+                <article class="challenge" data-challenge="1">
+
+                    <div class="challenge-number">
+                        01
+                    </div>
+
+                    <div class="challenge-content">
+
+                        <span class="challenge-tag">
+                            BORDER RADIUS
+                        </span>
+
+                        <h3>
+                            Redondeá la tarjeta
+                        </h3>
+
+                        <p>
+                            Llevá el <strong>border-radius</strong> a
+                            <strong>50px</strong>.
+                        </p>
+
+                        <button id="challenge-button">
+                            Comprobar desafío
+                        </button>
+
+                        <p
+                            id="challenge-result"
+                            class="challenge-result">
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- DESAFÍO 02 -->
+
+                <article class="challenge" data-challenge="2">
+
+                    <div class="challenge-number">
+                        02
+                    </div>
+
+                    <div class="challenge-content">
+
+                        <span class="challenge-tag">
+                            WIDTH
+                        </span>
+
+                        <h3>
+                            Hacé la tarjeta más grande
+                        </h3>
+
+                        <p>
+                            Llevá el <strong>width</strong> a
+                            <strong>450px</strong>.
+                        </p>
+
+                        <button id="challenge-button-2">
+                            Comprobar desafío
+                        </button>
+
+                        <p
+                            id="challenge-result-2"
+                            class="challenge-result">
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+        </section>
+
+    </main>
+
+
+    <script src="./app.js"></script>
+
+    <script type="module" src="navbar.js"></script>
+</body>
+
+</html>

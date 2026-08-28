@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Generador de sombras | DevLab</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <nav>
+
+            <a href="index.html" class="logo">
+                DevLab
+            </a>
+
+            <div class="nav-links">
+
+                <a href="index.html">Inicio</a>
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="tool-page-header">
+
+            <a href="herramientas.html" class="course-back">
+                ← Volver a herramientas
+            </a>
+
+            <p class="eyebrow">
+                📦 HERRAMIENTA
+            </p>
+
+            <h1>
+                Generador de sombras CSS
+            </h1>
+
+            <p>
+                Ajustá los valores para crear sombras personalizadas con box-shadow y copiá el código listo para tu proyecto.
+            </p>
+
+        </section>
+
+
+        <section class="shadow-tool">
+
+            <!-- CONTROLES -->
+            <div class="shadow-controls">
+
+                <div class="shadow-input-group">
+                    <div class="shadow-label-row">
+                        <label for="offset-x">Desplazamiento horizontal (X)</label>
+                        <span id="offset-x-val">0px</span>
+                    </div>
+                    <input type="range" id="offset-x" min="-50" max="50" value="0">
+                </div>
+
+                <div class="shadow-input-group">
+                    <div class="shadow-label-row">
+                        <label for="offset-y">Desplazamiento vertical (Y)</label>
+                        <span id="offset-y-val">10px</span>
+                    </div>
+                    <input type="range" id="offset-y" min="-50" max="50" value="10">
+                </div>
+
+                <div class="shadow-input-group">
+                    <div class="shadow-label-row">
+                        <label for="blur-radius">Desenfoque (Blur)</label>
+                        <span id="blur-radius-val">25px</span>
+                    </div>
+                    <input type="range" id="blur-radius" min="0" max="100" value="25">
+                </div>
+
+                <div class="shadow-input-group">
+                    <div class="shadow-label-row">
+                        <label for="spread-radius">Propagación (Spread)</label>
+                        <span id="spread-radius-val">0px</span>
+                    </div>
+                    <input type="range" id="spread-radius" min="-30" max="50" value="0">
+                </div>
+
+                <div class="shadow-input-group">
+                    <div class="shadow-label-row">
+                        <label for="shadow-opacity">Opacidad de la sombra</label>
+                        <span id="shadow-opacity-val">15%</span>
+                    </div>
+                    <input type="range" id="shadow-opacity" min="0" max="100" value="15">
+                </div>
+
+                <div class="shadow-input-group shadow-checkbox-row">
+                    <label for="shadow-inset">Sombra interior (inset)</label>
+                    <input type="checkbox" id="shadow-inset">
+                </div>
+
+            </div>
+
+
+            <!-- PREVIEW Y CÓDIGO -->
+            <div class="shadow-preview-area">
+
+                <div class="shadow-preview-box">
+                    <div id="shadow-target">
+                        <p>Vista previa</p>
+                    </div>
+                </div>
+
+                <div class="code-output-container">
+
+                    <div class="code-output-header">
+                        <span>Código CSS</span>
+                        <button id="copy-shadow" aria-label="Copiar código CSS al portapapeles" title="Copiar código CSS al portapapeles">📋 Copiar</button>
+                    </div>
+
+                    <pre id="shadow-output"></pre>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="shadow-tool.js"></script>
+
+    <script type="module" src="navbar.js"></script>
+</body>
+
+</html>

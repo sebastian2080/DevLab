@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevLab Arcade · Centro de Minijuegos</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+        .arcade-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px 80px 20px;
+        }
+        .arcade-hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .arcade-hero h1 {
+            font-size: 38px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #a5b4fc, #6366f1, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            margin-bottom: 8px;
+        }
+        .arcade-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        .game-cabinet {
+            background: #111827;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.25s ease;
+        }
+        .game-cabinet:hover {
+            transform: translateY(-5px);
+            border-color: #6366f1;
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.2);
+        }
+        .game-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+        .game-tag {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .tag-quiz { background: rgba(99, 102, 241, 0.2); color: #a5b4fc; }
+        .tag-speed { background: rgba(239, 68, 68, 0.2); color: #fca5a5; }
+        
+        .game-btn {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            background: #1f2937;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 13px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background 0.2s;
+        }
+        .game-cabinet:hover .game-btn {
+            background: #6366f1;
+        }
+        .back-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: color 0.2s;
+        }
+        .back-nav:hover {
+            color: #ffffff;
+        }
+
+        /* SECCIÓN DEL LEADERBOARD */
+        .leaderboard-section {
+            margin-top: 50px;
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .leaderboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #1f2937;
+            padding-bottom: 16px;
+        }
+
+        .leaderboard-badge {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #f59e0b;
+            background: rgba(245, 158, 11, 0.12);
+            padding: 4px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        .leaderboard-title {
+            font-size: 22px;
+            font-weight: 900;
+            color: #f8fafc;
+            margin: 6px 0 2px 0;
+        }
+
+        .leaderboard-subtitle {
+            font-size: 13px;
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        .game-tabs {
+            display: flex;
+            gap: 6px;
+            background: #0b0f19;
+            padding: 4px;
+            border-radius: 10px;
+            border: 1px solid #1f2937;
+            flex-wrap: wrap;
+        }
+
+        .game-tabs .tab-btn {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .game-tabs .tab-btn.active {
+            background: #6366f1;
+            color: #ffffff;
+        }
+
+        .leaderboard-table-container {
+            overflow-x: auto;
+        }
+
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .leaderboard-table th {
+            text-align: left;
+            color: #64748b;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 12px 14px;
+            border-bottom: 1px solid #1f2937;
+            background: transparent;
+        }
+
+        .leaderboard-table td {
+            padding: 12px 14px;
+            color: #cbd5e1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            background: transparent;
+        }
+
+        .leaderboard-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .rank-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 12px;
+        }
+
+        .rank-1 { background: rgba(234, 179, 8, 0.2); color: #facc15; border: 1px solid #eab308; }
+        .rank-2 { background: rgba(148, 163, 184, 0.2); color: #cbd5e1; border: 1px solid #94a3b8; }
+        .rank-3 { background: rgba(217, 119, 6, 0.2); color: #fbbf24; border: 1px solid #d97706; }
+        .rank-other { color: #64748b; font-family: monospace; }
+
+        .player-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            color: #f8fafc;
+        }
+
+        .player-avatar-small {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: #312e81;
+            color: #a5b4fc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .score-cell {
+            font-family: monospace;
+            font-weight: 800;
+            color: #38bdf8;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="arcade-container">
+        <a href="practicar.html" class="back-nav">← Volver a Práctica Tradicional</a>
+
+        <header class="arcade-hero">
+            <span style="background: rgba(99, 102, 241, 0.15); color: #a5b4fc; font-size: 12px; font-weight: 800; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(99, 102, 241, 0.3);">ZONA GAMING FRONTEND</span>
+            <h1>DevLab Arcade</h1>
+            <p style="color: #94a3b8; max-width: 500px; margin: 0 auto; font-size: 14px;">Poné a prueba tus reflejos y conocimientos mediante minijuegos interactivos.</p>
+        </header>
+
+        <div class="arcade-grid">
+            
+            <!-- 1. Flexbox Lander -->
+            <article class="game-cabinet" style="border-color: rgba(56, 189, 248, 0.4);">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span class="game-icon">🚀</span>
+                        <span class="game-tag" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;">Visual CSS</span>
+                    </div>
+                    <h3 style="font-size: 18px; margin: 6px 0; color: #fff;">Flexbox Lander</h3>
+                    <p style="font-size: 13px; color: #94a3b8; line-height: 1.4;">Piloteá y aterrizá la nave espacial aplicando comandos de alineación en tiempo real.</p>
+                </div>
+                <a href="flexbox-rocket.html" class="game-btn" style="background: #0284c7;">Despegar 🚀</a>
+            </article>
+
+            <!-- 2. Tag Invaders -->
+            <article class="game-cabinet" style="border-color: rgba(99, 102, 241, 0.4);">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span class="game-icon">👾</span>
+                        <span class="game-tag" style="background: rgba(99, 102, 241, 0.25); color: #a5b4fc;">Typing Arcade</span>
+                    </div>
+                    <h3 style="font-size: 18px; margin: 6px 0; color: #fff;">Tag Invaders</h3>
+                    <p style="font-size: 13px; color: #94a3b8; line-height: 1.4;">Destruí etiquetas HTML que caen a toda velocidad tipeando el código exacto antes del impacto.</p>
+                </div>
+                <a href="tag-invaders.html" class="game-btn" style="background: #6366f1;">Jugar Ahora ⚡</a>
+            </article>
+
+            <!-- 3. Git Bomb -->
+            <article class="game-cabinet" style="border-color: rgba(239, 68, 68, 0.4);">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span class="game-icon">💣</span>
+                        <span class="game-tag" style="background: rgba(239, 68, 68, 0.25); color: #fca5a5;">Supervivencia CLI</span>
+                    </div>
+                    <h3 style="font-size: 18px; margin: 6px 0; color: #fff;">Git Bomb</h3>
+                    <p style="font-size: 13px; color: #94a3b8; line-height: 1.4;">Desactivá anomalías en producción con comandos de Git antes de que el servidor detone.</p>
+                </div>
+                <a href="git-bomb.html" class="game-btn" style="background: #ef4444;">Desactivar Bomba ⚡</a>
+            </article>
+
+            <!-- 4. Speedrun Frontend -->
+            <article class="game-cabinet" style="border-color: rgba(245, 158, 11, 0.4);">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span class="game-icon">🔥</span>
+                        <span class="game-tag" style="background: rgba(245, 158, 11, 0.2); color: #fcd34d;">60 Segundos</span>
+                    </div>
+                    <h3 style="font-size: 18px; margin: 6px 0; color: #fff;">Speedrun Frontend</h3>
+                    <p style="font-size: 13px; color: #94a3b8; line-height: 1.4;">Sumá la mayor racha de aciertos en 1 minuto respondiendo preguntas rápidas sin fallar.</p>
+                </div>
+                <a href="arcade.html" class="game-btn" style="background: #d97706;">Iniciar Speedrun ⚡</a>
+            </article>
+
+            <!-- 5. Inspector de Bugs -->
+            <article class="game-cabinet" style="border-color: rgba(16, 185, 129, 0.4);">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span class="game-icon">🐞</span>
+                        <span class="game-tag" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7;">Debugging</span>
+                    </div>
+                    <h3 style="font-size: 18px; margin: 6px 0; color: #fff;">Inspector de Bugs</h3>
+                    <p style="font-size: 13px; color: #94a3b8; line-height: 1.4;">Inspeccioná y repará componentes rotos corrigiendo directamente la línea afectada.</p>
+                </div>
+                <a href="inspector.html" class="game-btn" style="background: #059669;">Inspeccionar 🔍</a>
+            </article>
+
+        </div>
+
+        <!-- SECCIÓN LEADERBOARD GLOBAL -->
+        <section class="leaderboard-section">
+            <div class="leaderboard-header">
+                <div>
+                    <span class="leaderboard-badge">TOP JUGADORES</span>
+                    <h2 class="leaderboard-title">Salón de la Fama Arcade</h2>
+                    <p class="leaderboard-subtitle">Las mejores puntuaciones registradas en tiempo real.</p>
+                </div>
+                
+                <!-- SELECTOR DE LOS 5 JUEGOS -->
+                <div class="game-tabs">
+                    <button class="tab-btn active" data-game="flexbox-lander">🛸 Flexbox</button>
+                    <button class="tab-btn" data-game="tag-invaders">👾 Tag Invaders</button>
+                    <button class="tab-btn" data-game="git-bomb">💣 Git Bomb</button>
+                    <button class="tab-btn" data-game="speedrun">🔥 Speedrun</button>
+                    <button class="tab-btn" data-game="inspector">🐞 Inspector</button>
+                </div>
+            </div>
+
+            <!-- TABLA DE RANKING -->
+            <div class="leaderboard-table-container">
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 80px;">Rango</th>
+                            <th>Estudiante / Dev</th>
+                            <th>Récord</th>
+                            <th style="width: 140px; text-align: right;">Detalle</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-body">
+                        <tr>
+                            <td colspan="4" style="text-align: center; color: #64748b; padding: 24px;">
+                                Cargando clasificaciones de Firebase...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- SCRIPT DE CONSULTA FIRESTORE -->
+    <script type="module">
+        import { db } from "./firebase-config.js";
+        import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        const tableBody = document.getElementById("leaderboard-body");
+        const tabs = document.querySelectorAll(".game-tabs .tab-btn");
+        let currentGame = "flexbox-lander";
+
+        async function loadLeaderboard(gameId) {
+            if (!tableBody) return;
+
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="4" style="text-align: center; color: #94a3b8; padding: 24px; font-family: monospace;">
+                        ⚡ Consultando registros...
+                    </td>
+                </tr>
+            `;
+
+            try {
+                const collectionName = `leaderboard_${gameId}`;
+                const leaderboardCol = collection(db, collectionName);
+                const querySnapshot = await getDocs(leaderboardCol);
+
+                if (querySnapshot.empty) {
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="4" style="text-align: center; color: #94a3b8; padding: 28px;">
+                                <span style="font-size: 24px; display: block; margin-bottom: 6px;">🕹️</span>
+                                Aún no hay puntuaciones registradas en este juego.<br>
+                                <span style="font-size: 12px; color: #64748b;">¡Jugá una partida y sé el primero del ranking!</span>
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+
+                let players = [];
+                querySnapshot.forEach((docSnap) => {
+                    const data = docSnap.data();
+                    players.push({
+                        ...data,
+                        numScore: Number(data.score) || 0
+                    });
+                });
+
+                players.sort((a, b) => b.numScore - a.numScore);
+                const top10 = players.slice(0, 10);
+
+                tableBody.innerHTML = "";
+                let rank = 1;
+
+                top10.forEach((data) => {
+                    const tr = document.createElement("tr");
+
+                    let rankBadge = `<span class="rank-badge rank-other">#${rank}</span>`;
+                    if (rank === 1) rankBadge = `<span class="rank-badge rank-1">🥇</span>`;
+                    if (rank === 2) rankBadge = `<span class="rank-badge rank-2">🥈</span>`;
+                    if (rank === 3) rankBadge = `<span class="rank-badge rank-3">🥉</span>`;
+
+                    const initial = (data.displayName || "U").charAt(0).toUpperCase();
+                    const detailText = data.velocity ? `${data.velocity}x vel` : "Récord";
+
+                    tr.innerHTML = `
+                        <td>${rankBadge}</td>
+                        <td>
+                            <div class="player-info">
+                                <div class="player-avatar-small">${initial}</div>
+                                <span>${data.displayName || "DevPlayer"}</span>
+                            </div>
+                        </td>
+                        <td class="score-cell">${data.numScore.toLocaleString()} pts</td>
+                        <td style="text-align: right; color: #94a3b8; font-size: 13px; font-family: monospace;">
+                            ${detailText}
+                        </td>
+                    `;
+
+                    tableBody.appendChild(tr);
+                    rank++;
+                });
+
+            } catch (error) {
+                console.error("Error al cargar leaderboard:", error);
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="4" style="text-align: center; color: #ef4444; padding: 24px;">
+                            ⚠️ Error al conectar con Firestore.<br>
+                            <small style="color: #94a3b8; font-family: monospace;">(${error.message})</small>
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        tabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                tabs.forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
+                currentGame = tab.getAttribute("data-game");
+                loadLeaderboard(currentGame);
+            });
+        });
+
+        loadLeaderboard(currentGame);
+    </script>
+    <script type="module" src="navbar.js"></script>
+</body>
+</html>

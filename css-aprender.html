@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aprender CSS | DevLab</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <nav>
+
+            <a href="index.html" class="logo">
+                DevLab
+            </a>
+
+            <div class="nav-links">
+
+                <a href="index.html">Inicio</a>
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="course-header">
+
+            <a href="index.html" class="course-back">
+                ← Volver al inicio
+            </a>
+
+            <p class="eyebrow">
+                🎨 APRENDER · CSS
+            </p>
+
+            <h1>
+                Aprendé CSS
+            </h1>
+
+            <p>
+                Conocé los conceptos fundamentales de CSS
+                y aprendé cómo transformar la apariencia
+                de una página web.
+            </p>
+
+        </section>
+
+
+        <section class="course-layout">
+
+
+            <!-- TEMARIO -->
+
+            <aside class="course-sidebar">
+
+                <h2>
+                    Temario
+                </h2>
+
+                <nav class="course-menu">
+
+                    <a href="#tema-1" class="active">
+                        <span>01</span>
+                        ¿Qué es CSS?
+                    </a>
+
+                    <a href="#tema-2">
+                        <span>02</span>
+                        Selectores
+                    </a>
+
+                    <a href="#tema-3">
+                        <span>03</span>
+                        Colores y fondos
+                    </a>
+
+                    <a href="#tema-4">
+                        <span>04</span>
+                        Tipografía
+                    </a>
+
+                    <a href="#tema-5">
+                        <span>05</span>
+                        Box Model
+                    </a>
+
+                    <a href="#tema-6">
+                        <span>06</span>
+                        Flexbox
+                    </a>
+
+                </nav>
+
+            </aside>
+
+
+            <!-- CONTENIDO -->
+
+            <section class="course-content">
+
+
+                <!-- TEMA 1 -->
+
+                <article id="tema-1" class="course-topic">
+
+                    <span class="topic-number">
+                        TEMA 01
+                    </span>
+
+                    <h2>
+                        ¿Qué es CSS?
+                    </h2>
+
+                    <p>
+                        CSS es el lenguaje que utilizamos para
+                        definir la apariencia y presentación
+                        de una página web.
+                    </p>
+
+                    <p>
+                        Mientras HTML se encarga de la estructura,
+                        CSS nos permite modificar colores,
+                        tamaños, espacios, posiciones y mucho más.
+                    </p>
+
+                    <div class="code-example">
+
+                        <pre><code>h1 {
+    color: blue;
+    font-size: 40px;
+}</code></pre>
+
+                    </div>
+
+                    <div class="topic-resources">
+
+                        <h3>
+                            💡 HTML + CSS
+                        </h3>
+
+                        <p>
+                            HTML define qué elementos existen.
+                            CSS define cómo se ven esos elementos.
+                        </p>
+
+                    </div>
+
+                   <div class="video-placeholder">
+
+    <span>🎥</span>
+
+    <h3>
+        CSS desde cero
+    </h3>
+
+    <p>
+        Introducción a CSS para entender cómo aplicar
+        estilos y transformar la apariencia de una página web.
+    </p>
+
+    <a
+        href="https://www.youtube.com/watch?v=8cSo0ijtkzU"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="learn-video-button">
+        Ver video en español →
+    </a>
+
+</div>
+
+                    <div class="topic-resources">
+
+                        <h3>
+                            🔗 Para seguir aprendiendo
+                        </h3>
+
+                        <a
+                            href="https://developer.mozilla.org/es/docs/Learn_web_development/Core/Styling_basics"
+                            target="_blank"
+                            rel="noopener noreferrer">
+
+                            MDN · Fundamentos de CSS →
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- TEMA 2 -->
+
+                <article id="tema-2" class="course-topic">
+
+                    <span class="topic-number">
+                        TEMA 02
+                    </span>
+
+                    <h2>
+                        Selectores
+                    </h2>
+
+                    <p>
+                        Los selectores permiten indicar qué
+                        elementos HTML queremos modificar
+                        mediante CSS.
+                    </p>
+
+                    <div class="code-example">
+
+                        <pre><code>p {
+    color: red;
+}
+
+.titulo {
+    font-size: 30px;
+}
+
+#principal {
+    background-color: black;
+}</code></pre>
+
+                    </div>
+
+                    <div class="topic-resources">
+
+                        <h3>
+                            💡 Los tres más importantes
+                        </h3>
+
+                        <p>
+                            <strong>Elemento:</strong>
+                            selecciona etiquetas como p, h1 o div.
+                        </p>
+
+                        <p>
+                            <strong>Clase:</strong>
+                            utiliza <code>.nombre</code>.
+                        </p>
+
+                        <p>
+                            <strong>ID:</strong>
+                            utiliza <code>#nombre</code>.
+                        </p>
+
+                    </div>
+                    <div class="video-placeholder">
+
+    <span>🎥</span>
+
+    <h3>
+        Selectores en CSS
+    </h3>
+
+    <p>
+        Aprendé cómo seleccionar elementos HTML utilizando
+        selectores de elemento, clases e IDs.
+    </p>
+
+    <a
+        href="https://www.youtube.com/watch?v=3sJM5v5p0_8"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="learn-video-button">
+        Ver video en español →
+    </a>
+
+</div>
+
+                </article>
+
+
+                <!-- TEMA 3 -->
+
+                <article id="tema-3" class="course-topic">
+
+                    <span class="topic-number">
+                        TEMA 03
+                    </span>
+
+                    <h2>
+                        Colores y fondos
+                    </h2>
+
+                    <p>
+                        CSS permite cambiar los colores del texto,
+                        fondos y diferentes elementos de una página.
+                    </p>
+
+                    <div class="code-example">
+
+                        <pre><code>body {
+    background-color: #f5f5f5;
+}
+
+h1 {
+    color: #6366f1;
+}</code></pre>
+
+                    </div>
+                    <div class="video-placeholder">
+
+    <span>🎥</span>
+
+    <h3>
+        Colores y fondos en CSS
+    </h3>
+
+    <p>
+        Aprendé a trabajar con colores, fondos y diferentes
+        formas de aplicar color a los elementos de una página.
+    </p>
+
+    <a
+        href="https://www.youtube.com/watch?v=5c9L2q7Y6fE"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="learn-video-button">
+        Ver video en español →
+    </a>
+
+</div>
+
+<div class="topic-resources">
+
+    <h3>
+        🔗 Para seguir aprendiendo
+    </h3>
+
+    <a
+        href="https://developer.mozilla.org/es/docs/Learn_web_development/Core/Styling_basics/Values_and_units"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        MDN · Valores y unidades de CSS →
+
+    </a>
+
+</div>
+
+                </article>
+
+
+                <!-- TEMA 4 -->
+
+                <article id="tema-4" class="course-topic">
+
+                    <span class="topic-number">
+                        TEMA 04
+                    </span>
+
+                    <h2>
+                        Tipografía
+                    </h2>
+
+                    <p>
+                        Con CSS podemos controlar el tamaño,
+                        peso, familia y alineación del texto.
+                    </p>
+
+                    <div class="code-example">
+
+                        <pre><code>h1 {
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+}</code></pre>
+
+                    </div>
+                    <div class="video-placeholder">
+
+    <span>🎥</span>
+
+    <h3>
+        Tipografía en CSS
+    </h3>
+
+    <p>
+        Aprendé a controlar el tamaño, peso, alineación
+        y apariencia de los textos utilizando CSS.
+    </p>
+
+    <a
+        href="https://www.youtube.com/watch?v=1P9Z4s0q4zQ"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="learn-video-button">
+        Ver video en español →
+    </a>
+
+</div>
+
+<div class="topic-resources">
+
+    <h3>
+        🔗 Para seguir aprendiendo
+    </h3>
+
+    <a
+        href="https://developer.mozilla.org/es/docs/Learn_web_development/Core/Styling_basics/Fundamental_text_and_font_styling"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        MDN · Estilos de texto y fuentes →
+
+    </a>
+
+</div>
+
+                </article>
+
+
+                <!-- TEMA 5 -->
+
+                <article id="tema-5" class="course-topic">
+
+                    <span class="topic-number">
+                        TEMA 05
+                    </span>
+
+                    <h2>
+                        Box Model
+                    </h2>
+
+                    <p>
+                        El Box Model explica cómo CSS calcula
+                        el espacio que ocupa cada elemento.
+                    </p>
+
+                    <div class="code-example">
+
+                        <pre><code>.card {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid black;
+    margin: 20px;
+}</code></pre>
+
+                    </div>
+
+                    <div class="topic-resources">
+
+                        <h3>
+                            📦 Sus cuatro partes
+                        </h3>
+
+                        <p>
+                            Contenido → padding → border → margin.
+                        </p>
+
+                    </div>
+                    <div class="video-placeholder">
+
+    <span>🎥</span>
+
+    <h3>
+        Box Model en CSS
+    </h3>
+
+    <p>
+        Entendé cómo funcionan el contenido, padding,
+        border y margin, y cómo afectan el tamaño de los elementos.
+    </p>
+
+    <a
+        href="https://developer.mozilla.org/es/docs/Learn_web_development/Core/Styling_basics/Box_model"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="learn-video-button">
+        Ver explicación en español →
+    </a>
+
+</div>
+
+<div class="topic-resources">
+
+    <h3>
+        🔗 Para seguir aprendiendo
+    </h3>
+
+    <a
+        href="https://developer.mozilla.org/es/docs/Learn_web_development/Core/Styling_basics/Box_model"
+        target="_blank"
+        rel="noopener noreferrer">
+        MDN · El modelo de cajas →
+    </a>
+
+</div>
+
+                </article>
+
+
+                <!-- TEMA 6 -->
+
+                <article id="tema-6" class="course-topic">
+
+                    <span class="topic-number">
+                        TEMA 06
+                    </span>
+
+                    <h2>
+                        Flexbox
+                    </h2>
+
+                    <p>
+                        Flexbox es una herramienta de CSS
+                        que permite organizar elementos de forma
+                        flexible dentro de un contenedor.
+                    </p>
+
+                    <div class="code-example">
+
+                        <pre><code>.contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}</code></pre>
+
+                    </div>
+
+                    <div class="topic-resources">
+
+                        <h3>
+                            💡 Lo vamos a usar mucho
+                        </h3>
+
+                        <p>
+                            Flexbox es especialmente útil para
+                            crear layouts, menús, tarjetas y
+                            componentes responsive.
+                        </p>
+
+                    </div>
+                    <div class="video-placeholder">
+
+    <span>🎥</span>
+
+    <h3>
+        Flexbox en CSS
+    </h3>
+
+    <p>
+        Aprendé a organizar elementos en filas y columnas,
+        controlar su alineación y distribuir el espacio
+        dentro de un contenedor.
+    </p>
+
+    <a
+        href="https://developer.mozilla.org/es/docs/Learn_web_development/Core/CSS_layout/Flexbox"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="learn-video-button">
+        Ver explicación en español →
+    </a>
+
+</div>
+
+<div class="topic-resources">
+
+    <h3>
+        🔗 Para seguir aprendiendo
+    </h3>
+
+    <a
+        href="https://developer.mozilla.org/es/docs/Learn_web_development/Core/CSS_layout/Flexbox"
+        target="_blank"
+        rel="noopener noreferrer">
+        MDN · Flexbox →
+    </a>
+
+</div>
+
+                </article>
+
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <script type="module" src="navbar.js"></script>
+</body>
+
+</html>

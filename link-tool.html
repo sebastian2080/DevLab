@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Generador de enlaces | DevLab</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <nav>
+
+            <a href="index.html" class="logo">
+                DevLab
+            </a>
+
+            <div class="nav-links">
+
+                <a href="index.html">Inicio</a>
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="tool-page-header">
+
+            <a href="herramientas.html" class="course-back">
+                ← Volver a herramientas
+            </a>
+
+            <p class="eyebrow">
+                🔗 HERRAMIENTA
+            </p>
+
+            <h1>
+                Generador de enlaces HTML
+            </h1>
+
+            <p>
+                Completá los datos y obtené automáticamente
+                el código HTML de tu enlace.
+            </p>
+
+        </section>
+
+
+        <section class="link-tool">
+
+            <div class="link-form">
+
+                <div class="form-group">
+
+                    <label for="link-text">
+                        Texto del enlace
+                    </label>
+
+                    <input
+                        type="text"
+                        id="link-text"
+                        placeholder="Ej: Visitar Google">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="link-url">
+                        URL
+                    </label>
+
+                    <input
+                        type="url"
+                        id="link-url"
+                        placeholder="https://www.google.com">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="link-target">
+                        ¿Dónde abrir el enlace?
+                    </label>
+
+                    <select id="link-target">
+
+                        <option value="_self">
+                            Misma pestaña
+                        </option>
+
+                        <option value="_blank">
+                            Nueva pestaña
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    id="generate-link"
+                    class="tool-button">
+
+                    Generar código →
+
+                </button>
+
+            </div>
+
+
+            <div class="code-output-container">
+
+                <div class="code-output-header">
+
+                    <span>
+                        Código HTML
+                    </span>
+
+                    <button id="copy-link" aria-label="Copiar etiqueta HTML del enlace al portapapeles" title="Copiar etiqueta HTML del enlace al portapapeles">📋 Copiar</button>
+
+                </div>
+
+                <pre id="link-output">
+Completá los campos para generar tu enlace.
+                </pre>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="link-tool.js"></script>
+
+    <script type="module" src="navbar.js"></script>
+</body>
+
+</html>

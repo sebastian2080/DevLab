@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aprender JavaScript | DevLab</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <nav>
+
+            <a href="index.html" class="logo">
+                DevLab
+            </a>
+
+            <div class="nav-links">
+
+                <a href="index.html">
+                    Inicio
+                </a>
+
+                <a href="aprender.html">
+                    Aprender
+                </a>
+
+                <a href="practicar.html">
+                    Practicar
+                </a>
+
+                <a href="herramientas.html">
+                    Herramientas
+                </a>
+
+                <a href="laboratorios.html">
+                    Laboratorios
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="course-header">
+
+            <a href="index.html" class="course-back">
+                ← Volver al inicio
+            </a>
+
+            <p class="eyebrow">
+                ⚡ APRENDER · JAVASCRIPT
+            </p>
+
+            <h1>
+                Aprendé JavaScript
+            </h1>
+
+            <p>
+                Descubrí cómo agregar lógica, interacción
+                y comportamiento a tus páginas web.
+            </p>
+
+        </section>
+
+
+        <section class="course-layout">
+
+
+            <!-- TEMARIO -->
+
+            <aside class="course-sidebar">
+
+                <h2>
+                    Temario
+                </h2>
+
+                <nav class="course-menu">
+
+                    <a href="#tema-1" class="active">
+                        <span>01</span>
+                        ¿Qué es JavaScript?
+                    </a>
+
+                    <a href="#tema-2">
+                        <span>02</span>
+                        Variables
+                    </a>
+
+                    <a href="#tema-3">
+                        <span>03</span>
+                        Condicionales
+                    </a>
+
+                    <a href="#tema-4">
+                        <span>04</span>
+                        Funciones
+                    </a>
+
+                    <a href="#tema-5">
+                        <span>05</span>
+                        Eventos
+                    </a>
+
+                    <a href="#tema-6">
+                        <span>06</span>
+                        DOM
+                    </a>
+
+                </nav>
+
+            </aside>
+
+
+            <!-- CONTENIDO -->
+
+            <section class="course-content">
+
+
+                <!-- TEMA 1 -->
+
+                <article id="tema-1" class="course-topic">
+
+                    <span class="topic-number">
+                        TEMA 01
+                    </span>
+
+                    <h2>
+                        ¿Qué es JavaScript?
+                    </h2>
+
+                    <p>
+                        JavaScript es un lenguaje de programación
+                        que permite agregar comportamiento e
+                        interacción a las páginas web.
+                    </p>
+
+                    <p>
+                        HTML define la estructura, CSS define
+                        la apariencia y JavaScript permite que
+                        los elementos reaccionen a las acciones
+                        del usuario.
+                    </p>
+
+                    <div class="code-example">
+
+                        <pre><code>const nombre = "Sebastián";
+
+console.log(nombre);</code></pre>
+
+                    </div>
+
+                    <div class="topic-resources">
+
+                        <h3>
+                            💡 Pensalo así
+                        </h3>
+
+                        <p>
+                            HTML sería la estructura,
+                            CSS el diseño y JavaScript
+                            la lógica y el comportamiento.
+                        </p>
+
+                    </div>
+
+                    <div class="video-placeholder">
+
+                        <span>🎥</span>
+
+                        <h3>
+                            Curso completo de JavaScript
+                        </h3>
+
+                        <p>
+                            Un curso en español que comienza desde
+                            cero y avanza progresivamente con ejemplos
+                            y proyectos prácticos.
+                        </p>
+
+                        <a
+                            href="https://www.youtube.com/watch?v=Eh-s-n_6zNQ"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="learn-video-button">
+                            Ver curso en español →
+                        </a>
+
+                    </div>
+
+                    <div class="topic-resources">
+
+                        <h3>
+                            🔗 Documentación
+                        </h3>
+
+                        <a
+                            href="https://developer.mozilla.org/es/docs/Learn_web_development/Getting_started/Your_first_website/Adding_interactivity"
+                            target="_blank"
+                            rel="noopener noreferrer">
+
+                            MDN · Fundamentos de JavaScript →
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- TEMA 2 -->
+
+                <article id="tema-2" class="course-topic">
+
+                    <span class="topic-number">
+                        TEMA 02
+                    </span>
+
+                    <h2>
+                        Variables
+                    </h2>
+
+                    <p>
+                        Las variables permiten guardar información
+                        que podemos utilizar posteriormente dentro
+                        de nuestro programa.
+                    </p>
+
+                    <div class="code-example">
+
+                        <pre><code>let edad = 26;
+
+const nombre = "Sebastián";
+
+let activo = true;</code></pre>
+
+                    </div>
+
+                    <div class="topic-resources">
+
+                        <h3>
+                            💡 let y const
+                        </h3>
+
+                        <p>
+                            <code>let</code> se utiliza cuando
+                            el valor puede cambiar.
+                        </p>
+
+                        <p>
+                            <code>const</code> se utiliza cuando
+                            no necesitamos reasignar la variable.
+                        </p>
+
+                    </div>
+
+                    <div class="video-placeholder">
+
+                        <span>🎥</span>
+
+                        <h3>
+                            Variables en JavaScript
+                        </h3>
+
+                        <p>
+                            En el curso recomendado, este tema
+                            comienza aproximadamente en el minuto
+                            46:53.
+                        </p>
+
+                        <a
+                            href="https://www.youtube.com/watch?v=Eh-s-n_6zNQ&t=2813s"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="learn-video-button">
+                            Ver variables →
+                        </a>
+
+                    </div>
+
+                    <div class="topic-resources">
+
+                        <h3>
+                            🔗 Documentación
+                        </h3>
+
+                        <a
+                            href="https://developer.mozilla.org/es/docs/Learn_web_development/Core/Scripting/Variables"
+                            target="_blank"
+                            rel="noopener noreferrer">
+
+                            MDN · Variables →
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- TEMA 3 -->
+
+                <article id="tema-3" class="course-topic">
+
+                    <span class="topic-number">
+                        TEMA 03
+                    </span>
+
+                    <h2>
+                        Condicionales
+                    </h2>
+
+                    <p>
+                        Los condicionales permiten que nuestro
+                        programa tome decisiones dependiendo
+                        de una condición.
+                    </p>
+
+                    <div class="code-example">
+
+                        <pre><code>const edad = 18;
+
+if (edad >= 18) {
+    console.log("Es mayor de edad");
+} else {
+    console.log("Es menor de edad");
+}</code></pre>
+
+                    </div>
+
+                    <div class="video-placeholder">
+
+                        <span>🎥</span>
+
+                        <h3>
+                            Condicionales en JavaScript
+                        </h3>
+
+                        <p>
+                            En el curso recomendado, los condicionales
+                            aparecen aproximadamente desde el minuto
+                            2:14:04.
+                        </p>
+
+                        <a
+                            href="https://www.youtube.com/watch?v=Eh-s-n_6zNQ&t=8044s"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="learn-video-button">
+                            Ver condicionales →
+                        </a>
+
+                    </div>
+
+                    <div class="topic-resources">
+
+                        <h3>
+                            🔗 Para seguir aprendiendo
+                        </h3>
+
+                        <a
+                            href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/if...else"
+                            target="_blank"
+                            rel="noopener noreferrer">
+
+                            MDN · if...else →
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- TEMA 4 -->
+
+                <article id="tema-4" class="course-topic">
+
+                    <span class="topic-number">
+                        TEMA 04
+                    </span>
+
+                    <h2>
+                        Funciones
+                    </h2>
+
+                    <p>
+                        Las funciones permiten agrupar instrucciones
+                        para poder reutilizarlas cuando las necesitemos.
+                    </p>
+
+                    <div class="code-example">
+
+                        <pre><code>function saludar() {
+
+    console.log("Hola");
+
+}
+
+saludar();</code></pre>
+
+                    </div>
+
+                    <div class="topic-resources">
+
+                        <h3>
+                            💡 ¿Por qué utilizarlas?
+                        </h3>
+
+                        <p>
+                            Nos ayudan a organizar el código
+                            y evitar repetir las mismas instrucciones.
+                        </p>
+
+                    </div>
+
+                    <div class="video-placeholder">
+
+                        <span>🎥</span>
+
+                        <h3>
+                            Funciones en JavaScript
+                        </h3>
+
+                        <p>
+                            En el curso recomendado, las funciones
+                            aparecen aproximadamente desde el minuto
+                            2:51:13.
+                        </p>
+
+                        <a
+                            href="https://www.youtube.com/watch?v=Eh-s-n_6zNQ&t=10273s"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="learn-video-button">
+                            Ver funciones →
+                        </a>
+
+                    </div>
+
+                    <div class="topic-resources">
+
+                        <h3>
+                            🔗 Documentación
+                        </h3>
+
+                        <a
+                            href="https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Functions"
+                            target="_blank"
+                            rel="noopener noreferrer">
+
+                            MDN · Funciones →
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- TEMA 5 -->
+
+                <article id="tema-5" class="course-topic">
+
+                    <span class="topic-number">
+                        TEMA 05
+                    </span>
+
+                    <h2>
+                        Eventos
+                    </h2>
+
+                    <p>
+                        Los eventos permiten ejecutar código
+                        cuando ocurre una acción, como hacer
+                        clic en un botón.
+                    </p>
+
+                    <div class="code-example">
+
+                        <pre><code>const boton =
+    document.querySelector("button");
+
+boton.addEventListener("click", function() {
+
+    alert("Hola");
+
+});</code></pre>
+
+                    </div>
+
+                    <div class="video-placeholder">
+
+                        <span>🎥</span>
+
+                        <h3>
+                            Eventos en JavaScript
+                        </h3>
+
+                        <p>
+                            En el curso recomendado, los eventos
+                            aparecen aproximadamente desde el minuto
+                            11:16:44.
+                        </p>
+
+                        <a
+                            href="https://www.youtube.com/watch?v=Eh-s-n_6zNQ&t=40604s"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="learn-video-button">
+                            Ver eventos →
+                        </a>
+
+                    </div>
+
+                    <div class="topic-resources">
+
+                        <h3>
+                            🔗 Documentación
+                        </h3>
+
+                        <a
+                            href="https://developer.mozilla.org/es/docs/Learn_web_development/Core/Scripting/Events"
+                            target="_blank"
+                            rel="noopener noreferrer">
+
+                            MDN · Eventos →
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- TEMA 6 -->
+
+                <article id="tema-6" class="course-topic">
+
+                    <span class="topic-number">
+                        TEMA 06
+                    </span>
+
+                    <h2>
+                        DOM
+                    </h2>
+
+                    <p>
+                        El DOM permite que JavaScript pueda
+                        acceder y modificar los elementos
+                        HTML de una página.
+                    </p>
+
+                    <div class="code-example">
+
+                        <pre><code>const titulo =
+    document.querySelector("h1");
+
+titulo.textContent =
+    "Nuevo título";</code></pre>
+
+                    </div>
+
+                    <div class="topic-resources">
+
+                        <h3>
+                            💡 Acá empieza la interacción
+                        </h3>
+
+                        <p>
+                            Gracias al DOM podemos cambiar
+                            textos, clases, estilos y contenido
+                            de una página utilizando JavaScript.
+                        </p>
+
+                    </div>
+
+                    <div class="video-placeholder">
+
+                        <span>🎥</span>
+
+                        <h3>
+                            DOM en JavaScript
+                        </h3>
+
+                        <p>
+                            En el curso recomendado, la sección
+                            de DOM comienza aproximadamente
+                            en el minuto 10:01:01.
+                        </p>
+
+                        <a
+                            href="https://www.youtube.com/watch?v=Eh-s-n_6zNQ&t=36061s"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="learn-video-button">
+                            Ver DOM →
+                        </a>
+
+                    </div>
+
+                    <div class="topic-resources">
+
+                        <h3>
+                            🔗 Para seguir aprendiendo
+                        </h3>
+
+                        <a
+                            href="https://developer.mozilla.org/es/docs/Web/API/Document_Object_Model"
+                            target="_blank"
+                            rel="noopener noreferrer">
+
+                            MDN · Document Object Model →
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <script type="module" src="navbar.js"></script>
+</body>
+
+</html>

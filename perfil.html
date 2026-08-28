@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil | DevLab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">DevLab</a>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container" style="max-width: 960px; margin: 40px auto; padding: 0 20px;">
+
+        <!-- ENCABEZADO DE PERFIL ESTILO PANEL -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; border-bottom: 1px solid var(--border-color, #1f2937); padding-bottom: 20px;">
+            <div>
+                <p class="eyebrow" style="margin: 0; font-size: 12px; font-weight: 800; color: #6366f1; text-transform: uppercase;">PANEL DE ESTUDIANTE</p>
+                <h1 style="font-size: 28px; font-weight: 800; margin: 6px 0 0 0;" id="profile-display-name">Cargando perfil...</h1>
+                <p style="color: #94a3b8; font-size: 14px; margin: 4px 0 0 0;" id="profile-email">...</p>
+            </div>
+            <div>
+                <button id="btn-logout" class="secondary-button" style="padding: 8px 16px; font-size: 13px; font-weight: 700; cursor: pointer;">
+                    Cerrar sesión 🚪
+                </button>
+            </div>
+        </div>
+
+        <!-- SECCIÓN DE LOGROS / INSIGNIAS (7 LOGROS) -->
+        <section class="admin-card" style="margin-bottom: 30px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; border-bottom: 1px solid var(--border-color, #1f2937); padding-bottom: 12px;">
+                <h2 style="font-size: 18px; font-weight: 700; margin: 0;">Logros y Reconocimientos</h2>
+                <span id="badges-count" style="font-size: 12px; font-weight: 700; background: rgba(99, 102, 241, 0.15); color: #a5b4fc; padding: 4px 10px; border-radius: 6px;">0 / 7</span>
+            </div>
+
+            <div id="badges-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+                <p style="color: #64748b; font-size: 14px; grid-column: 1/-1;">Consultando logros...</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE RENDIMIENTO EN LOS 5 JUEGOS -->
+        <section class="admin-card">
+            <div style="margin-bottom: 18px; border-bottom: 1px solid var(--border-color, #1f2937); padding-bottom: 12px;">
+                <h2 style="font-size: 18px; font-weight: 700; margin: 0;">Métricas de Minijuegos</h2>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px;" id="game-stats-grid">
+
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color, #1f2937); border-radius: 12px; padding: 16px;">
+                    <div style="font-size: 12px; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Flexbox Lander</div>
+                    <div style="font-size: 22px; font-weight: 800; color: #38bdf8; margin: 6px 0;" id="stat-flexbox-score">-- pts</div>
+                    <div style="font-size: 12px; color: #64748b;" id="stat-flexbox-games">0 partidas</div>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color, #1f2937); border-radius: 12px; padding: 16px;">
+                    <div style="font-size: 12px; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Tag Invaders</div>
+                    <div style="font-size: 22px; font-weight: 800; color: #6366f1; margin: 6px 0;" id="stat-tag-score">-- pts</div>
+                    <div style="font-size: 12px; color: #64748b;" id="stat-tag-games">0 partidas</div>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color, #1f2937); border-radius: 12px; padding: 16px;">
+                    <div style="font-size: 12px; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Git Bomb</div>
+                    <div style="font-size: 22px; font-weight: 800; color: #ef4444; margin: 6px 0;" id="stat-git-score">-- pts</div>
+                    <div style="font-size: 12px; color: #64748b;" id="stat-git-games">0 partidas</div>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color, #1f2937); border-radius: 12px; padding: 16px;">
+                    <div style="font-size: 12px; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Speedrun</div>
+                    <div style="font-size: 22px; font-weight: 800; color: #f59e0b; margin: 6px 0;" id="stat-speedrun-score">-- pts</div>
+                    <div style="font-size: 12px; color: #64748b;" id="stat-speedrun-games">0 partidas</div>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color, #1f2937); border-radius: 12px; padding: 16px;">
+                    <div style="font-size: 12px; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Inspector</div>
+                    <div style="font-size: 22px; font-weight: 800; color: #10b981; margin: 6px 0;" id="stat-inspector-score">-- pts</div>
+                    <div style="font-size: 12px; color: #64748b;" id="stat-inspector-games">0 partidas</div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script type="module" src="navbar.js"></script>
+    <script type="module">
+        import { auth, db } from "./firebase-config.js";
+        import { signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+        import { doc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        const MASTER_BADGES = [
+            { id: "lander_ace", title: "Piloto Estelar", icon: "🛸", desc: "Superar 90 pts en Flexbox Lander." },
+            { id: "speed_demon", title: "Reflejos de Luz", icon: "⚡", desc: "Alcanzar velocidad 2.5x en Flexbox Lander." },
+            { id: "git_hero", title: "DevOps Legend", icon: "🛡️", desc: "Salvar el servidor con ≥ 15s de sobra." },
+            { id: "tag_master", title: "Exterminador HTML", icon: "👾", desc: "Superar 150 pts en Tag Invaders." },
+            { id: "combo_king", title: "Rey del Combo", icon: "🔥", desc: "Alcanzar una racha combo de x10." },
+            { id: "speedrun_pro", title: "Velocista Frontend", icon: "⚡", desc: "Superar 100 pts en Speedrun." },
+            { id: "bug_hunter", title: "Cazador de Bugs", icon: "🐞", desc: "Reparar todos los errores en Inspector." }
+        ];
+
+        const nameEl = document.getElementById("profile-display-name");
+        const emailEl = document.getElementById("profile-email");
+        const logoutBtn = document.getElementById("btn-logout");
+        const badgesGrid = document.getElementById("badges-grid");
+        const badgesCount = document.getElementById("badges-count");
+
+        logoutBtn.addEventListener("click", async () => {
+            await signOut(auth);
+            window.location.href = "index.html";
+        });
+
+        auth.onAuthStateChanged(async (user) => {
+            if (!user) {
+                window.location.href = "auth.html";
+                return;
+            }
+
+            const name = user.displayName || user.email.split("@")[0] || "Estudiante";
+            nameEl.textContent = name;
+            emailEl.textContent = user.email;
+
+            // 1. Cargar Logros
+            try {
+                const snapshot = await getDocs(collection(db, "users", user.uid, "achievements"));
+                const unlocked = {};
+                snapshot.forEach(docSnap => { unlocked[docSnap.id] = docSnap.data(); });
+
+                badgesCount.textContent = `${Object.keys(unlocked).length} / ${MASTER_BADGES.length}`;
+                badgesGrid.innerHTML = "";
+
+                MASTER_BADGES.forEach(badge => {
+                    const isUnlocked = !!unlocked[badge.id];
+                    const card = document.createElement("div");
+                    card.style.cssText = `
+                        background: rgba(255, 255, 255, ${isUnlocked ? '0.04' : '0.01'});
+                        border: 1px solid ${isUnlocked ? '#6366f1' : 'var(--border-color, #1f2937)'};
+                        border-radius: 12px;
+                        padding: 16px;
+                        opacity: ${isUnlocked ? '1' : '0.45'};
+                        display: flex;
+                        flex-direction: column;
+                        gap: 6px;
+                    `;
+
+                    card.innerHTML = `
+                        <div style="font-size: 24px; margin-bottom: 4px;">${isUnlocked ? badge.icon : '🔒'}</div>
+                        <div style="font-size: 14px; font-weight: 700; color: #fff;">${badge.title}</div>
+                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.3;">${badge.desc}</div>
+                        <div style="font-size: 11px; margin-top: auto; font-family: monospace; color: ${isUnlocked ? '#10b981' : '#64748b'}; font-weight: 700;">
+                            ${isUnlocked ? '✔ DESBLOQUEADO' : 'BLOQUEADO'}
+                        </div>
+                    `;
+                    badgesGrid.appendChild(card);
+                });
+            } catch (err) {
+                console.error("Error al cargar logros:", err);
+            }
+
+            // 2. Cargar Métricas de los 5 Juegos
+            async function loadGameStat(gameId, scoreElId, gamesElId) {
+                try {
+                    const snap = await getDoc(doc(db, "users", user.uid, "game_stats", gameId));
+                    if (snap.exists()) {
+                        const data = snap.data();
+                        document.getElementById(scoreElId).textContent = `${data.max_score || 0} pts`;
+                        document.getElementById(gamesElId).textContent = `${data.total_games || 0} partidas`;
+                    }
+                } catch (e) {
+                    console.error(`Error stat ${gameId}:`, e);
+                }
+            }
+
+            loadGameStat("flexbox-lander", "stat-flexbox-score", "stat-flexbox-games");
+            loadGameStat("tag-invaders", "stat-tag-score", "stat-tag-games");
+            loadGameStat("git-bomb", "stat-git-score", "stat-git-games");
+            loadGameStat("speedrun", "stat-speedrun-score", "stat-speedrun-games");
+            loadGameStat("inspector", "stat-inspector-score", "stat-inspector-games");
+        });
+    </script>
+</body>
+</html>

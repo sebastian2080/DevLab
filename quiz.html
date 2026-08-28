@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Frontend | DevLab</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .quiz-wrapper {
+            max-width: 680px;
+            margin: 40px auto 80px;
+            padding: 0 20px;
+        }
+
+        .quiz-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            position: relative;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .timer-badge {
+            background: #fee2e2;
+            color: #dc2626;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 14px;
+        }
+
+        .quiz-question {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 24px;
+            line-height: 1.4;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .quiz-opt-btn {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 15px;
+            font-weight: 500;
+            color: #334155;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .quiz-opt-btn:hover:not(:disabled) {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        .quiz-opt-btn.correct {
+            background: #dcfce7 !important;
+            border-color: #86efac !important;
+            color: #166534 !important;
+            font-weight: 700;
+        }
+
+        .quiz-opt-btn.wrong {
+            background: #fee2e2 !important;
+            border-color: #fca5a5 !important;
+            color: #991b1b !important;
+        }
+
+        .result-screen {
+            text-align: center;
+            display: none;
+        }
+
+        .result-score {
+            font-size: 48px;
+            font-weight: 800;
+            color: #6366f1;
+            margin: 16px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">DevLab</a>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="quiz-wrapper">
+
+        <!-- PANTALLA INICIAL -->
+        <div id="start-screen" class="quiz-card" style="text-align: center;">
+            <p class="eyebrow">⚡ TRIVIA FRONTEND</p>
+            <h1>Quiz de Conocimientos</h1>
+            <p style="color: #6b7280; margin: 12px 0 24px;">Demostrá lo que sabés sobre HTML, CSS y JS. Tenés 15 segundos por pregunta.</p>
+            <button id="start-quiz-btn" class="hero-button" style="display: inline-block;">Comenzar Quiz</button>
+        </div>
+
+        <!-- PANTALLA DE PREGUNTAS -->
+        <div id="game-screen" class="quiz-card" style="display: none;">
+            <div class="quiz-header">
+                <span id="question-progress" style="font-size: 13px; font-weight: 700; color: #6b7280;">Pregunta 1 de 5</span>
+                <span id="timer-display" class="timer-badge">⏱️ 15s</span>
+            </div>
+
+            <div id="question-text" class="quiz-question"></div>
+            <div id="options-container" class="quiz-options"></div>
+        </div>
+
+        <!-- PANTALLA FINAL -->
+        <div id="result-screen" class="quiz-card result-screen">
+            <p class="eyebrow">RESULTADO FINAL</p>
+            <h2>¡Quiz Terminado!</h2>
+            <div id="final-score" class="result-score">0 / 5</div>
+            <p id="result-feedback" style="color: #6b7280; margin-bottom: 24px;"></p>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <button id="restart-btn" class="hero-button">Reintentar</button>
+                <a href="index.html" class="action-btn" style="text-decoration: none; padding: 12px 20px;">Volver al Inicio</a>
+            </div>
+        </div>
+
+    </main>
+
+    <script type="module" src="quiz.js"></script>
+    <script type="module" src="navbar.js"></script>
+</body>
+
+</html>

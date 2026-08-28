@@ -1,0 +1,843 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aprender HTML | DevLab</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <nav>
+
+            <a href="index.html" class="logo">
+                DevLab
+            </a>
+
+            <div class="nav-links">
+
+                <a href="index.html">
+                    Inicio
+                </a>
+
+                <a href="aprender.html">
+                    Aprender
+                </a>
+
+                <a href="practicar.html">
+                    Practicar
+                </a>
+
+                <a href="herramientas.html">
+                    Herramientas
+                </a>
+
+                <a href="laboratorios.html">
+                    Laboratorios
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <!-- ENCABEZADO DEL CURSO -->
+
+        <section class="course-header">
+
+            <a href="aprender.html" class="course-back">
+                ← Volver a Aprender
+            </a>
+
+            <p class="eyebrow">
+                &lt;/&gt; HTML · PRINCIPIANTE
+            </p>
+
+            <h1>
+                Aprendé HTML desde cero.
+            </h1>
+
+            <p>
+                Conocé las etiquetas y estructuras fundamentales
+                para crear páginas web.
+            </p>
+
+        </section>
+
+
+        <!-- CONTENIDO DEL CURSO -->
+
+        <section class="course-layout">
+
+
+            <!-- TEMARIO -->
+
+            <aside class="course-sidebar">
+
+                <h2>
+                    Contenido
+                </h2>
+
+                <nav class="course-menu">
+
+                    <a href="#tema-1" class="active">
+                        <span>01</span>
+                        ¿Qué es HTML?
+                    </a>
+
+                    <a href="#tema-2">
+                        <span>02</span>
+                        Estructura de una página
+                    </a>
+
+                    <a href="#tema-3">
+                        <span>03</span>
+                        Títulos y párrafos
+                    </a>
+
+                    <a href="#tema-4">
+                        <span>04</span>
+                        Enlaces
+                    </a>
+
+                    <a href="#tema-5">
+                        <span>05</span>
+                        Imágenes
+                    </a>
+
+                    <a href="#tema-6">
+                        <span>06</span>
+                        Listas
+                    </a>
+
+                </nav>
+
+            </aside>
+
+
+            <!-- CONTENIDO -->
+
+            <div class="course-content">
+
+
+                <!-- TEMA 1 -->
+
+                <article id="tema-1" class="course-topic">
+
+                    <span class="topic-number">
+                        TEMA 01
+                    </span>
+
+                    <h2>
+                        ¿Qué es HTML?
+                    </h2>
+
+                    <p>
+                        HTML es el lenguaje utilizado para definir
+                        la estructura y el contenido de una página web.
+                    </p>
+
+                    <p>
+                        HTML significa <strong>HyperText Markup Language</strong>.
+                        No es un lenguaje de programación: es un lenguaje de marcado
+                        que utiliza elementos para organizar y dar significado al contenido.
+                    </p>
+
+                    <p>
+                        La mayoría de los elementos se escriben con una etiqueta de apertura,
+                        contenido y una etiqueta de cierre. Por ejemplo:
+                    </p>
+
+
+                    <div class="code-example">
+
+                        <pre><code>&lt;h1&gt;Hola mundo&lt;/h1&gt;
+&lt;p&gt;Mi primera página web.&lt;/p&gt;</code></pre>
+
+                    </div>
+
+                    <h3>
+                        Partes de un elemento HTML
+                    </h3>
+
+                    <div class="code-example">
+
+                        <pre><code>&lt;p&gt;Hola mundo&lt;/p&gt;
+ ↑              ↑
+ apertura       cierre</code></pre>
+
+                    </div>
+
+                    <p>
+                        También existen atributos que agregan información o configuración
+                        a un elemento. Por ejemplo, el atributo <code>href</code> indica
+                        la dirección de destino de un enlace.
+                    </p>
+
+                    <div class="code-example">
+
+                        <pre><code>&lt;a href="https://ejemplo.com"&gt;
+    Visitar sitio
+&lt;/a&gt;</code></pre>
+
+                    </div>
+
+
+                   <div class="video-placeholder">
+
+    <span>🎥</span>
+
+    <h3>
+        HTML desde cero
+    </h3>
+
+    <p>
+        Video introductorio sobre etiquetas y estructura básica de HTML.
+    </p>
+
+    <a
+        href="https://www.youtube.com/watch?v=X5usDXtXt18"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="learn-video-button">
+        Ver video en español →
+    </a>
+
+</div>
+
+
+                    <div class="topic-resources">
+
+                        <h3>
+                            🔗 Recursos
+                        </h3>
+
+                        <a href="https://developer.mozilla.org/es/docs/Web/HTML"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            MDN · Documentación de HTML →
+                        </a>
+
+                        <a href="https://developer.mozilla.org/es/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            MDN · Primeros pasos con HTML →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- TEMA 2 -->
+
+              <article id="tema-2" class="course-topic">
+
+    <span class="topic-number">
+        TEMA 02
+    </span>
+
+    <h2>
+        Estructura de una página HTML
+    </h2>
+
+    <p>
+        Una página HTML no es solamente un conjunto de etiquetas.
+        Tiene una estructura básica que permite al navegador
+        interpretar correctamente el documento.
+    </p>
+
+    <p>
+        Las partes principales son
+        <code>&lt;html&gt;</code>,
+        <code>&lt;head&gt;</code> y
+        <code>&lt;body&gt;</code>.
+    </p>
+
+    <div class="code-example">
+
+        <pre><code>&lt;!DOCTYPE html&gt;
+
+&lt;html lang="es"&gt;
+
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;title&gt;Mi página&lt;/title&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+
+        &lt;h1&gt;Hola mundo&lt;/h1&gt;
+        &lt;p&gt;Mi primera página web.&lt;/p&gt;
+
+    &lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+    </div>
+
+    <div class="topic-resources">
+
+        <h3>
+            🔎 ¿Qué hace cada parte?
+        </h3>
+
+        <p>
+            <strong>&lt;html&gt;</strong> contiene todo el documento.
+        </p>
+
+        <p>
+            <strong>&lt;head&gt;</strong> contiene información sobre
+            la página que no forma parte del contenido visible.
+        </p>
+
+        <p>
+            <strong>&lt;body&gt;</strong> contiene todo lo que
+            el usuario ve en la página.
+        </p>
+
+    </div>
+
+   <div class="video-placeholder">
+
+    <span>🎥</span>
+
+    <h3>
+        Estructura básica de HTML
+    </h3>
+
+    <p>
+        Aprendé cómo se organiza un documento HTML
+        y qué función cumplen html, head y body.
+    </p>
+
+    <a
+        href="https://www.youtube.com/watch?v=oewDFpvvzuk"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="learn-video-button">
+        Ver video en español →
+    </a>
+
+</div>
+
+    <div class="topic-resources">
+
+        <h3>
+            🔗 Para seguir aprendiendo
+        </h3>
+
+        <a
+            href="https://developer.mozilla.org/es/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax"
+            target="_blank"
+            rel="noopener noreferrer">
+            MDN · Primeros pasos con HTML →
+        </a>
+
+    </div>
+
+</article>
+
+
+                <!-- TEMA 3 -->
+
+               <article id="tema-3" class="course-topic">
+
+    <span class="topic-number">
+        TEMA 03
+    </span>
+
+    <h2>
+        Títulos y párrafos
+    </h2>
+
+    <p>
+        Una de las primeras cosas que aprendemos en HTML es
+        cómo organizar el texto de una página.
+    </p>
+
+    <p>
+        Para los títulos utilizamos las etiquetas
+        <code>&lt;h1&gt;</code> a <code>&lt;h6&gt;</code>.
+        El <code>&lt;h1&gt;</code> representa el título principal
+        y los demás niveles sirven para organizar subtítulos.
+    </p>
+
+    <p>
+        Para los párrafos utilizamos la etiqueta
+        <code>&lt;p&gt;</code>.
+    </p>
+
+    <div class="code-example">
+
+        <pre><code>&lt;h1&gt;Mi página web&lt;/h1&gt;
+
+&lt;h2&gt;Sobre nosotros&lt;/h2&gt;
+
+&lt;p&gt;
+    Esta es una página creada con HTML.
+&lt;/p&gt;</code></pre>
+
+    </div>
+
+    <div class="topic-resources">
+
+        <h3>
+            💡 Algo importante
+        </h3>
+
+        <p>
+            No conviene elegir un título simplemente porque
+            se ve más grande. Los niveles de encabezado
+            representan la jerarquía del contenido.
+        </p>
+
+        <p>
+            Una estructura habitual es comenzar con
+            <code>&lt;h1&gt;</code> y utilizar
+            <code>&lt;h2&gt;</code> y <code>&lt;h3&gt;</code>
+            para las secciones y subsecciones.
+        </p>
+
+    </div>
+
+    <div class="video-placeholder">
+
+    <span>🎥</span>
+
+    <h3>
+        Títulos y párrafos en HTML
+    </h3>
+
+    <p>
+        Aprendé a utilizar h1, h2, h3 y los demás niveles
+        de títulos, además de la etiqueta p para crear párrafos.
+    </p>
+
+    <a
+        href="https://www.youtube.com/watch?v=epNbfsTsCOc"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="learn-video-button">
+        Ver video en español →
+    </a>
+
+</div>
+
+    <div class="topic-resources">
+
+        <h3>
+            🔗 Para seguir aprendiendo
+        </h3>
+
+        <a
+            href="https://developer.mozilla.org/es/docs/Learn_web_development/Core/Structuring_content/Headings_and_paragraphs"
+            target="_blank"
+            rel="noopener noreferrer">
+            MDN · Fundamentos de texto en HTML →
+        </a>
+
+    </div>
+
+</article>
+
+
+                <!-- TEMA 4 -->
+
+                <article id="tema-4" class="course-topic">
+
+    <span class="topic-number">
+        TEMA 04
+    </span>
+
+    <h2>
+        Enlaces
+    </h2>
+
+    <p>
+        Los enlaces son una de las partes fundamentales de la Web.
+        Permiten conectar una página con otra, acceder a archivos,
+        visitar otros sitios o incluso ir a una sección específica
+        de la misma página. :contentReference[oaicite:0]{index=0}
+    </p>
+
+    <p>
+        Para crear un enlace utilizamos la etiqueta
+        <code>&lt;a&gt;</code>. Su atributo más importante es
+        <code>href</code>, que indica hacia dónde debe dirigir
+        el enlace. :contentReference[oaicite:1]{index=1}
+    </p>
+
+    <div class="code-example">
+
+        <pre><code>&lt;a href="https://www.ejemplo.com"&gt;
+    Visitar sitio
+&lt;/a&gt;</code></pre>
+
+    </div>
+
+    <div class="topic-resources">
+
+        <h3>
+            💡 Enlaces dentro de tu proyecto
+        </h3>
+
+        <p>
+            También podemos utilizar rutas relativas para conectar
+            diferentes archivos HTML de nuestro propio proyecto.
+        </p>
+
+        <div class="code-example">
+
+            <pre><code>&lt;a href="contacto.html"&gt;
+    Ir a contacto
+&lt;/a&gt;</code></pre>
+
+        </div>
+
+        <p>
+            Incluso podemos enlazar directamente a una sección
+            de la misma página utilizando un <code>id</code>.
+        </p>
+
+        <div class="code-example">
+
+            <pre><code>&lt;a href="#contacto"&gt;
+    Ir a contacto
+&lt;/a&gt;
+
+&lt;h2 id="contacto"&gt;
+    Contacto
+&lt;/h2&gt;</code></pre>
+
+        </div>
+
+    </div>
+
+   <div class="video-placeholder">
+
+    <span>🎥</span>
+
+    <h3>
+        Enlaces en HTML
+    </h3>
+
+    <p>
+        Aprendé a crear enlaces internos y externos
+        utilizando la etiqueta a y el atributo href.
+    </p>
+
+    <a
+        href="https://www.youtube.com/watch?v=5ILzGmhZeTg"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="learn-video-button">
+        Ver video en español →
+    </a>
+
+</div>
+
+    <div class="topic-resources">
+
+        <h3>
+            🔗 Para seguir aprendiendo
+        </h3>
+
+        <a
+            href="https://developer.mozilla.org/es/docs/Learn_web_development/Core/Structuring_content/Creating_links"
+            target="_blank"
+            rel="noopener noreferrer">
+            MDN · Crear hipervínculos →
+        </a>
+
+    </div>
+
+</article>
+
+                <!-- TEMA 5 -->
+
+               <article id="tema-5" class="course-topic">
+
+    <span class="topic-number">
+        TEMA 05
+    </span>
+
+    <h2>
+        Imágenes
+    </h2>
+
+    <p>
+        Las imágenes permiten agregar contenido visual a una
+        página web. Para incorporarlas utilizamos la etiqueta
+        <code>&lt;img&gt;</code>.
+    </p>
+
+    <p>
+        A diferencia de muchas etiquetas HTML, <code>&lt;img&gt;</code>
+        no necesita una etiqueta de cierre. Para funcionar,
+        normalmente utilizamos los atributos <code>src</code> y
+        <code>alt</code>. :contentReference[oaicite:0]{index=0}
+    </p>
+
+    <div class="code-example">
+
+        <pre><code>&lt;img
+    src="imagen.jpg"
+    alt="Descripción de la imagen"
+&gt;</code></pre>
+
+    </div>
+
+    <div class="topic-resources">
+
+        <h3>
+            💡 ¿Qué significa cada atributo?
+        </h3>
+
+        <p>
+            <strong>src</strong> indica la ubicación de la imagen
+            que queremos mostrar.
+        </p>
+
+        <p>
+            <strong>alt</strong> proporciona un texto alternativo
+            que describe la imagen y es importante para la
+            accesibilidad. :contentReference[oaicite:1]{index=1}
+        </p>
+
+    </div>
+
+    <div class="code-example">
+
+        <pre><code>&lt;img
+    src="images/foto.jpg"
+    alt="Una computadora sobre un escritorio"
+    width="400"
+&gt;</code></pre>
+
+    </div>
+
+    <div class="topic-resources">
+
+        <h3>
+            ⚠️ Un detalle importante
+        </h3>
+
+        <p>
+            No deberíamos utilizar imágenes que tengan derechos
+            de autor sin tener permiso para hacerlo. Para proyectos
+            reales, conviene utilizar imágenes propias o recursos
+            con una licencia que permita su uso. :contentReference[oaicite:2]{index=2}
+        </p>
+
+    </div>
+
+    <div class="video-placeholder">
+
+    <span>🎥</span>
+
+    <h3>
+        Imágenes en HTML
+    </h3>
+
+    <p>
+        Aprendé a insertar imágenes utilizando
+        la etiqueta img y los atributos src y alt.
+    </p>
+
+    <a
+        href="https://developer.mozilla.org/es/docs/Learn_web_development/Core/Structuring_content/HTML_images"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="learn-video-button">
+        Ver explicación en español →
+    </a>
+
+</div>
+
+    <div class="topic-resources">
+
+        <h3>
+            🔗 Para seguir aprendiendo
+        </h3>
+
+        <a
+            href="https://developer.mozilla.org/es/docs/Learn_web_development/Core/Structuring_content/HTML_images"
+            target="_blank"
+            rel="noopener noreferrer">
+            MDN · Imágenes en HTML →
+        </a>
+
+    </div>
+
+</article>
+
+
+                <!-- TEMA 6 -->
+
+                <article id="tema-6" class="course-topic">
+
+    <span class="topic-number">
+        TEMA 06
+    </span>
+
+    <h2>
+        Listas
+    </h2>
+
+    <p>
+        Las listas permiten organizar información de una forma
+        clara y fácil de leer. En HTML podemos crear listas
+        sin orden, listas ordenadas y también listas anidadas.
+    </p>
+
+    <h3>
+        Listas no ordenadas
+    </h3>
+
+    <p>
+        Utilizamos <code>&lt;ul&gt;</code> cuando el orden de los
+        elementos no es importante. Cada elemento se coloca dentro
+        de una etiqueta <code>&lt;li&gt;</code>. :contentReference[oaicite:0]{index=0}
+    </p>
+
+    <div class="code-example">
+
+        <pre><code>&lt;ul&gt;
+    &lt;li&gt;HTML&lt;/li&gt;
+    &lt;li&gt;CSS&lt;/li&gt;
+    &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+    </div>
+
+    <h3>
+        Listas ordenadas
+    </h3>
+
+    <p>
+        Utilizamos <code>&lt;ol&gt;</code> cuando el orden de los
+        elementos sí tiene importancia, por ejemplo para explicar
+        una serie de pasos. :contentReference[oaicite:1]{index=1}
+    </p>
+
+    <div class="code-example">
+
+        <pre><code>&lt;ol&gt;
+    &lt;li&gt;Crear el archivo HTML&lt;/li&gt;
+    &lt;li&gt;Agregar el contenido&lt;/li&gt;
+    &lt;li&gt;Abrirlo en el navegador&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+    </div>
+
+    <div class="topic-resources">
+
+        <h3>
+            💡 ¿Cuál debería usar?
+        </h3>
+
+        <p>
+            Si cambiar el orden de los elementos no cambia
+            su significado, normalmente utilizamos
+            <code>&lt;ul&gt;</code>.
+        </p>
+
+        <p>
+            Si el orden sí importa, utilizamos
+            <code>&lt;ol&gt;</code>. :contentReference[oaicite:2]{index=2}
+        </p>
+
+    </div>
+
+    <h3>
+        Listas anidadas
+    </h3>
+
+    <p>
+        También podemos colocar una lista dentro de otra.
+        Esto resulta útil cuando tenemos categorías y
+        subcategorías.
+    </p>
+
+    <div class="code-example">
+
+        <pre><code>&lt;ul&gt;
+
+    &lt;li&gt;
+        Desarrollo Web
+
+        &lt;ul&gt;
+            &lt;li&gt;HTML&lt;/li&gt;
+            &lt;li&gt;CSS&lt;/li&gt;
+            &lt;li&gt;JavaScript&lt;/li&gt;
+        &lt;/ul&gt;
+
+    &lt;/li&gt;
+
+&lt;/ul&gt;</code></pre>
+
+    </div>
+
+   <div class="video-placeholder">
+
+    <span>🎥</span>
+
+    <h3>
+        Listas en HTML
+    </h3>
+
+    <p>
+        Aprendé a crear listas ordenadas y no ordenadas
+        utilizando las etiquetas ul, ol y li.
+    </p>
+
+    <a
+        href="https://www.youtube.com/watch?v=Q0MH3GZj_Oc"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="learn-video-button">
+        Ver video en español →
+    </a>
+
+</div>
+
+    <div class="topic-resources">
+
+        <h3>
+            🔗 Para seguir aprendiendo
+        </h3>
+
+        <a
+            href="https://developer.mozilla.org/es/docs/Learn_web_development/Core/Structuring_content/Lists"
+            target="_blank"
+            rel="noopener noreferrer">
+            MDN · Listas en HTML →
+        </a>
+
+    </div>
+
+</article>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script type="module" src="navbar.js"></script>
+</body>
+
+</html>

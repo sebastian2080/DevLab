@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafíos CSS | DevLab</title>
+    <link rel="stylesheet" href="style.css?v=4">
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">DevLab</a>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="challenge-header">
+            <p class="eyebrow"># CSS · PRÁCTICA</p>
+            <h1>Desafíos de CSS</h1>
+            <p>Resolvé los desafíos y comprobá cuánto aprendiste sobre estilos y diseño.</p>
+        </section>
+
+        <section class="html-challenges">
+
+            <!-- DESAFÍO 01 -->
+            <article class="html-challenge-card" data-challenge="1">
+                <div class="challenge-number">01</div>
+                <div class="challenge-info">
+                    <span>PRINCIPIANTE</span>
+                    <h2>Color de fondo</h2>
+                    <p>¿Qué propiedad CSS se utiliza para cambiar el color de fondo de un elemento?</p>
+                </div>
+                <div class="challenge-action">
+                    <a href="css-practica.html" class="practice-button">Comenzar →</a>
+                    <span class="challenge-status"></span>
+                </div>
+            </article>
+
+            <!-- DESAFÍO 02 -->
+            <article class="html-challenge-card" data-challenge="2">
+                <div class="challenge-number">02</div>
+                <div class="challenge-info">
+                    <span>PRINCIPIANTE</span>
+                    <h2>Ancho de un elemento</h2>
+                    <p>¿Qué propiedad CSS permite definir el ancho de un elemento?</p>
+                </div>
+                <div class="challenge-action">
+                    <a href="css-practica-02.html" class="practice-button">Comenzar →</a>
+                    <span class="challenge-status"></span>
+                </div>
+            </article>
+
+            <!-- DESAFÍO 03 -->
+            <article class="html-challenge-card" data-challenge="3">
+                <div class="challenge-number">03</div>
+                <div class="challenge-info">
+                    <span>PRINCIPIANTE</span>
+                    <h2>Bordes redondeados</h2>
+                    <p>¿Qué propiedad CSS permite redondear las esquinas de un elemento?</p>
+                </div>
+                <div class="challenge-action">
+                    <a href="css-practica-03.html" class="practice-button">Comenzar →</a>
+                    <span class="challenge-status"></span>
+                </div>
+            </article>
+
+            <!-- DESAFÍO 04 -->
+            <article class="html-challenge-card" data-challenge="4">
+                <div class="challenge-number">04</div>
+                <div class="challenge-info">
+                    <span>PRINCIPIANTE</span>
+                    <h2>Espaciado interno</h2>
+                    <p>¿Qué propiedad define el espacio entre el contenido y los bordes de un elemento?</p>
+                </div>
+                <div class="challenge-action">
+                    <a href="css-practica-04.html" class="practice-button">Comenzar →</a>
+                    <span class="challenge-status"></span>
+                </div>
+            </article>
+
+            <!-- DESAFÍO 05 -->
+            <article class="html-challenge-card" data-challenge="5">
+                <div class="challenge-number">05</div>
+                <div class="challenge-info">
+                    <span>PRINCIPIANTE</span>
+                    <h2>Grosor tipográfico</h2>
+                    <p>¿Qué propiedad permite cambiar el peso o grosor de una fuente?</p>
+                </div>
+                <div class="challenge-action">
+                    <a href="css-practica-05.html" class="practice-button">Comenzar →</a>
+                    <span class="challenge-status"></span>
+                </div>
+            </article>
+
+            <!-- DESAFÍO 06 -->
+            <article class="html-challenge-card" data-challenge="6">
+                <div class="challenge-number">06</div>
+                <div class="challenge-info">
+                    <span>PRINCIPIANTE</span>
+                    <h2>Alineación en Flexbox</h2>
+                    <p>¿Qué propiedad distribuye el espacio a lo largo del eje principal en Flexbox?</p>
+                </div>
+                <div class="challenge-action">
+                    <a href="css-practica-06.html" class="practice-button">Comenzar →</a>
+                    <span class="challenge-status"></span>
+                </div>
+            </article>
+
+        </section>
+
+        <div class="back-practice">
+            <a href="practicar.html">← Volver a practicar</a>
+        </div>
+
+    </main>
+
+    <!-- BOTONES FLOTANTES DEVBOT + PLAYGROUND -->
+    <div class="floating-stack-container">
+        
+        <div id="coach-chat-window" class="coach-chat-window hidden">
+            <div class="coach-header">
+                <div class="coach-header-info">
+                    <div class="coach-avatar">🤖</div>
+                    <div>
+                        <strong>DevBot</strong>
+                        <span class="coach-status">● En línea</span>
+                    </div>
+                </div>
+                <button id="coach-close-btn" class="coach-close-btn" type="button" aria-label="Cerrar chat">&times;</button>
+            </div>
+
+            <div id="coach-messages" class="coach-messages">
+                <div class="coach-msg bot">
+                    👋 ¡Hola! Soy tu asistente en <strong>DevLab</strong>. ¿Tenés dudas sobre HTML, CSS, JavaScript o Git?
+                </div>
+            </div>
+
+            <div class="coach-chips">
+                <button class="chip-btn" type="button" data-query="¿Cómo centrar un div en CSS?">Centrar div</button>
+                <button class="chip-btn" type="button" data-query="¿Qué es una etiqueta semántica?">HTML semántico</button>
+                <button class="chip-btn" type="button" data-query="¿Diferencia entre let y const?">let vs const</button>
+                <button class="chip-btn" type="button" data-query="¿Cómo funciona Git?">Git básico</button>
+            </div>
+
+            <form id="coach-form" class="coach-input-area">
+                <input type="text" id="coach-input" placeholder="Preguntale a DevBot..." autocomplete="off">
+                <button type="submit" id="coach-send-btn">➔</button>
+            </form>
+        </div>
+
+        <a href="playground.html" class="floating-btn-pill btn-pill-playground" aria-label="Abrir Playground de código">
+            <span class="pill-icon">⚡</span>
+            <span>Playground</span>
+        </a>
+
+        <button id="coach-toggle-btn" class="floating-btn-pill btn-pill-devbot" type="button" aria-label="Abrir DevBot IA">
+            <span class="pill-icon">🤖</span>
+            <span>DevBot IA</span>
+        </button>
+
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="css-desafios.js"></script>
+    <script type="module" src="navbar.js"></script>
+    <script type="module" src="coach.js"></script>
+</body>
+
+</html>

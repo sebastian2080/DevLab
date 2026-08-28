@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio Git Interactivo | DevLab</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .terminal-container {
+            max-width: 950px;
+            margin: 40px auto 80px;
+            padding: 0 20px;
+        }
+
+        .terminal-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .missions-sidebar {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mission-item {
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .mission-item.active {
+            border-color: #6366f1;
+            background: #eef2ff;
+        }
+
+        .mission-item.completed {
+            border-color: #86efac;
+            background: #f0fdf4;
+        }
+
+        .mission-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1e293b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* CONSOLA / TERMINAL BASH */
+        .terminal-window {
+            background: #0f172a;
+            border-radius: 16px;
+            border: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            min-height: 480px;
+        }
+
+        .terminal-topbar {
+            background: #1e293b;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #334155;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #f59e0b; }
+        .dot-green { background: #22c55e; }
+
+        .terminal-body {
+            flex: 1;
+            padding: 18px;
+            font-family: 'Consolas', 'Fira Code', monospace;
+            font-size: 13px;
+            color: #f1f5f9;
+            overflow-y: auto;
+            max-height: 400px;
+            line-height: 1.6;
+        }
+
+        .log-entry {
+            margin-bottom: 8px;
+            white-space: pre-wrap;
+        }
+
+        .log-cmd {
+            color: #38bdf8;
+            font-weight: 700;
+        }
+
+        .log-success {
+            color: #4ade80;
+        }
+
+        .log-error {
+            color: #f87171;
+        }
+
+        .terminal-input-row {
+            display: flex;
+            align-items: center;
+            padding: 12px 18px;
+            background: #0b1120;
+            border-top: 1px solid #1e293b;
+            gap: 8px;
+        }
+
+        .prompt-symbol {
+            color: #38bdf8;
+            font-family: monospace;
+            font-weight: 800;
+        }
+
+        .cli-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #f8fafc;
+            font-family: 'Consolas', 'Fira Code', monospace;
+            font-size: 14px;
+        }
+
+        @media (max-width: 850px) {
+            .terminal-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">DevLab</a>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="terminal-container">
+
+        <div class="tool-page-header" style="padding-left: 0; margin-bottom: 20px;">
+            <p class="eyebrow">💻 TERMINAL EN VIVO</p>
+            <h1>Simulador Interactivo de Git</h1>
+            <p>Escribí y ejecutá los comandos reales en la consola para resolver las misiones paso a paso.</p>
+        </div>
+
+        <div class="terminal-layout">
+
+            <!-- LISTA DE MISIONES -->
+            <aside class="missions-sidebar">
+                <strong style="color: #111827; font-size: 14px; margin-bottom: 8px; display: block;">Misiones Prácticas</strong>
+                
+                <div class="mission-item active" id="mission-0">
+                    <div class="mission-title">
+                        <span>1. Iniciar Repositorio</span>
+                        <span class="status-icon">⚪</span>
+                    </div>
+                    <p style="font-size: 12px; color: #64748b; margin: 4px 0 0;">Crea un repositorio local vacío.</p>
+                </div>
+
+                <div class="mission-item" id="mission-1">
+                    <div class="mission-title">
+                        <span>2. Revisar Estado</span>
+                        <span class="status-icon">⚪</span>
+                    </div>
+                    <p style="font-size: 12px; color: #64748b; margin: 4px 0 0;">Verifica archivos sin trackear.</p>
+                </div>
+
+                <div class="mission-item" id="mission-2">
+                    <div class="mission-title">
+                        <span>3. Staging Area</span>
+                        <span class="status-icon">⚪</span>
+                    </div>
+                    <p style="font-size: 12px; color: #64748b; margin: 4px 0 0;">Prepara todos los cambios.</p>
+                </div>
+
+                <div class="mission-item" id="mission-3">
+                    <div class="mission-title">
+                        <span>4. Crear Commit</span>
+                        <span class="status-icon">⚪</span>
+                    </div>
+                    <p style="font-size: 12px; color: #64748b; margin: 4px 0 0;">Guarda la versión con mensaje.</p>
+                </div>
+
+                <div class="mission-item" id="mission-4">
+                    <div class="mission-title">
+                        <span>5. Crear Rama</span>
+                        <span class="status-icon">⚪</span>
+                    </div>
+                    <p style="font-size: 12px; color: #64748b; margin: 4px 0 0;">Crea y cambia a la rama 'feature'.</p>
+                </div>
+
+                <div class="mission-item" id="mission-5">
+                    <div class="mission-title">
+                        <span>6. Push Remoto</span>
+                        <span class="status-icon">⚪</span>
+                    </div>
+                    <p style="font-size: 12px; color: #64748b; margin: 4px 0 0;">Sube el código a GitHub.</p>
+                </div>
+            </aside>
+
+            <!-- TERMINAL VIRTUAL -->
+            <section class="terminal-window">
+                <div class="terminal-topbar">
+                    <div class="dot dot-red"></div>
+                    <div class="dot dot-yellow"></div>
+                    <div class="dot dot-green"></div>
+                    <span style="color: #94a3b8; font-size: 11px; font-family: monospace; margin-left: 8px;">bash ~ devlab/mi-proyecto (main)</span>
+                </div>
+
+                <div class="terminal-body" id="terminal-screen">
+                    <div class="log-entry" style="color: #94a3b8;">DevLab Terminal Simulator v1.0 [Ready]
+Escribí <strong>help</strong> para ver comandos disponibles o resolvé la misión actual.</div>
+                </div>
+
+                <div class="terminal-input-row">
+                    <span class="prompt-symbol">devlab@git:~$</span>
+                    <input type="text" id="cli-input" class="cli-input" autofocus spellcheck="false" placeholder="Escribí un comando Git y presioná Enter...">
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <script type="module" src="git-practicar.js"></script>
+    <script type="module" src="navbar.js"></script>
+</body>
+
+</html>

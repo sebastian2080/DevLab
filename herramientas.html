@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herramientas para Desarrolladores | DevLab</title>
+    <link rel="stylesheet" href="style.css?v=4">
+    <style>
+        .tools-page-container {
+            max-width: 1100px;
+            margin: 40px auto 80px;
+            padding: 0 20px;
+        }
+
+        .tools-header-card {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #ffffff;
+            border-radius: 20px;
+            padding: 36px 40px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+        }
+
+        .tools-header-text h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin: 8px 0;
+            color: #ffffff;
+        }
+
+        .tools-header-text p {
+            color: #94a3b8;
+            font-size: 15px;
+            max-width: 580px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .tools-header-badge {
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid #6366f1;
+            color: #a5b4fc;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tools-category-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #1e293b;
+            margin: 32px 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card-pro {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 24px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card-pro:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+            border-color: #6366f1;
+        }
+
+        .tool-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .tool-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            transition: background 0.2s ease;
+        }
+
+        .tool-card-pro:hover .tool-card-icon {
+            background: #e0e7ff;
+        }
+
+        .tool-badge-pill {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tool-card-body h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0 0 6px 0;
+        }
+
+        .tool-card-body p {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.5;
+            margin: 0 0 16px 0;
+        }
+
+        .tool-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 14px;
+            border-top: 1px solid #f1f5f9;
+            font-size: 13px;
+            font-weight: 700;
+            color: #6366f1;
+        }
+
+        .tool-card-footer span.arrow {
+            transition: transform 0.2s ease;
+        }
+
+        .tool-card-pro:hover .tool-card-footer span.arrow {
+            transform: translateX(4px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">DevLab</a>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html" style="color: #6366f1; font-weight: 700;">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="tools-page-container">
+
+        <!-- CABECERA PRINCIPAL -->
+        <div class="tools-header-card">
+            <div class="tools-header-text">
+                <p class="eyebrow" style="color: #818cf8;">🛠️ DEVELOPER TOOLKIT</p>
+                <h1>Caja de Herramientas Web</h1>
+                <p>
+                    Generadores, selectores y conversores en tiempo real diseñados para acelerar tu flujo de trabajo mientras programas.
+                </p>
+            </div>
+            <div class="tools-header-badge">
+                <span>⚡ 05 Utilidades Activas</span>
+            </div>
+        </div>
+
+        <!-- CATEGORÍA 1: DISEÑO & ESTILOS CSS -->
+        <div class="tools-category-title">
+            <span>🎨</span>
+            <span>Estilos & Generadores Visuales</span>
+        </div>
+
+        <div class="tools-grid">
+            
+            <!-- SELECTOR DE COLOR -->
+            <a href="color-tool.html" class="tool-card-pro">
+                <div>
+                    <div class="tool-card-top">
+                        <div class="tool-card-icon">🎨</div>
+                        <span class="tool-badge-pill">HEX · RGB · HSL</span>
+                    </div>
+                    <div class="tool-card-body">
+                        <h3>Selector de Colores</h3>
+                        <p>Elegí tonalidades exactas y obtené los códigos en HEX, RGB y formatos CSS listos para copiar.</p>
+                    </div>
+                </div>
+                <div class="tool-card-footer">
+                    <span>Abrir herramienta</span>
+                    <span class="arrow">→</span>
+                </div>
+            </a>
+
+            <!-- GENERADOR DE SOMBRAS -->
+            <a href="shadow-tool.html" class="tool-card-pro">
+                <div>
+                    <div class="tool-card-top">
+                        <div class="tool-card-icon">📦</div>
+                        <span class="tool-badge-pill">Box-Shadow 3D</span>
+                    </div>
+                    <div class="tool-card-body">
+                        <h3>Generador de Sombras</h3>
+                        <p>Ajustá desenfoque, dispersión, posición X/Y y opacidad con previsualización en vivo.</p>
+                    </div>
+                </div>
+                <div class="tool-card-footer">
+                    <span>Abrir generador</span>
+                    <span class="arrow">→</span>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- CATEGORÍA 2: CÁLCULOS, ESTRUCTURA & FORMATO -->
+        <div class="tools-category-title">
+            <span>📐</span>
+            <span>Unidades, Estructura & Código</span>
+        </div>
+
+        <div class="tools-grid">
+
+            <!-- CONVERSOR DE UNIDADES -->
+            <a href="unit-tool.html" class="tool-card-pro">
+                <div>
+                    <div class="tool-card-top">
+                        <div class="tool-card-icon">📏</div>
+                        <span class="tool-badge-pill">PX ⇄ REM ⇄ %</span>
+                    </div>
+                    <div class="tool-card-body">
+                        <h3>Conversor de Unidades</h3>
+                        <p>Calculá equivalencias automáticas entre píxeles, rems, ems y porcentajes para maquetar fluido.</p>
+                    </div>
+                </div>
+                <div class="tool-card-footer">
+                    <span>Abrir conversor</span>
+                    <span class="arrow">→</span>
+                </div>
+            </a>
+
+            <!-- GENERADOR DE ENLACES -->
+            <a href="link-tool.html" class="tool-card-pro">
+                <div>
+                    <div class="tool-card-top">
+                        <div class="tool-card-icon">🔗</div>
+                        <span class="tool-badge-pill">HTML5 Snippets</span>
+                    </div>
+                    <div class="tool-card-body">
+                        <h3>Generador de Enlaces</h3>
+                        <p>Configurá atributos como <code>target="_blank"</code>, <code>rel="noopener"</code> y enlaces a correo o teléfono.</p>
+                    </div>
+                </div>
+                <div class="tool-card-footer">
+                    <span>Abrir generador</span>
+                    <span class="arrow">→</span>
+                </div>
+            </a>
+
+            <!-- FORMATEADOR DE CÓDIGO -->
+            <a href="code-tool.html" class="tool-card-pro">
+                <div>
+                    <div class="tool-card-top">
+                        <div class="tool-card-icon">&lt;/&gt;</div>
+                        <span class="tool-badge-pill">Beautifier</span>
+                    </div>
+                    <div class="tool-card-body">
+                        <h3>Formateador de Código</h3>
+                        <p>Indentá y ordená estructuras desordenadas de HTML y CSS para mejorar su lectura.</p>
+                    </div>
+                </div>
+                <div class="tool-card-footer">
+                    <span>Abrir formateador</span>
+                    <span class="arrow">→</span>
+                </div>
+            </a>
+
+        </div>
+
+    </main>
+
+    <script type="module" src="navbar.js"></script>
+    <script type="module" src="coach.js"></script>
+</body>
+
+</html>

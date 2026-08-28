@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground en Vivo | DevLab</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .playground-main {
+            height: calc(100vh - 75px);
+            display: flex;
+            flex-direction: column;
+            background: #0f172a;
+        }
+
+        .playground-toolbar {
+            background: #1e293b;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+        }
+
+        .playground-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .editors-container {
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr;
+            background: #0f172a;
+            border-right: 1px solid #334155;
+            overflow: hidden;
+        }
+
+        .editor-pane {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #1e293b;
+            position: relative;
+        }
+
+        .pane-header {
+            background: #1e293b;
+            color: #94a3b8;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 14px;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .pane-tag {
+            font-family: monospace;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+        }
+
+        .tag-html { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+        .tag-css { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+        .tag-js { background: rgba(250, 204, 21, 0.2); color: #facc15; }
+
+        .code-input {
+            flex: 1;
+            background: #0f172a;
+            color: #f1f5f9;
+            border: none;
+            outline: none;
+            padding: 12px 14px;
+            font-family: 'Consolas', 'Fira Code', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            resize: none;
+            white-space: pre;
+        }
+
+        .preview-pane {
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+        }
+
+        #preview-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #ffffff;
+        }
+
+        .tool-btn {
+            background: #334155;
+            color: #f8fafc;
+            border: 1px solid #475569;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.15s ease;
+        }
+
+        .tool-btn:hover {
+            background: #475569;
+        }
+
+        .tool-btn-primary {
+            background: #6366f1;
+            border-color: #6366f1;
+        }
+
+        .tool-btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        @media (max-width: 900px) {
+            .playground-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1fr;
+            }
+            .editors-container {
+                border-right: none;
+                border-bottom: 1px solid #334155;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">DevLab</a>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="playground-main">
+        
+        <!-- TOOLBAR SUPERIOR -->
+        <div class="playground-toolbar">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="color: #f8fafc; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 6px;">
+                    ⚡ Live Playground
+                </span>
+                <span style="font-size: 11px; color: #94a3b8; background: #0f172a; padding: 3px 8px; border-radius: 6px;">
+                    Auto-render en vivo
+                </span>
+            </div>
+
+            <div style="display: flex; gap: 8px;">
+                <button id="reset-template-btn" class="tool-btn" title="Cargar plantilla base">
+                    ↺ Plantilla Base
+                </button>
+                <button id="clear-all-btn" class="tool-btn" title="Borrar todo">
+                    🗑️ Limpiar
+                </button>
+                <button id="download-code-btn" class="tool-btn tool-btn-primary" title="Exportar archivo HTML completo">
+                    📥 Descargar .html
+                </button>
+            </div>
+        </div>
+
+        <!-- GRID CON EDITORES Y PREVIEW -->
+        <div class="playground-grid">
+            
+            <!-- CONTENEDOR DE LOS 3 EDITORES -->
+            <div class="editors-container">
+                
+                <!-- HTML -->
+                <div class="editor-pane">
+                    <div class="pane-header">
+                        <span>ESTRUCTURA</span>
+                        <span class="pane-tag tag-html">HTML</span>
+                    </div>
+                    <textarea id="html-code" class="code-input" spellcheck="false" placeholder="Escribí tu HTML acá..."></textarea>
+                </div>
+
+                <!-- CSS -->
+                <div class="editor-pane">
+                    <div class="pane-header">
+                        <span>ESTILOS</span>
+                        <span class="pane-tag tag-css">CSS</span>
+                    </div>
+                    <textarea id="css-code" class="code-input" spellcheck="false" placeholder="Escribí tu CSS acá..."></textarea>
+                </div>
+
+                <!-- JS -->
+                <div class="editor-pane">
+                    <div class="pane-header">
+                        <span>LÓGICA</span>
+                        <span class="pane-tag tag-js">JAVASCRIPT</span>
+                    </div>
+                    <textarea id="js-code" class="code-input" spellcheck="false" placeholder="Escribí tu JavaScript acá..."></textarea>
+                </div>
+
+            </div>
+
+            <!-- VISTA PREVIA EN VIVO -->
+            <div class="preview-pane">
+                <iframe id="preview-frame" sandbox="allow-scripts allow-modals"></iframe>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script type="module" src="playground.js"></script>
+    <script type="module" src="navbar.js"></script>
+</body>
+
+</html>

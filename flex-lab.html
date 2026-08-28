@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flexbox Lab | DevLab</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <nav>
+
+            <a href="index.html" class="logo">
+                DevLab
+            </a>
+
+            <div class="nav-links">
+
+                <a href="index.html">Inicio</a>
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="lab-header">
+
+            <p class="eyebrow">
+                📐 LABORATORIO
+            </p>
+
+            <h1>
+                Flexbox Lab
+            </h1>
+
+            <p>
+                Experimentá con la distribución y alineación de elementos en tiempo real usando CSS Flexbox.
+            </p>
+
+        </section>
+
+
+        <section class="flex-lab">
+
+            <!-- CONTROLES -->
+            <div class="flex-controls">
+
+                <h2>Controles de Flexbox</h2>
+
+                <!-- FLEX DIRECTION -->
+                <div class="flex-control-group">
+                    <label for="flex-direction">flex-direction</label>
+                    <select id="flex-direction">
+                        <option value="row">row (Fila)</option>
+                        <option value="row-reverse">row-reverse (Fila invertida)</option>
+                        <option value="column">column (Columna)</option>
+                        <option value="column-reverse">column-reverse (Columna invertida)</option>
+                    </select>
+                </div>
+
+                <!-- JUSTIFY CONTENT -->
+                <div class="flex-control-group">
+                    <label for="justify-content">justify-content</label>
+                    <select id="justify-content">
+                        <option value="flex-start">flex-start (Al inicio)</option>
+                        <option value="center">center (Centrado)</option>
+                        <option value="flex-end">flex-end (Al final)</option>
+                        <option value="space-between">space-between (Espacio entre)</option>
+                        <option value="space-around">space-around (Espacio alrededor)</option>
+                        <option value="space-evenly">space-evenly (Espacio uniforme)</option>
+                    </select>
+                </div>
+
+                <!-- ALIGN ITEMS -->
+                <div class="flex-control-group">
+                    <label for="align-items">align-items</label>
+                    <select id="align-items">
+                        <option value="stretch">stretch (Estirar)</option>
+                        <option value="center">center (Centrado)</option>
+                        <option value="flex-start">flex-start (Al inicio)</option>
+                        <option value="flex-end">flex-end (Al final)</option>
+                    </select>
+                </div>
+
+                <!-- FLEX WRAP -->
+                <div class="flex-control-group">
+                    <label for="flex-wrap">flex-wrap</label>
+                    <select id="flex-wrap">
+                        <option value="nowrap">nowrap (Sin salto de línea)</option>
+                        <option value="wrap">wrap (Permitir salto)</option>
+                    </select>
+                </div>
+
+                <!-- GAP -->
+                <div class="flex-control-group">
+                    <div class="flex-label-row">
+                        <label for="flex-gap">gap (Espaciado)</label>
+                        <span id="gap-val">16px</span>
+                    </div>
+                    <input type="range" id="flex-gap" min="0" max="50" value="16">
+                </div>
+
+                <!-- BOTONES DE CANTIDAD -->
+                <div class="flex-item-actions">
+                    <button id="add-item-btn" type="button">+ Agregar caja</button>
+                    <button id="remove-item-btn" type="button">- Quitar caja</button>
+                </div>
+
+            </div>
+
+
+            <!-- PREVIEW AREA -->
+            <div class="flex-preview-area">
+
+                <div class="flex-preview-header">
+                    <span>Contenedor Flex</span>
+                    <span id="items-count">3 elementos</span>
+                </div>
+
+                <div class="flex-canvas" id="flex-canvas">
+                    <div class="flex-item">1</div>
+                    <div class="flex-item">2</div>
+                    <div class="flex-item">3</div>
+                </div>
+
+            </div>
+
+
+            <!-- CÓDIGO GENERADO -->
+            <div class="code-area">
+
+                <div class="code-header">
+                    <h2>CSS generado para el contenedor</h2>
+                    <button id="copy-flex-btn" aria-label="Copiar reglas de Flexbox al portapapeles" title="Copiar reglas de Flexbox al portapapeles">📋 Copiar CSS</button>
+                </div>
+
+                <pre><code id="flex-code"></code></pre>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="flex-lab.js"></script>
+
+    <script type="module" src="navbar.js"></script>
+</body>
+
+</html>

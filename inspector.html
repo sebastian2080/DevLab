@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspector de Bugs | DevLab</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .inspector-container {
+            max-width: 1000px;
+            margin: 40px auto 80px;
+            padding: 0 20px;
+        }
+
+        .bug-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .bug-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-window {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            min-height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 12px;
+        }
+
+        .editor-box {
+            background: #0f172a;
+            color: #f8fafc;
+            border-radius: 12px;
+            padding: 16px;
+            font-family: monospace;
+            font-size: 14px;
+            margin-top: 12px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .editor-textarea {
+            width: 100%;
+            background: transparent;
+            color: #38bdf8;
+            border: none;
+            outline: none;
+            resize: none;
+            font-family: inherit;
+            font-size: 14px;
+            line-height: 1.6;
+            flex-grow: 1;
+            min-height: 160px;
+        }
+
+        .bug-badge {
+            background: #fee2e2;
+            color: #dc2626;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 999px;
+            display: inline-block;
+        }
+
+        .fixed-badge {
+            background: #dcfce7 !important;
+            color: #166534 !important;
+        }
+
+        @media (max-width: 800px) {
+            .bug-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">DevLab</a>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="inspector-container">
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+            <div>
+                <p class="eyebrow">🕵️ MODO DETECTIVE</p>
+                <h1 style="font-size: 28px; margin: 4px 0;">Inspector de Bugs Frontend</h1>
+                <p style="color: #64748b; margin: 0;">Encontrá el error en el código y corregilo para reparar el componente en vivo.</p>
+            </div>
+            <div>
+                <span id="case-counter" class="bug-badge">Caso 1 de 4</span>
+            </div>
+        </div>
+
+        <div class="bug-layout" id="main-inspector-layout">
+            
+            <!-- VISTA PREVIA DEL COMPONENTE ROTO -->
+            <div class="bug-card">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <strong style="color: #1e293b;">Componente Afectado</strong>
+                    <span id="status-label" style="font-size: 13px; font-weight: 700; color: #ef4444;">🔴 Con Errores</span>
+                </div>
+                <p id="bug-description" style="font-size: 14px; color: #64748b; margin: 8px 0;"></p>
+                
+                <div class="preview-window" id="preview-area">
+                    <!-- Contenido dinámico del componente -->
+                </div>
+            </div>
+
+            <!-- EDITOR DE CÓDIGO -->
+            <div class="bug-card">
+                <strong style="color: #1e293b;">Código Fuente (Editá la línea rota)</strong>
+                <div class="editor-box">
+                    <textarea id="code-editor" class="editor-textarea" spellcheck="false"></textarea>
+                </div>
+                
+                <div style="margin-top: 16px; display: flex; gap: 10px; justify-content: flex-end;">
+                    <button id="reset-code-btn" style="background: none; border: 1px solid #d1d5db; padding: 10px 16px; border-radius: 8px; font-size: 13px; cursor: pointer;">Restablecer</button>
+                    <button id="apply-code-btn" class="hero-button" style="margin: 0; padding: 10px 20px; font-size: 13px;">Aplicar Parche 🛠️</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ACCIONES DE CASO RESUELTO -->
+        <div id="success-banner" style="display: none; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 12px; padding: 16px 20px; margin-top: 24px; align-items: center; justify-content: space-between;">
+            <div>
+                <strong style="color: #065f46; display: block;">🎉 ¡Bug resuelto con éxito!</strong>
+                <span style="font-size: 13px; color: #047857;">El parche corrigió el comportamiento del componente.</span>
+            </div>
+            <button id="next-case-btn" class="hero-button" style="background: #059669; margin: 0; padding: 10px 20px; font-size: 13px;">Siguiente Caso →</button>
+        </div>
+
+        <!-- PANTALLA DE MISIÓN COMPLETADA -->
+        <div id="mission-complete-card" class="bug-card" style="display: none; text-align: center; margin-top: 24px; padding: 40px 20px;">
+            <span style="font-size: 48px; margin-bottom: 12px;">🏆</span>
+            <h2 style="font-size: 26px; font-weight: 800; color: #1e293b; margin: 0 0 8px 0;">¡Todos los Bugs Reparados!</h2>
+            <p style="color: #64748b; font-size: 15px; margin: 0 0 16px 0;">Completaste los 4 casos de inspección con éxito.</p>
+            <p id="sync-status" style="font-size: 13px; font-family: monospace; color: #10b981; margin-bottom: 24px;">Sincronizando con tu perfil...</p>
+            
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <button id="restart-inspector-btn" class="hero-button" style="margin: 0;">Reiniciar Casos 🔄</button>
+                <a href="arcade-hub.html" class="action-btn" style="text-decoration: none; padding: 12px 20px;">Volver al Hub Arcade</a>
+            </div>
+        </div>
+
+    </main>
+
+    <script type="module" src="navbar.js"></script>
+    <script type="module" src="inspector.js"></script>
+</body>
+
+</html>

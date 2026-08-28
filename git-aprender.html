@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprender Git & GitHub | DevLab</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Librería jsPDF + AutoTable para armar el PDF en vivo -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+
+    <style>
+        .course-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+            max-width: 1100px;
+            margin: 40px auto 80px;
+            padding: 0 20px;
+        }
+
+        .course-sidebar {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 20px;
+            height: fit-content;
+        }
+
+        .topic-btn {
+            width: 100%;
+            text-align: left;
+            padding: 12px 14px;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            font-weight: 500;
+            color: #4b5563;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.15s ease;
+            margin-bottom: 4px;
+        }
+
+        .topic-btn:hover {
+            background: #f3f4f6;
+            color: #111827;
+        }
+
+        .topic-btn.active {
+            background: #eef2ff;
+            color: #6366f1;
+            font-weight: 700;
+        }
+
+        .course-content-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 36px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        .code-box-cmd {
+            background: #0f172a;
+            color: #38bdf8;
+            padding: 16px 20px;
+            border-radius: 10px;
+            font-family: 'Consolas', 'Fira Code', monospace;
+            font-size: 14px;
+            margin: 16px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copy-btn {
+            background: #334155;
+            color: #ffffff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .copy-btn:hover {
+            background: #475569;
+        }
+
+        /* BOTÓN FLOTANTE CHEAT SHEET PDF */
+        .floating-pdf-btn {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            background: #0f172a;
+            color: #ffffff;
+            border: 1px solid #334155;
+            padding: 12px 20px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            z-index: 999;
+            transition: all 0.2s ease;
+        }
+
+        .floating-pdf-btn:hover {
+            transform: translateY(-3px);
+            background: #1e293b;
+            border-color: #6366f1;
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.25);
+        }
+
+        @media (max-width: 850px) {
+            .course-layout {
+                grid-template-columns: 1fr;
+            }
+            .floating-pdf-btn {
+                bottom: 85px; /* Para no superponerse en mobile */
+                left: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">DevLab</a>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="course-layout">
+
+        <!-- BARRA LATERAL CON TEMARIO -->
+        <aside class="course-sidebar">
+            <h3 style="font-size: 13px; text-transform: uppercase; color: #9ca3af; letter-spacing: 0.05em; margin-bottom: 12px; padding-left: 6px;">Temario Git & GitHub</h3>
+            <button class="topic-btn active" onclick="loadGitTopic(0)">1. Introducción a Git</button>
+            <button class="topic-btn" onclick="loadGitTopic(1)">2. Configuración Inicial</button>
+            <button class="topic-btn" onclick="loadGitTopic(2)">3. Flujo de Trabajo</button>
+            <button class="topic-btn" onclick="loadGitTopic(3)">4. Ramas (Branches)</button>
+            <button class="topic-btn" onclick="loadGitTopic(4)">5. Conectar con GitHub</button>
+            <button class="topic-btn" onclick="loadGitTopic(5)">6. GitHub Pages</button>
+        </aside>
+
+        <!-- ÁREA DE CONTENIDO DINÁMICO -->
+        <section class="course-content-card" id="git-content-area"></section>
+
+    </main>
+
+    <!-- BOTÓN FLOTANTE DESCARGA PDF -->
+    <button id="download-git-cheatsheet" class="floating-pdf-btn">
+        <span style="font-size: 16px;">📥</span>
+        <span>Guía de Comandos (PDF)</span>
+    </button>
+
+    <script type="module">
+        import { initAuthNav } from "./sync.js";
+        initAuthNav();
+
+        const topics = [
+            {
+                badge: "FUNDAMENTOS",
+                title: "1. ¿Qué es Git y para qué sirve?",
+                desc: "Git es un sistema de control de versiones distribuido que registra los cambios en tus archivos a lo largo del tiempo. Permite volver a versiones anteriores, trabajar en equipo sin sobreescribir código y organizar proyectos de forma profesional.",
+                code: "git --version"
+            },
+            {
+                badge: "CONFIGURACIÓN",
+                title: "2. Configuración de Identidad",
+                desc: "Antes de realizar tu primer commit, es necesario configurar tu nombre de autor y correo electrónico en tu máquina local para firmar cada cambio.",
+                code: 'git config --global user.name "Tu Nombre"\ngit config --global user.email "tu@email.com"'
+            },
+            {
+                badge: "FLUJO PRINCIPAL",
+                title: "3. Preparar y Guardar Cambios (Add & Commit)",
+                desc: "El ciclo esencial consta de dos pasos: 'git add' para pasar los archivos modificados al área de preparación (staging) y 'git commit' para tomar una instantánea del estado actual del código con un mensaje explicativo.",
+                code: 'git add .\ngit commit -m "feat: agrego estructura de navegacion"'
+            },
+            {
+                badge: "ORGANIZACIÓN",
+                title: "4. Creación y Manejo de Ramas",
+                desc: "Las ramas (branches) te permiten aislar el desarrollo de nuevas funciones o arreglos de bugs sin alterar el código estable de la rama principal (main).",
+                code: 'git checkout -b feature-nueva-pagina\ngit branch'
+            },
+            {
+                badge: "SINCRONIZACIÓN",
+                title: "5. Vincular y Subir a GitHub",
+                desc: "Una vez creado el repositorio remoto en GitHub, vinculás tu carpeta local mediante la URL remota y subís tus cambios mediante un 'push'.",
+                code: 'git remote add origin https://github.com/usuario/mi-repo.git\ngit push -u origin main'
+            },
+            {
+                badge: "DESPLIEGUE",
+                title: "6. Publicación Gratuita con GitHub Pages",
+                desc: "GitHub permite servir sitios web estáticos (HTML, CSS y JS) en línea de manera gratuita directamente desde la configuración de tu repositorio en Settings > Pages.",
+                code: 'Repositorio > Settings > Pages > Branch: main > Save'
+            }
+        ];
+
+        window.loadGitTopic = function(index) {
+            const btns = document.querySelectorAll(".topic-btn");
+            btns.forEach((b, i) => b.classList.toggle("active", i === index));
+
+            const t = topics[index];
+            const contentArea = document.getElementById("git-content-area");
+            contentArea.innerHTML = `
+                <span class="eyebrow" style="font-size: 11px; font-weight: 800; color: #6366f1; letter-spacing: 0.08em;">${t.badge}</span>
+                <h1 style="font-size: 26px; margin: 8px 0 16px; color: #111827;">${t.title}</h1>
+                <p style="color: #4b5563; font-size: 15px; line-height: 1.6; margin-bottom: 24px;">${t.desc}</p>
+                <strong style="color: #1e293b; font-size: 14px; display: block; margin-bottom: 8px;">Comando de referencia:</strong>
+                <div class="code-box-cmd">
+                    <pre style="margin: 0; white-space: pre-wrap;">${t.code}</pre>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText(\`${t.code}\`); alert('¡Comando copiado!');">Copiar</button>
+                </div>
+                <div style="margin-top: 40px; display: flex; justify-content: space-between;">
+                    <a href="aprender.html" class="action-btn" style="text-decoration: none; padding: 10px 18px; font-size: 13px;">← Volver al Índice</a>
+                </div>
+            `;
+        };
+
+        loadGitTopic(0);
+
+        // ==========================================
+        // GENERADOR DE CHEAT SHEET EN PDF ORDENADO
+        // ==========================================
+        document.getElementById("download-git-cheatsheet").addEventListener("click", () => {
+            const { jsPDF } = window.jspdf;
+            const docPDF = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+
+            // Cabecera institucional
+            docPDF.setFillColor(15, 23, 42); // #0f172a
+            docPDF.rect(0, 0, 210, 30, "F");
+
+            docPDF.setFontSize(18);
+            docPDF.setTextColor(255, 255, 255);
+            docPDF.setFont("helvetica", "bold");
+            docPDF.text("DevLab | Guía Esencial de Git & GitHub", 14, 18);
+
+            docPDF.setFontSize(10);
+            docPDF.setTextColor(148, 163, 184);
+            docPDF.setFont("helvetica", "normal");
+            docPDF.text("Flujo secuencial de trabajo desde la inicialización hasta el despliegue", 14, 25);
+
+            // Lista estructurada en orden de uso cronológico
+            const gitGuideData = [
+                ["Fase 1: Configuración (Una sola vez)", "git config --global user.name \"Nombre\"\ngit config --global user.email \"correo@ejemplo.com\"", "Configura tu identidad de autor para firmar cada cambio."],
+                ["Fase 2: Creación del Repositorio", "git init", "Inicializa un repositorio Git vacío en la carpeta del proyecto."],
+                ["Fase 2: Clonar (Alternativa)", "git clone <url-del-repositorio>", "Descarga un proyecto existente desde GitHub a tu máquina local."],
+                ["Fase 3: Diagnóstico", "git status", "Muestra qué archivos fueron creados, modificados o eliminados."],
+                ["Fase 4: Preparar Cambios", "git add .", "Pasa todos los archivos modificados al área de preparación (Staging)."],
+                ["Fase 5: Guardar Versión", "git commit -m \"mensaje descriptivo\"", "Guarda una foto permanente del estado actual con un mensaje claro."],
+                ["Fase 6: Historial", "git log --oneline", "Muestra la lista de commits realizados de forma compacta."],
+                ["Fase 7: Ramas de Trabajo", "git checkout -b <nombre-rama>", "Crea una rama nueva para trabajar de forma aislada y se posiciona en ella."],
+                ["Fase 7: Cambiar de Rama", "git switch <nombre-rama>", "Cambia de una rama a otra para revisar o continuar tareas."],
+                ["Fase 8: Vincular a GitHub", "git remote add origin <url-github>", "Conecta tu repositorio local con el repositorio en la nube de GitHub."],
+                ["Fase 9: Subir Cambios", "git push -u origin main", "Sube tus commits locales a la rama principal del repositorio remoto."],
+                ["Fase 10: Descargar Cambios", "git pull origin main", "Descarga e integra en tu máquina local los cambios nuevos del equipo."]
+            ];
+
+            docPDF.autoTable({
+                head: [["Paso / Etapa", "Comando de Terminal", "Descripción & Uso"]],
+                body: gitGuideData,
+                startY: 38,
+                theme: "striped",
+                headStyles: {
+                    fillColor: [99, 102, 241],
+                    textColor: [255, 255, 255],
+                    fontStyle: "bold",
+                    fontSize: 10
+                },
+                bodyStyles: {
+                    fontSize: 9,
+                    cellPadding: 4,
+                    textColor: [30, 41, 59]
+                },
+                columnStyles: {
+                    0: { cellWidth: 46, fontStyle: "bold" },
+                    1: { cellWidth: 64, fontStyle: "italic", textColor: [79, 70, 229] },
+                    2: { cellWidth: 76 }
+                },
+                margin: { left: 12, right: 12 }
+            });
+
+            // Pie de página
+            const pageHeight = docPDF.internal.pageSize.height;
+            docPDF.setFontSize(9);
+            docPDF.setTextColor(148, 163, 184);
+            docPDF.text("Plataforma Educativa DevLab - Material de Consulta Rápida", 14, pageHeight - 10);
+
+            docPDF.save("DevLab_Guia_Comandos_Git.pdf");
+        });
+    </script>
+    <script type="module" src="navbar.js"></script>
+</body>
+
+</html>

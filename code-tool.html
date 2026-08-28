@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Formateador de código | DevLab</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <nav>
+
+            <a href="index.html" class="logo">
+                DevLab
+            </a>
+
+            <div class="nav-links">
+
+                <a href="index.html">Inicio</a>
+                <a href="aprender.html">Aprender</a>
+                <a href="practicar.html">Practicar</a>
+                <a href="herramientas.html">Herramientas</a>
+                <a href="laboratorios.html">Laboratorios</a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="tool-page-header">
+
+            <a href="herramientas.html" class="course-back">
+                ← Volver a herramientas
+            </a>
+
+            <p class="eyebrow">
+                &lt;/&gt; HERRAMIENTA
+            </p>
+
+            <h1>
+                Formateador de código
+            </h1>
+
+            <p>
+                Organizá tu código para que sea más fácil
+                de leer y mantener.
+            </p>
+
+        </section>
+
+
+        <section class="code-tool">
+
+            <div class="code-tool-header">
+
+                <h2>
+                    Código
+                </h2>
+
+                <button id="format-button" class="tool-button">
+                    Formatear código →
+                </button>
+
+            </div>
+
+
+            <textarea
+                id="code-input"
+                class="code-input"
+                placeholder="Pegá tu código HTML, CSS o JavaScript acá..."></textarea>
+
+
+            <div class="code-output-container">
+
+                <div class="code-output-header">
+
+                    <span>
+                        Resultado
+                    </span>
+
+                    <button id="copy-code">
+                        📋 Copiar
+                    </button>
+
+                </div>
+
+                <pre id="code-output"></pre>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="code-tool.js"></script>
+
+    <script type="module" src="navbar.js"></script>
+</body>
+
+</html>

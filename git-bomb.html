@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Bomb · Crisis en Producción</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #05070d;
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            user-select: none;
+            overflow-x: hidden;
+        }
+
+        .game-wrapper {
+            width: 100%;
+            max-width: 850px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .game-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .back-link {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: #fff; }
+
+        /* TABLERO DE LA BOMBA */
+        .bomb-cabinet {
+            width: 100%;
+            background: #0f172a;
+            border: 2px solid #ef4444;
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 0 40px rgba(239, 68, 68, 0.2), inset 0 0 30px rgba(0,0,0,0.8);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.1s ease;
+        }
+
+        /* TIMER DIGITAL */
+        .bomb-timer-box {
+            background: #030712;
+            border: 1px solid #ef4444;
+            border-radius: 12px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .timer-display {
+            font-family: monospace;
+            font-size: 36px;
+            font-weight: 900;
+            color: #ef4444;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(239, 68, 68, 0.8);
+        }
+
+        .status-badge {
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: pulseText 1s infinite alternate;
+        }
+
+        @keyframes pulseText {
+            from { opacity: 0.6; }
+            to { opacity: 1; }
+        }
+
+        /* INCIDENTE */
+        .incident-box {
+            background: #030712;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 16px;
+            min-height: 110px;
+        }
+
+        .incident-header {
+            font-size: 11px;
+            font-weight: 800;
+            color: #f59e0b;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .incident-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .incident-desc {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        /* BANCO DE OPCIONES / PISTAS */
+        .hints-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .option-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-family: monospace;
+            font-size: 14px;
+            color: #e2e8f0;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .option-card:hover {
+            border-color: #6366f1;
+            background: #273549;
+            color: #38bdf8;
+            transform: translateY(-2px);
+        }
+
+        /* COMANDOS CLI */
+        .cli-form {
+            display: flex;
+            gap: 10px;
+            position: relative;
+        }
+
+        .cli-input {
+            flex: 1;
+            background: #030712;
+            border: 2px solid #334155;
+            color: #38bdf8;
+            padding: 14px 18px;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 16px;
+            font-weight: 700;
+            outline: none;
+        }
+
+        .cli-input:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .cli-btn {
+            background: #6366f1;
+            color: #ffffff;
+            border: none;
+            padding: 0 24px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .cli-btn:hover { background: #4f46e5; }
+
+        .terminal-log {
+            margin-top: 16px;
+            font-family: monospace;
+            font-size: 13px;
+            color: #64748b;
+            min-height: 24px;
+        }
+
+        .screen-shake {
+            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-4px, 0, 0); }
+            20%, 80% { transform: translate3d(6px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-8px, 0, 0); }
+            40%, 60% { transform: translate3d(8px, 0, 0); }
+        }
+
+        .modal-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(3, 7, 18, 0.94);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px;
+            z-index: 10;
+        }
+
+        .save-status-msg {
+            font-size: 13px;
+            font-family: monospace;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-wrapper">
+        <div class="game-header">
+            <a href="arcade-hub.html" class="back-link">← Volver al Hub Arcade</a>
+            <div style="font-family: monospace; font-size: 15px; color: #94a3b8;">
+                RONDAS DESACTIVADAS: <strong id="hud-defused" style="color: #10b981;">0 / 5</strong>
+            </div>
+        </div>
+
+        <div class="bomb-cabinet" id="bomb-box">
+            
+            <div class="bomb-timer-box">
+                <span class="status-badge">⚠️ DETONACIÓN INMINENTE</span>
+                <div class="timer-display" id="timer-text">00:25</div>
+            </div>
+
+            <div class="incident-box">
+                <div class="incident-header" id="incident-step">CRISIS #1</div>
+                <div class="incident-title" id="incident-title">Cargando misión...</div>
+                <div class="incident-desc" id="incident-desc">...</div>
+            </div>
+
+            <!-- 3 OPCIONES PARA SELECCIONAR O COPIAR -->
+            <div class="hints-label">Elegí el comando correcto (o tipealo en la consola):</div>
+            <div class="options-grid" id="options-container">
+                <!-- Se cargan dinámicamente -->
+            </div>
+
+            <form class="cli-form" id="cli-form">
+                <input type="text" id="cli-input" class="cli-input" placeholder="Tipeá o hacé clic en una opción..." autocomplete="off" spellcheck="false">
+                <button type="submit" class="cli-btn">EJECUTAR ⚡</button>
+            </form>
+
+            <div class="terminal-log" id="terminal-log">Esperando orden de terminal...</div>
+
+            <!-- MODAL INICIO -->
+            <div id="start-modal" class="modal-overlay">
+                <span style="font-size: 50px; margin-bottom: 8px;">💣</span>
+                <h1 style="font-size: 28px; font-weight: 900; margin: 0 0 8px 0; color: #fff;">GIT BOMB: DEVOPS EMERGENCY</h1>
+                <p style="color: #94a3b8; max-width: 460px; font-size: 14px; margin-bottom: 20px; line-height: 1.4;">
+                    El servidor está fallando. Analizá las opciones disponibles y ejecutá el comando correcto antes de que el contador llegue a cero. ¡Cuidado con las opciones trampa!
+                </p>
+                <button id="btn-start" class="cli-btn" style="padding: 14px 32px; font-size: 16px;">ACTIVAR PROTOCOLO ⚡</button>
+            </div>
+
+            <!-- MODAL EXPLOSIÓN -->
+            <div id="boom-modal" class="modal-overlay" style="display: none;">
+                <span style="font-size: 60px; margin-bottom: 8px;">💥</span>
+                <h2 style="font-size: 32px; font-weight: 900; color: #ef4444; margin: 0 0 6px 0;">¡EXPLOTÓ PRODUCCIÓN!</h2>
+                <p id="boom-reason" style="color: #fca5a5; font-size: 15px; max-width: 440px; margin-bottom: 12px; line-height: 1.4;">
+                    Ejecutaste un comando fatal y los servidores se cayeron.
+                </p>
+                <p id="boom-save-status" class="save-status-msg" style="color: #94a3b8;"></p>
+                <button id="btn-retry" class="cli-btn" style="background: #ef4444; padding: 14px 32px;">REINTENTAR DESPLIEGUE 🔄</button>
+            </div>
+
+            <!-- MODAL VICTORIA -->
+            <div id="win-modal" class="modal-overlay" style="display: none;">
+                <span style="font-size: 60px; margin-bottom: 8px;">🛡️</span>
+                <h2 style="font-size: 32px; font-weight: 900; color: #10b981; margin: 0 0 6px 0;">¡SERVIDOR SALVADO!</h2>
+                <p style="color: #a7f3d0; font-size: 15px; max-width: 440px; margin-bottom: 12px; line-height: 1.4;">
+                    Desactivaste las 5 anomalías del repositorio y salvaste el despliegue a producción.
+                </p>
+                <p id="win-save-status" class="save-status-msg" style="color: #94a3b8;"></p>
+                <button id="btn-win-restart" class="cli-btn" style="background: #10b981; padding: 14px 32px;">JUGAR DE NUEVO ⚡</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SCRIPT DEL JUEGO INTEGRADO CON FIREBASE -->
+    <script type="module">
+        import { saveGameStats } from "./sync-games.js";
+
+        const MISSIONS = [
+            {
+                title: "Archivos modificados sin trackear",
+                desc: "Hay archivos críticos con cambios en el directorio de trabajo. Agregá todos los archivos al área de staging.",
+                options: ["git add .", "git reset --hard", "git clean -fdx"],
+                correct: ["git add .", "git add -A"],
+                fatal: ["git reset --hard", "git clean -fdx"],
+                fatalReason: "¡Borraste todos los archivos modificados sin guardarlos en staging!"
+            },
+            {
+                title: "Guardar estado de emergencia",
+                desc: "Los cambios en staging deben guardarse de inmediato en el historial con el mensaje exacto 'hotfix'.",
+                options: ['git commit -m "hotfix"', "git reset --hard HEAD~1", "git branch -D hotfix"],
+                correct: ['git commit -m "hotfix"', "git commit -m 'hotfix'"],
+                fatal: ["git reset --hard HEAD~1", "git branch -D hotfix"],
+                fatalReason: "¡Eliminaste el historial de commits anterior en lugar de guardar!"
+            },
+            {
+                title: "Crear y saltar a rama de rescate",
+                desc: "El código no debe subirse a main directamente. Creá y cambiate a una nueva rama llamada 'fix-bug'.",
+                options: ["git checkout -b fix-bug", "git branch -D fix-bug", "git push origin main --force"],
+                correct: ["git checkout -b fix-bug", "git switch -c fix-bug"],
+                fatal: ["git branch -D fix-bug", "git push origin main --force"],
+                fatalReason: "¡Intentaste forzar un push a main sin pasar por una rama de pruebas!"
+            },
+            {
+                title: "Traer últimos cambios del servidor",
+                desc: "Antes de subir nada, sincronizá y descargá los cambios más recientes de la rama main remota.",
+                options: ["git pull origin main", "git push --force", "git rebase --abort"],
+                correct: ["git pull origin main", "git pull"],
+                fatal: ["git push --force", "git rebase --abort"],
+                fatalReason: "¡Hiciste un force push y pisaste el trabajo de todo el equipo en remoto!"
+            },
+            {
+                title: "Despliegue final a producción",
+                desc: "Subí la rama local 'fix-bug' al repositorio remoto de origen para completar el parche.",
+                options: ["git push origin fix-bug", "git reset --hard origin/main", "git push --all --force"],
+                correct: ["git push origin fix-bug", "git push -u origin fix-bug"],
+                fatal: ["git reset --hard origin/main", "git push --all --force"],
+                fatalReason: "¡Borraste los parches locales al reiniciar contra origin/main!"
+            }
+        ];
+
+        let currentIdx = 0;
+        let timeLeft = 25;
+        let timerInterval = null;
+        let isPlaying = false;
+
+        const bombBox = document.getElementById("bomb-box");
+        const timerText = document.getElementById("timer-text");
+        const incidentStep = document.getElementById("incident-step");
+        const incidentTitle = document.getElementById("incident-title");
+        const incidentDesc = document.getElementById("incident-desc");
+        const optionsContainer = document.getElementById("options-container");
+        const cliForm = document.getElementById("cli-form");
+        const cliInput = document.getElementById("cli-input");
+        const terminalLog = document.getElementById("terminal-log");
+        const hudDefused = document.getElementById("hud-defused");
+
+        const startModal = document.getElementById("start-modal");
+        const boomModal = document.getElementById("boom-modal");
+        const winModal = document.getElementById("win-modal");
+        const boomReason = document.getElementById("boom-reason");
+        const boomSaveStatus = document.getElementById("boom-save-status");
+        const winSaveStatus = document.getElementById("win-save-status");
+
+        function startGame() {
+            currentIdx = 0;
+            isPlaying = true;
+            startModal.style.display = "none";
+            boomModal.style.display = "none";
+            winModal.style.display = "none";
+            boomSaveStatus.textContent = "";
+            winSaveStatus.textContent = "";
+            loadMission();
+            startTimer();
+        }
+
+        function loadMission() {
+            const m = MISSIONS[currentIdx];
+            incidentStep.textContent = `CRISIS #${currentIdx + 1} DE ${MISSIONS.length}`;
+            incidentTitle.textContent = m.title;
+            incidentDesc.textContent = m.desc;
+            terminalLog.textContent = "Esperando orden de terminal...";
+            terminalLog.style.color = "#64748b";
+            hudDefused.textContent = `${currentIdx} / ${MISSIONS.length}`;
+            cliInput.value = "";
+            cliInput.focus();
+            timeLeft = 25;
+            updateTimerDisplay();
+
+            optionsContainer.innerHTML = "";
+            const shuffled = [...m.options].sort(() => Math.random() - 0.5);
+            shuffled.forEach(opt => {
+                const card = document.createElement("div");
+                card.className = "option-card";
+                card.textContent = opt;
+                card.onclick = () => {
+                    cliInput.value = opt;
+                    cliInput.focus();
+                };
+                optionsContainer.appendChild(card);
+            });
+        }
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (!isPlaying) return;
+                timeLeft--;
+                updateTimerDisplay();
+
+                if (timeLeft <= 0) {
+                    triggerExplosion("¡Se agotó el tiempo! La bomba detonó en producción.");
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const sec = timeLeft < 10 ? `0${timeLeft}` : timeLeft;
+            timerText.textContent = `00:${sec}`;
+        }
+
+        cliForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (!isPlaying) return;
+
+            const val = cliInput.value.trim();
+            const currentMission = MISSIONS[currentIdx];
+
+            if (currentMission.fatal.includes(val)) {
+                triggerExplosion(currentMission.fatalReason);
+                return;
+            }
+
+            if (currentMission.correct.includes(val)) {
+                terminalLog.textContent = `✔ [OK] Comando ejecutado: "${val}"`;
+                terminalLog.style.color = "#10b981";
+
+                currentIdx++;
+                if (currentIdx >= MISSIONS.length) {
+                    triggerVictory();
+                } else {
+                    setTimeout(loadMission, 400);
+                }
+            } else {
+                terminalLog.textContent = `✖ [ERROR] Comando inválido: "${val}" (-5s)`;
+                terminalLog.style.color = "#ef4444";
+                timeLeft = Math.max(1, timeLeft - 5);
+                updateTimerDisplay();
+
+                bombBox.classList.add("screen-shake");
+                setTimeout(() => bombBox.classList.remove("screen-shake"), 400);
+            }
+        });
+
+        async function triggerExplosion(reason) {
+            isPlaying = false;
+            clearInterval(timerInterval);
+            bombBox.classList.add("screen-shake");
+            boomReason.textContent = reason;
+            boomModal.style.display = "flex";
+
+            const finalScore = currentIdx * 20;
+            if (finalScore > 0) {
+                boomSaveStatus.textContent = "Sincronizando puntuación con el ranking...";
+                try {
+                    const res = await saveGameStats("git-bomb", { score: finalScore, velocity: currentIdx });
+                    if (res && res.isNewMaxScore) {
+                        boomSaveStatus.textContent = "¡Nuevo récord personal registrado! 🏆";
+                        boomSaveStatus.style.color = "#10b981";
+                    } else if (res) {
+                        boomSaveStatus.textContent = "Puntuación guardada.";
+                    }
+                } catch (err) {
+                    console.error("Error al guardar git-bomb:", err);
+                    boomSaveStatus.textContent = "No se pudo guardar la puntuación.";
+                    boomSaveStatus.style.color = "#ef4444";
+                }
+            }
+        }
+
+        async function triggerVictory() {
+            isPlaying = false;
+            clearInterval(timerInterval);
+            hudDefused.textContent = `${MISSIONS.length} / ${MISSIONS.length}`;
+            winModal.style.display = "flex";
+
+            const finalScore = 100 + (timeLeft * 5);
+            winSaveStatus.textContent = "Sincronizando victoria con el ranking...";
+            try {
+                const res = await saveGameStats("git-bomb", { score: finalScore, velocity: timeLeft });
+                if (res && res.isNewMaxScore) {
+                    winSaveStatus.textContent = `¡Nuevo récord: ${finalScore} pts! 🏆`;
+                    winSaveStatus.style.color = "#10b981";
+                } else if (res) {
+                    winSaveStatus.textContent = `Victoria registrada: ${finalScore} pts.`;
+                }
+            } catch (err) {
+                console.error("Error al guardar victoria git-bomb:", err);
+                winSaveStatus.textContent = "Error al conectar con Firestore.";
+                winSaveStatus.style.color = "#ef4444";
+            }
+        }
+
+        document.getElementById("btn-start").addEventListener("click", startGame);
+        document.getElementById("btn-retry").addEventListener("click", startGame);
+        document.getElementById("btn-win-restart").addEventListener("click", startGame);
+    </script>
+    <script type="module" src="navbar.js"></script>
+</body>
+</html>
