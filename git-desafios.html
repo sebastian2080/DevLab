@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desafíos Git & GitHub | DevLab</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=4">
     <style>
         .challenge-container {
             max-width: 900px;
@@ -23,6 +23,7 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
+            transition: all 0.25s ease;
         }
 
         .challenge-box.completed {
@@ -33,7 +34,7 @@
         .cmd-terminal-input {
             background: #0f172a;
             color: #38bdf8;
-            font-family: 'Consolas', monospace;
+            font-family: 'Consolas', 'Courier New', monospace;
             padding: 12px 16px;
             border-radius: 8px;
             border: 1px solid #334155;
@@ -41,6 +42,11 @@
             outline: none;
             font-size: 14px;
             box-sizing: border-box;
+            letter-spacing: 0.5px;
+        }
+
+        .cmd-terminal-input:focus {
+            border-color: #6366f1;
         }
 
         .feedback-msg {
@@ -69,7 +75,7 @@
             <div class="nav-links">
                 <a href="index.html">Inicio</a>
                 <a href="aprender.html">Aprender</a>
-                <a href="practicar.html">Practicar</a>
+                <a href="practicar.html" style="color: #6366f1; font-weight: 700;">Practicar</a>
                 <a href="herramientas.html">Herramientas</a>
                 <a href="laboratorios.html">Laboratorios</a>
             </div>
@@ -91,7 +97,7 @@
                 <p style="color: #64748b; font-size: 14px; margin: 4px 0 0;">¿Qué comando inicializa un repositorio de Git vacío en la carpeta actual?</p>
             </div>
             <input type="text" class="cmd-terminal-input" id="input-git-01" placeholder="Ej: git ...">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                 <span class="feedback-msg" id="msg-git-01"></span>
                 <button class="hero-button btn-check" data-key="git-01" data-expected="git init">Comprobar</button>
             </div>
@@ -104,7 +110,7 @@
                 <p style="color: #64748b; font-size: 14px; margin: 4px 0 0;">¿Qué comando muestra los archivos modificados y sin seguimiento (untracked)?</p>
             </div>
             <input type="text" class="cmd-terminal-input" id="input-git-02" placeholder="Ej: git ...">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                 <span class="feedback-msg" id="msg-git-02"></span>
                 <button class="hero-button btn-check" data-key="git-02" data-expected="git status">Comprobar</button>
             </div>
@@ -117,7 +123,7 @@
                 <p style="color: #64748b; font-size: 14px; margin: 4px 0 0;">¿Cómo agregás todos los archivos modificados al área de Staging de una sola vez?</p>
             </div>
             <input type="text" class="cmd-terminal-input" id="input-git-03" placeholder="Ej: git ...">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                 <span class="feedback-msg" id="msg-git-03"></span>
                 <button class="hero-button btn-check" data-key="git-03" data-expected="git add .">Comprobar</button>
             </div>
@@ -130,7 +136,7 @@
                 <p style="color: #64748b; font-size: 14px; margin: 4px 0 0;">Escribí el comando para confirmar cambios con el mensaje: <code>inicio</code></p>
             </div>
             <input type="text" class="cmd-terminal-input" id="input-git-04" placeholder='Ej: git commit -m "..."'>
-            <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                 <span class="feedback-msg" id="msg-git-04"></span>
                 <button class="hero-button btn-check" data-key="git-04" data-expected='git commit -m "inicio"'>Comprobar</button>
             </div>
@@ -143,7 +149,7 @@
                 <p style="color: #64748b; font-size: 14px; margin: 4px 0 0;">¿Qué comando crea y se mueve directamente a una rama llamada <code>login</code>?</p>
             </div>
             <input type="text" class="cmd-terminal-input" id="input-git-05" placeholder="Ej: git checkout ...">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                 <span class="feedback-msg" id="msg-git-05"></span>
                 <button class="hero-button btn-check" data-key="git-05" data-expected="git checkout -b login">Comprobar</button>
             </div>
@@ -156,7 +162,7 @@
                 <p style="color: #64748b; font-size: 14px; margin: 4px 0 0;">¿Cómo subís los commits locales a la rama <code>main</code> del remoto <code>origin</code>?</p>
             </div>
             <input type="text" class="cmd-terminal-input" id="input-git-06" placeholder="Ej: git push ...">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                 <span class="feedback-msg" id="msg-git-06"></span>
                 <button class="hero-button btn-check" data-key="git-06" data-expected="git push origin main">Comprobar</button>
             </div>
@@ -168,61 +174,80 @@
 
     </main>
 
+    <!-- VALIDACIÓN DE DESAFÍOS GIT -->
     <script type="module">
-    import { initAuthNav, saveChallengeCompletion } from "./sync.js";
-    import { analyzeMistake, showCoachFeedback, hideCoachFeedback } from "./coach.js";
-    
-    initAuthNav();
+        import { saveChallengeCompletion } from "./sync.js";
 
-    const gitKeys = ["git-01", "git-02", "git-03", "git-04", "git-05", "git-06"];
+        const gitKeys = ["git-01", "git-02", "git-03", "git-04", "git-05", "git-06"];
 
-    gitKeys.forEach(k => {
-        if (localStorage.getItem(k) === "completed") {
-            const card = document.getElementById(`card-${k}`);
-            const input = document.getElementById(`input-${k}`);
-            const msg = document.getElementById(`msg-${k}`);
-            if (card) card.classList.add("completed");
-            if (input) input.disabled = true;
-            if (msg) {
-                msg.className = "feedback-msg success";
-                msg.textContent = "✔ Desafío ya resuelto";
-            }
-        }
-    });
+        // Restaurar estado guardado
+        gitKeys.forEach(k => {
+            if (localStorage.getItem(k) === "completed") {
+                const card = document.getElementById(`card-${k}`);
+                const input = document.getElementById(`input-${k}`);
+                const msg = document.getElementById(`msg-${k}`);
+                const btn = card ? card.querySelector(".btn-check") : null;
 
-    document.querySelectorAll(".btn-check").forEach(button => {
-        button.addEventListener("click", () => {
-            const key = button.getAttribute("data-key");
-            const expected = button.getAttribute("data-expected");
-            
-            const input = document.getElementById(`input-${key}`);
-            const msg = document.getElementById(`msg-${key}`);
-            const card = document.getElementById(`card-${key}`);
-
-            if (!input || !msg || !card) return;
-
-            const userVal = input.value.trim().toLowerCase().replace(/'/g, '"');
-            const expectedVal = expected.toLowerCase().replace(/'/g, '"');
-
-            if (userVal === expectedVal) {
-                msg.className = "feedback-msg success";
-                msg.textContent = "🎉 ¡Excelente! Comando correcto.";
-                card.classList.add("completed");
-                input.disabled = true;
-                button.disabled = true;
-                hideCoachFeedback(`card-${key}`);
-                saveChallengeCompletion(key, "git");
-            } else {
-                msg.className = "feedback-msg error";
-                msg.textContent = "❌ No es correcto.";
-                
-                // Disparar el análisis inteligente de error
-                const hint = analyzeMistake(input.value, "git");
-                showCoachFeedback(`card-${key}`, hint);
+                if (card) card.classList.add("completed");
+                if (input) input.disabled = true;
+                if (btn) btn.disabled = true;
+                if (msg) {
+                    msg.className = "feedback-msg success";
+                    msg.textContent = "✔ Desafío ya resuelto";
+                }
             }
         });
-    });
-</script>
+
+        // Event listener para comprobar respuestas
+        document.querySelectorAll(".btn-check").forEach(button => {
+            button.addEventListener("click", () => {
+                const key = button.getAttribute("data-key");
+                const expected = button.getAttribute("data-expected");
+
+                const input = document.getElementById(`input-${key}`);
+                const msg = document.getElementById(`msg-${key}`);
+                const card = document.getElementById(`card-${key}`);
+
+                if (!input || !msg || !card) return;
+
+                // Normalización de texto (quita comillas simples/dobles y espacios extra)
+                const userVal = input.value.trim().toLowerCase().replace(/'/g, '"').replace(/\s+/g, ' ');
+                const expectedVal = expected.toLowerCase().replace(/'/g, '"').replace(/\s+/g, ' ');
+
+                if (userVal === expectedVal) {
+                    msg.className = "feedback-msg success";
+                    msg.textContent = "🎉 ¡Excelente! Comando correcto.";
+                    card.classList.add("completed");
+                    input.disabled = true;
+                    button.disabled = true;
+                    
+                    localStorage.setItem(key, "completed");
+                    try {
+                        saveChallengeCompletion(key, "git");
+                    } catch (e) {
+                        console.warn("Progreso guardado localmente (sync no disponible).");
+                    }
+                } else {
+                    msg.className = "feedback-msg error";
+                    msg.textContent = "❌ Comando incorrecto. Revisá la sintaxis.";
+                }
+            });
+        });
+
+        // Permitir enviar con la tecla Enter dentro del input
+        document.querySelectorAll(".cmd-terminal-input").forEach(input => {
+            input.addEventListener("keydown", (e) => {
+                if (e.key === "Enter") {
+                    const card = input.closest(".challenge-box");
+                    if (card) {
+                        const btn = card.querySelector(".btn-check");
+                        if (btn && !btn.disabled) btn.click();
+                    }
+                }
+            });
+        });
+    </script>
+
     <script type="module" src="navbar.js"></script>
     <script type="module" src="coach.js"></script>
 </body>
