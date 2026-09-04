@@ -90,7 +90,7 @@
             <p>Escribí el comando exacto para resolver cada situación y registrar tu progreso.</p>
         </div>
 
-        <!-- DESAFÍO 1 -->
+        
         <div class="challenge-box" id="card-git-01">
             <div>
                 <strong style="color: #111827; font-size: 16px;">1. Inicializar Repositorio</strong>
@@ -103,7 +103,7 @@
             </div>
         </div>
 
-        <!-- DESAFÍO 2 -->
+        
         <div class="challenge-box" id="card-git-02">
             <div>
                 <strong style="color: #111827; font-size: 16px;">2. Ver Estado de Archivos</strong>
@@ -116,7 +116,7 @@
             </div>
         </div>
 
-        <!-- DESAFÍO 3 -->
+        
         <div class="challenge-box" id="card-git-03">
             <div>
                 <strong style="color: #111827; font-size: 16px;">3. Preparar Todos los Archivos</strong>
@@ -129,7 +129,7 @@
             </div>
         </div>
 
-        <!-- DESAFÍO 4 -->
+        
         <div class="challenge-box" id="card-git-04">
             <div>
                 <strong style="color: #111827; font-size: 16px;">4. Crear un Commit</strong>
@@ -142,7 +142,7 @@
             </div>
         </div>
 
-        <!-- DESAFÍO 5 -->
+        
         <div class="challenge-box" id="card-git-05">
             <div>
                 <strong style="color: #111827; font-size: 16px;">5. Crear y Cambiar a Nueva Rama</strong>
@@ -155,7 +155,7 @@
             </div>
         </div>
 
-        <!-- DESAFÍO 6 -->
+        
         <div class="challenge-box" id="card-git-06">
             <div>
                 <strong style="color: #111827; font-size: 16px;">6. Subir al Repositorio Remoto</strong>
@@ -174,13 +174,13 @@
 
     </main>
 
-    <!-- VALIDACIÓN DE DESAFÍOS GIT -->
+    
     <script type="module">
         import { saveChallengeCompletion } from "./sync.js";
 
         const gitKeys = ["git-01", "git-02", "git-03", "git-04", "git-05", "git-06"];
 
-        // Restaurar estado guardado
+       
         gitKeys.forEach(k => {
             if (localStorage.getItem(k) === "completed") {
                 const card = document.getElementById(`card-${k}`);
@@ -198,7 +198,7 @@
             }
         });
 
-        // Event listener para comprobar respuestas
+       
         document.querySelectorAll(".btn-check").forEach(button => {
             button.addEventListener("click", () => {
                 const key = button.getAttribute("data-key");
@@ -210,7 +210,7 @@
 
                 if (!input || !msg || !card) return;
 
-                // Normalización de texto (quita comillas simples/dobles y espacios extra)
+               
                 const userVal = input.value.trim().toLowerCase().replace(/'/g, '"').replace(/\s+/g, ' ');
                 const expectedVal = expected.toLowerCase().replace(/'/g, '"').replace(/\s+/g, ' ');
 
@@ -234,7 +234,7 @@
             });
         });
 
-        // Permitir enviar con la tecla Enter dentro del input
+       
         document.querySelectorAll(".cmd-terminal-input").forEach(input => {
             input.addEventListener("keydown", (e) => {
                 if (e.key === "Enter") {

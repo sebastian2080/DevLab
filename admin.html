@@ -7,7 +7,7 @@
     <title>Panel de Administración | DevLab</title>
     <link rel="stylesheet" href="style.css">
     
-    <!-- Librerías para exportar Excel y PDF -->
+    
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
@@ -31,7 +31,7 @@
     <main>
         <section class="admin-dashboard">
 
-            <!-- CABECERA PRINCIPAL CON BOTONES DE EXPORTACIÓN -->
+            
             <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-bottom: 30px;">
                 <div class="tool-page-header" style="padding-left: 0; margin-bottom: 0;">
                     <p class="eyebrow">⚡ ADMINISTRACIÓN</p>
@@ -40,19 +40,19 @@
                 </div>
                 
                 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <!-- BOTÓN EXCEL -->
+                    
                     <button id="export-excel-btn" style="background: #10b981; color: white; border: none; padding: 10px 16px; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);">
                         📊 Exportar a Excel (.xlsx)
                     </button>
 
-                    <!-- BOTÓN PDF -->
+                    
                     <button id="export-pdf-btn" style="background: #ef4444; color: white; border: none; padding: 10px 16px; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);">
                         📄 Exportar a PDF
                     </button>
                 </div>
             </div>
 
-            <!-- TARJETAS DE MÉTRICAS GLOBALES -->
+            
             <div class="admin-stats-grid">
                 <div class="admin-stat-card">
                     <span>TOTAL ALUMNOS</span>
@@ -68,7 +68,7 @@
                 </div>
             </div>
 
-            <!-- SOLICITUDES PENDIENTES DE ACCESO -->
+            
             <div id="pending-section" style="margin-bottom: 35px;">
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
                     <h2 style="font-size: 20px; margin: 0; display: flex; align-items: center; gap: 8px;">
@@ -96,11 +96,11 @@
                 </div>
             </div>
 
-            <!-- PODIO TOP 3 -->
+            
             <h2 style="font-size: 20px; margin: 40px 0 20px;">🏆 Podio de Rendimiento</h2>
             <div class="podium-container" id="podium-container"></div>
 
-            <!-- TABLA DE ALUMNOS REGISTRADOS -->
+            
             <h2 style="font-size: 20px; margin: 40px 0 20px;">📊 Tabla de Posiciones & Alumnos</h2>
             <div class="admin-table-container">
                 <div style="padding: 16px 20px; background: white; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center;">

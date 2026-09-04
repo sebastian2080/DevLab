@@ -143,7 +143,7 @@ async function finishQuiz() {
         resultFeedback.textContent = "📚 Te recomendamos repasar los conceptos teóricos y volver a intentarlo.";
     }
 
-    // Guardar el puntaje del Quiz en Firestore
+   
     const user = auth.currentUser;
     if (user) {
         try {

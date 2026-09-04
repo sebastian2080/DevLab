@@ -244,7 +244,7 @@ function renderTable(users) {
     }).join("");
 }
 
-// 1. EXPORTACIÓN A EXCEL (.XLSX)
+
 if (exportExcelBtn) {
     exportExcelBtn.addEventListener("click", () => {
         if (globalUsersList.length === 0) {
@@ -275,7 +275,7 @@ if (exportExcelBtn) {
     });
 }
 
-// 2. EXPORTACIÓN A PDF (.PDF)
+
 if (exportPdfBtn) {
     exportPdfBtn.addEventListener("click", () => {
         if (globalUsersList.length === 0) {

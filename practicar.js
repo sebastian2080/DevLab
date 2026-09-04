@@ -8,24 +8,24 @@ for (let i = 1; i <= 6; i++) {
     if (localStorage.getItem(`js-challenge-0${i}`) === "completed") jsCompleted++;
 }
 
-// HTML
+
 const htmlProgressBar = document.getElementById("html-progress-bar");
 const htmlProgressText = document.getElementById("html-progress-text");
 htmlProgressBar.style.width = ((htmlCompleted / 6) * 100) + "%";
 htmlProgressText.textContent = htmlCompleted + " / 6 desafíos completados";
 
-// CSS
+
 const cssProgressBar = document.getElementById("css-progress-bar");
 const cssProgressText = document.getElementById("css-progress-text");
 cssProgressBar.style.width = ((cssCompleted / 6) * 100) + "%";
 cssProgressText.textContent = cssCompleted + " / 6 desafíos completados";
 
-// JS
+
 const jsProgressBar = document.getElementById("js-progress-bar");
 const jsProgressText = document.getElementById("js-progress-text");
 jsProgressBar.style.width = ((jsCompleted / 6) * 100) + "%";
 jsProgressText.textContent = jsCompleted + " / 6 desafíos completados";
-// Contar desafíos resueltos de Git
+
 const gitKeys = ["git-01", "git-02", "git-03", "git-04", "git-05", "git-06"];
 let gitCompleted = 0;
 gitKeys.forEach(k => {

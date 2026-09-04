@@ -1,11 +1,11 @@
-// sync.js
+
 import { auth, db } from "./firebase-config.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { doc, getDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// ============================================
-// GESTIÓN DE SESIÓN EN EL NAV
-// ============================================
+
+
+
 export function initAuthNav() {
     const navLinks = document.querySelector(".nav-links");
     if (!navLinks) return;
@@ -81,9 +81,9 @@ export function initAuthNav() {
     });
 }
 
-// ============================================
-// GUARDAR DESAFÍO RESUELTO EN FIRESTORE
-// ============================================
+
+
+
 export async function saveChallengeCompletion(challengeKey, category) {
     localStorage.setItem(challengeKey, "completed");
 

@@ -23,14 +23,14 @@ function updateFlexbox() {
 
     gapVal.textContent = gap + "px";
 
-    // Aplicar estilos al canvas
+   
     canvas.style.flexDirection = direction;
     canvas.style.justifyContent = justify;
     canvas.style.alignItems = align;
     canvas.style.flexWrap = wrap;
     canvas.style.gap = gap + "px";
 
-    // Generar código CSS
+   
     flexCode.textContent = `.contenedor {
     display: flex;
     flex-direction: ${direction};
@@ -45,7 +45,7 @@ function updateFlexbox() {
 }
 
 
-// Event listeners de controles
+
 [flexDirection, justifyContent, alignItems, flexWrap].forEach(select => {
     select.addEventListener("change", updateFlexbox);
 });
@@ -53,7 +53,7 @@ function updateFlexbox() {
 flexGap.addEventListener("input", updateFlexbox);
 
 
-// Agregar y quitar elementos
+
 addItemBtn.addEventListener("click", function() {
     const totalItems = canvas.querySelectorAll(".flex-item").length;
     if (totalItems >= 10) return;
@@ -75,7 +75,7 @@ removeItemBtn.addEventListener("click", function() {
 });
 
 
-// Copiar código
+
 copyFlexBtn.addEventListener("click", function() {
     navigator.clipboard.writeText(flexCode.textContent);
     copyFlexBtn.textContent = "✓ Copiado";

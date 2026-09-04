@@ -1,6 +1,6 @@
 const previewCard = document.getElementById("preview-card");
 
-// CONTROLES
+
 const backgroundColorInput = document.getElementById("background-color");
 
 const widthInput = document.getElementById("card-width");
@@ -14,14 +14,14 @@ const paddingValue = document.getElementById("padding-value");
 
 const resetButton = document.getElementById("reset-button");
 
-// CÓDIGO
+
 const generatedCode = document.getElementById("generated-code");
 const copyButton = document.getElementById("copy-button");
 
 
-// =========================
-// ACTUALIZAR CÓDIGO
-// =========================
+
+
+
 
 function updateCode() {
 
@@ -39,9 +39,9 @@ function updateCode() {
 }
 
 
-// =========================
-// COLOR
-// =========================
+
+
+
 
 backgroundColorInput.addEventListener("input", function () {
 
@@ -52,9 +52,9 @@ backgroundColorInput.addEventListener("input", function () {
 });
 
 
-// =========================
-// ANCHO
-// =========================
+
+
+
 
 widthInput.addEventListener("input", function () {
 
@@ -68,9 +68,9 @@ widthInput.addEventListener("input", function () {
 });
 
 
-// =========================
-// BORDER RADIUS
-// =========================
+
+
+
 
 radiusInput.addEventListener("input", function () {
 
@@ -84,9 +84,9 @@ radiusInput.addEventListener("input", function () {
 });
 
 
-// =========================
-// PADDING
-// =========================
+
+
+
 
 paddingInput.addEventListener("input", function () {
 
@@ -100,9 +100,9 @@ paddingInput.addEventListener("input", function () {
 });
 
 
-// =========================
-// RESTABLECER
-// =========================
+
+
+
 
 resetButton.addEventListener("click", function () {
 
@@ -124,9 +124,9 @@ resetButton.addEventListener("click", function () {
 });
 
 
-// =========================
-// COPIAR CSS
-// =========================
+
+
+
 
 copyButton.addEventListener("click", function () {
 
@@ -144,9 +144,9 @@ copyButton.addEventListener("click", function () {
 });
 
 
-// =========================
-// EXPLICACIONES
-// =========================
+
+
+
 
 const infoButtons =
     document.querySelectorAll(".info-button");
@@ -203,10 +203,10 @@ infoButtons.forEach(function(button) {
 });
 
 
-// =========================
-// DESAFÍO 01
-// BORDER RADIUS
-// =========================
+
+
+
+
 
 const challengeButton1 =
     document.getElementById("challenge-button");
@@ -251,10 +251,10 @@ if (challengeButton1) {
 }
 
 
-// =========================
-// DESAFÍO 02
-// WIDTH
-// =========================
+
+
+
+
 
 const challengeButton2 =
     document.getElementById("challenge-button-2");
@@ -299,8 +299,8 @@ if (challengeButton2) {
 }
 
 
-// =========================
-// INICIO
-// =========================
+
+
+
 
 updateCode();

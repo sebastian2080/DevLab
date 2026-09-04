@@ -1,4 +1,4 @@
-// sync-games.js
+
 import { auth, db } from "./firebase-config.js";
 import { doc, getDoc, setDoc, updateDoc, increment, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
@@ -157,7 +157,7 @@ export const saveGameStats = async (gameId, gameData) => {
                 const displayName = user.displayName || user.email.split("@")[0] || "DevPlayer";
                 const currentScore = Number(gameData.score) || 0;
 
-                // 1. Perfil personal de estadísticas
+               
                 const userGameRef = doc(db, "users", user.uid, "game_stats", gameId);
                 const userDocSnap = await getDoc(userGameRef);
                 
@@ -189,8 +189,8 @@ export const saveGameStats = async (gameId, gameData) => {
                     });
                 }
 
-                // 2. Leaderboard Global
-                // En sync-games.js (dentro de saveGameStats)
+               
+               
 if (isNewMaxScore) {
     const leaderboardDocRef = doc(db, `leaderboard_${gameId}`, user.uid);
     await setDoc(leaderboardDocRef, {
@@ -203,7 +203,7 @@ if (isNewMaxScore) {
     }, { merge: true });
 }
 
-                // 3. Evaluar y otorgar logros
+               
                 await checkAndGrantAchievements(user.uid, gameId, gameData);
 
                 resolve({ isNewMaxScore });

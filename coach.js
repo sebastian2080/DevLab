@@ -1,12 +1,12 @@
-// ===============================================
-// DevLab AI Tutor - Motor Integrado Universal
-// ===============================================
+
+
+
 
 export async function askGlobalAI(userPrompt) {
     await new Promise(resolve => setTimeout(resolve, 400));
     const prompt = userPrompt.toLowerCase().trim();
 
-    // PISTAS CONTEXTUALES PARA DESAFÍOS
+   
     if (prompt.includes("pista") || prompt.includes("estoy haciendo el desafío")) {
         if (prompt.includes("git")) {
             return "💡 <strong>Pista Git:</strong> Revisá los comandos clave: <code>git init</code>, <code>git status</code>, <code>git add .</code>, <code>git commit -m 'mensaje'</code>, <code>git checkout -b rama</code> o <code>git push origin main</code>.";
@@ -23,7 +23,7 @@ export async function askGlobalAI(userPrompt) {
         return "💡 <strong>Pista:</strong> Leé detenidamente la consigna y verificá la sintaxis en el editor.";
     }
 
-    // CONCEPTOS TEÓRICOS
+   
     if (prompt.includes("git") || prompt.includes("commit") || prompt.includes("push") || prompt.includes("branch")) {
         return "Git es el sistema de control de versiones. Guardás puntos con <code>git commit</code> y sincronizás con GitHub usando <code>git push</code>.";
     }
@@ -46,9 +46,9 @@ export async function askGlobalAI(userPrompt) {
     return `Sobre "<strong>${userPrompt}</strong>": Revisá la sintaxis o abrí la consola (F12) si algo no ejecuta. ¿Querés que revisemos HTML, CSS, JavaScript o Git?`;
 }
 
-// ===============================================
-// INYECCIÓN DE UI Y MANEJO DEL CHAT
-// ===============================================
+
+
+
 
 function injectStackUI() {
     if (document.querySelector(".floating-stack-container")) return;
@@ -110,7 +110,7 @@ export async function submitUserMessage(queryText) {
     const messages = document.getElementById("coach-messages");
     if (!chatWindow || !messages) return;
 
-    // Asegurar que la ventana esté abierta
+   
     chatWindow.classList.remove("hidden");
 
     postMsg(queryText, "user");
@@ -175,7 +175,7 @@ function setupChatListeners() {
     });
 }
 
-// Detector preciso de tema por tarjeta
+
 function detectTopic(card) {
     const path = window.location.pathname.toLowerCase();
     const docTitle = document.title.toLowerCase();

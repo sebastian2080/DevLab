@@ -5,7 +5,7 @@ const feedback = document.getElementById("challenge-feedback");
 
 let completed = localStorage.getItem("html-challenge-01") === "completed";
 
-// Si ya estaba completado
+
 if (completed) {
     feedback.textContent =
         "🎉 ¡Desafío completado! Ya resolviste este desafío.";
@@ -21,7 +21,7 @@ if (completed) {
     });
 }
 
-// Respuestas
+
 answers.forEach(function (answer) {
     answer.addEventListener("click", function () {
         if (completed) {
@@ -31,7 +31,7 @@ answers.forEach(function (answer) {
         if (answer.classList.contains("correct")) {
             completed = true;
 
-            // Guarda en localStorage y sincroniza con Firestore
+           
             saveChallengeCompletion("html-challenge-01", "html");
 
             feedback.textContent =

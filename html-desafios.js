@@ -11,7 +11,7 @@ const challenge3 = document.querySelector(
 );
 
 
-// DESAFÍO 01
+
 
 if (
     localStorage.getItem("html-challenge-01") === "completed"
@@ -27,7 +27,7 @@ if (
 }
 
 
-// DESAFÍO 02
+
 
 if (
     localStorage.getItem("html-challenge-02") === "completed"
@@ -43,7 +43,7 @@ if (
 }
 
 
-// DESAFÍO 03
+
 
 if (
     localStorage.getItem("html-challenge-03") === "completed"

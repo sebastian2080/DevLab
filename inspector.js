@@ -1,4 +1,4 @@
-// inspector.js
+
 import { saveGameStats } from "./sync-games.js";
 
 const CASES = [
@@ -104,7 +104,7 @@ async function finishMission() {
 
     try {
         const res = await saveGameStats("inspector", {
-            score: 100 // 100 pts por completar los 4 casos
+            score: 100
         });
 
         if (res) {
@@ -143,5 +143,5 @@ restartBtn.addEventListener("click", () => {
     loadCase(0);
 });
 
-// Carga inicial
+
 loadCase(0);

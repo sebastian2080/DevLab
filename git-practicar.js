@@ -105,7 +105,7 @@ cliInput.addEventListener("keydown", async (e) => {
             appendLog(currentMission.output, "log-success");
             appendLog(`✔ ¡Misión ${currentMissionIndex + 1} completada con éxito!`, "log-success");
 
-            // Guardar progreso en Firestore
+           
             const user = auth.currentUser;
             if (user) {
                 try {

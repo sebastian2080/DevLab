@@ -214,15 +214,15 @@
         </div>
 
         <div class="stage-box" id="stage-box">
-            <!-- NAVE -->
+            
             <div class="ship-track" id="ship-track">
                 <div class="rocket" id="rocket" style="grid-column: 5;">🚀</div>
             </div>
 
-            <!-- 9 COMPUERTAS INFERIORES -->
+            
             <div class="landing-grid-9" id="bays-grid"></div>
 
-            <!-- INICIO -->
+            
             <div id="start-modal" class="modal-screen">
                 <span style="font-size: 45px; margin-bottom: 6px;">🛸</span>
                 <h1 style="font-size: 26px; font-weight: 900; margin: 0 0 6px 0; color: #fff;">FLEXBOX LANDER</h1>
@@ -232,7 +232,7 @@
                 <button id="btn-start" class="btn-play">INICIAR DESCENSO ⚡</button>
             </div>
 
-            <!-- GAME OVER -->
+            
             <div id="gameover-modal" class="modal-screen" style="display: none;">
                 <span style="font-size: 45px; margin-bottom: 6px;">💥</span>
                 <h2 style="font-size: 26px; font-weight: 900; color: #ef4444; margin: 0 0 6px 0;">¡COLISIÓN EN BASE!</h2>
@@ -242,7 +242,7 @@
             </div>
         </div>
 
-        <!-- ÚNICOS 3 BOTONES -->
+        
         <div class="dashboard">
             <div class="options-grid">
                 <button class="flex-cmd-btn" id="btn-left">
@@ -261,7 +261,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT DEL JUEGO DIRECTAMENTE INTEGRADO CON FIREBASE -->
+    
     <script type="module">
         import { saveGameStats } from "./sync-games.js";
 
@@ -409,7 +409,7 @@
             finalScore.textContent = `${score} pts (Velocidad: ${fallSpeed.toFixed(1)}x)`;
             gameoverModal.style.display = "flex";
 
-            // Sincronización con Firebase
+           
             saveStatus.style.display = "block";
             saveStatus.style.color = "#94a3b8";
             saveStatus.textContent = "Sincronizando puntuación con el ranking...";
@@ -438,7 +438,7 @@
             }
         }
 
-        // Asignación de eventos de botones
+       
         document.getElementById("btn-left").addEventListener("click", () => stepShip(-1));
         document.getElementById("btn-center").addEventListener("click", centerShip);
         document.getElementById("btn-right").addEventListener("click", () => stepShip(1));

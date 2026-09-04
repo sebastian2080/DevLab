@@ -16,7 +16,7 @@ function updateConversions() {
     let px;
 
 
-    // Convertir todo primero a PX
+   
 
     if (unit === "px") {
 
@@ -43,7 +43,7 @@ function updateConversions() {
     }
 
 
-    // Mostrar conversiones
+   
 
     const rem = px / 16;
 

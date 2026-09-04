@@ -1,4 +1,4 @@
-// auth.js
+
 import { auth, db } from "./firebase-config.js";
 import { 
     signInWithEmailAndPassword, 
@@ -57,7 +57,7 @@ authForm.addEventListener("submit", async (e) => {
 
     try {
         if (isSignUpMode) {
-            // 1. Crear cuenta en Authentication
+           
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
@@ -65,7 +65,7 @@ authForm.addEventListener("submit", async (e) => {
                 await updateProfile(user, { displayName: name });
             }
 
-            // 2. Guardar en Firestore con aprobado: false
+           
             await setDoc(doc(db, "users", user.uid), {
                 displayName: name || "Estudiante",
                 email: email,
@@ -75,24 +75,24 @@ authForm.addEventListener("submit", async (e) => {
                 stats: { html: 0, css: 0, js: 0, total: 0 }
             });
 
-            // 3. Cerrar sesión inmediatamente y notificar
+           
             await signOut(auth);
             alert("¡Solicitud enviada! Tu cuenta está en revisión y debe ser aprobada por el administrador.");
             toggleBtn.click();
             return;
 
         } else {
-            // Iniciar sesión
+           
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            // 4. Verificar si está aprobado
+           
             const userDoc = await getDoc(doc(db, "users", user.uid));
 
             if (userDoc.exists()) {
                 const userData = userDoc.data();
 
-                // Si no es admin y no está aprobado, se bloquea el acceso
+               
                 if (userData.role !== "admin" && userData.approved !== true) {
                     await signOut(auth);
                     errorMsg.textContent = "Tu cuenta aún no fue aprobada por el administrador.";

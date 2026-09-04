@@ -23,9 +23,9 @@ const linkText = document.getElementById("link-text");
 const linkURL = document.getElementById("link-url");
 
 
-// =========================
-// MENSAJE VACÍO
-// =========================
+
+
+
 
 function removeEmptyMessage() {
 
@@ -52,9 +52,9 @@ function showEmptyMessage() {
 }
 
 
-// =========================
-// ACTUALIZAR HTML GENERADO
-// =========================
+
+
+
 
 function updateCode() {
 
@@ -68,7 +68,7 @@ function updateCode() {
             continue;
         }
 
-        // Si es un contenedor de imagen
+       
         if (element.classList.contains("image-wrapper")) {
 
             const image = element.querySelector("img");
@@ -86,12 +86,12 @@ function updateCode() {
 
         const clone = element.cloneNode(true);
 
-        // Sacamos las X
+       
         clone.querySelectorAll(".delete-element").forEach(button => {
             button.remove();
         });
 
-        // Sacamos contenteditable
+       
         clone.removeAttribute("contenteditable");
 
         clone.querySelectorAll("*").forEach(child => {
@@ -105,9 +105,9 @@ function updateCode() {
 }
 
 
-// =========================
-// BOTÓN X
-// =========================
+
+
+
 
 function addDeleteButton(element) {
 
@@ -150,9 +150,9 @@ deleteButton.setAttribute("title", "Eliminar este elemento");
 }
 
 
-// =========================
-// ELEMENTOS EDITABLES
-// =========================
+
+
+
 
 function makeEditable(element) {
 
@@ -188,7 +188,7 @@ function makeEditable(element) {
         }
 
 
-        // BOTÓN
+       
         if (element.tagName === "BUTTON") {
 
             if (buttonAttribute) {
@@ -218,7 +218,7 @@ function makeEditable(element) {
         }
 
 
-        // IMAGEN
+       
         else if (element.tagName === "IMG") {
 
             if (buttonAttribute) {
@@ -248,7 +248,7 @@ function makeEditable(element) {
         }
 
 
-        // ENLACE
+       
         else if (element.tagName === "A") {
 
             if (buttonAttribute) {
@@ -297,9 +297,9 @@ function makeEditable(element) {
 }
 
 
-// =========================
-// AGREGAR TÍTULO
-// =========================
+
+
+
 
 addTitle.addEventListener("click", function() {
 
@@ -317,9 +317,9 @@ addTitle.addEventListener("click", function() {
 });
 
 
-// =========================
-// AGREGAR PÁRRAFO
-// =========================
+
+
+
 
 addText.addEventListener("click", function() {
 
@@ -338,9 +338,9 @@ addText.addEventListener("click", function() {
 });
 
 
-// =========================
-// AGREGAR BOTÓN
-// =========================
+
+
+
 
 addButton.addEventListener("click", function() {
 
@@ -358,22 +358,22 @@ addButton.addEventListener("click", function() {
 });
 
 
-// =========================
-// AGREGAR IMAGEN
-// =========================
+
+
+
 
 addImage.addEventListener("click", function() {
 
     removeEmptyMessage();
 
 
-    // Creamos un contenedor
+   
     const wrapper = document.createElement("div");
 
     wrapper.className = "image-wrapper";
 
 
-    // Creamos imagen
+   
     const image = document.createElement("img");
 
     image.src = "https://placehold.co/300x150";
@@ -385,7 +385,7 @@ addImage.addEventListener("click", function() {
     canvas.appendChild(wrapper);
 
 
-    // X para eliminar
+   
     const deleteButton = document.createElement("button");
 
     deleteButton.textContent = "×";
@@ -425,7 +425,7 @@ deleteButton.setAttribute("title", "Eliminar imagen");
     });
 
 
-    // Editar ALT haciendo click en la imagen
+   
     image.addEventListener("click", function(event) {
 
         event.stopPropagation();
@@ -467,9 +467,9 @@ deleteButton.setAttribute("title", "Eliminar imagen");
 });
 
 
-// =========================
-// AGREGAR ENLACE
-// =========================
+
+
+
 
 addLink.addEventListener("click", function() {
 
@@ -491,9 +491,9 @@ addLink.addEventListener("click", function() {
 });
 
 
-// =========================
-// LIMPIAR
-// =========================
+
+
+
 
 clearContent.addEventListener("click", function() {
 
@@ -506,7 +506,7 @@ clearContent.addEventListener("click", function() {
     `;
 
 
-    // Ocultamos los atributos
+   
     if (buttonAttribute) {
         buttonAttribute.style.display = "none";
     }
@@ -524,9 +524,9 @@ clearContent.addEventListener("click", function() {
 });
 
 
-// =========================
-// COPIAR HTML
-// =========================
+
+
+
 
 copyHTML.addEventListener("click", function() {
 
@@ -546,8 +546,8 @@ copyHTML.addEventListener("click", function() {
 });
 
 
-// =========================
-// INICIO
-// =========================
+
+
+
 
 updateCode();

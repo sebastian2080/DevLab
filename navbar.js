@@ -1,4 +1,4 @@
-// navbar.js
+
 import { auth, db } from "./firebase-config.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
@@ -151,5 +151,5 @@ export function initNavbarAuth() {
     });
 }
 
-// Inicialización automática
+
 initNavbarAuth();

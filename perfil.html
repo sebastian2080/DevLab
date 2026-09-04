@@ -23,7 +23,7 @@
 
     <main class="container" style="max-width: 960px; margin: 40px auto; padding: 0 20px;">
 
-        <!-- ENCABEZADO DE PERFIL ESTILO PANEL -->
+        
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; border-bottom: 1px solid var(--border-color, #1f2937); padding-bottom: 20px;">
             <div>
                 <p class="eyebrow" style="margin: 0; font-size: 12px; font-weight: 800; color: #6366f1; text-transform: uppercase;">PANEL DE ESTUDIANTE</p>
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <!-- SECCIÓN DE LOGROS / INSIGNIAS (7 LOGROS) -->
+        
         <section class="admin-card" style="margin-bottom: 30px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; border-bottom: 1px solid var(--border-color, #1f2937); padding-bottom: 12px;">
                 <h2 style="font-size: 18px; font-weight: 700; margin: 0;">Logros y Reconocimientos</h2>
@@ -49,7 +49,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN DE RENDIMIENTO EN LOS 5 JUEGOS -->
+        
         <section class="admin-card">
             <div style="margin-bottom: 18px; border-bottom: 1px solid var(--border-color, #1f2937); padding-bottom: 12px;">
                 <h2 style="font-size: 18px; font-weight: 700; margin: 0;">Métricas de Minijuegos</h2>
@@ -129,7 +129,7 @@
             nameEl.textContent = name;
             emailEl.textContent = user.email;
 
-            // 1. Cargar Logros
+           
             try {
                 const snapshot = await getDocs(collection(db, "users", user.uid, "achievements"));
                 const unlocked = {};
@@ -166,7 +166,7 @@
                 console.error("Error al cargar logros:", err);
             }
 
-            // 2. Cargar Métricas de los 5 Juegos
+           
             async function loadGameStat(gameId, scoreElId, gamesElId) {
                 try {
                     const snap = await getDoc(doc(db, "users", user.uid, "game_stats", gameId));

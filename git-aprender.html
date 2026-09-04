@@ -7,7 +7,7 @@
     <title>Aprender Git & GitHub | DevLab</title>
     <link rel="stylesheet" href="style.css">
     
-    <!-- Librería jsPDF + AutoTable para armar el PDF en vivo -->
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
 
@@ -151,7 +151,7 @@
 
     <main class="course-layout">
 
-        <!-- BARRA LATERAL CON TEMARIO -->
+        
         <aside class="course-sidebar">
             <h3 style="font-size: 13px; text-transform: uppercase; color: #9ca3af; letter-spacing: 0.05em; margin-bottom: 12px; padding-left: 6px;">Temario Git & GitHub</h3>
             <button class="topic-btn active" onclick="loadGitTopic(0)">1. Introducción a Git</button>
@@ -162,12 +162,12 @@
             <button class="topic-btn" onclick="loadGitTopic(5)">6. GitHub Pages</button>
         </aside>
 
-        <!-- ÁREA DE CONTENIDO DINÁMICO -->
+        
         <section class="course-content-card" id="git-content-area"></section>
 
     </main>
 
-    <!-- BOTÓN FLOTANTE DESCARGA PDF -->
+    
     <button id="download-git-cheatsheet" class="floating-pdf-btn">
         <span style="font-size: 16px;">📥</span>
         <span>Guía de Comandos (PDF)</span>
@@ -239,15 +239,15 @@
 
         loadGitTopic(0);
 
-        // ==========================================
-        // GENERADOR DE CHEAT SHEET EN PDF ORDENADO
-        // ==========================================
+       
+       
+       
         document.getElementById("download-git-cheatsheet").addEventListener("click", () => {
             const { jsPDF } = window.jspdf;
             const docPDF = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
 
-            // Cabecera institucional
-            docPDF.setFillColor(15, 23, 42); // #0f172a
+           
+            docPDF.setFillColor(15, 23, 42);
             docPDF.rect(0, 0, 210, 30, "F");
 
             docPDF.setFontSize(18);
@@ -260,7 +260,7 @@
             docPDF.setFont("helvetica", "normal");
             docPDF.text("Flujo secuencial de trabajo desde la inicialización hasta el despliegue", 14, 25);
 
-            // Lista estructurada en orden de uso cronológico
+           
             const gitGuideData = [
                 ["Fase 1: Configuración (Una sola vez)", "git config --global user.name \"Nombre\"\ngit config --global user.email \"correo@ejemplo.com\"", "Configura tu identidad de autor para firmar cada cambio."],
                 ["Fase 2: Creación del Repositorio", "git init", "Inicializa un repositorio Git vacío en la carpeta del proyecto."],
@@ -300,7 +300,7 @@
                 margin: { left: 12, right: 12 }
             });
 
-            // Pie de página
+           
             const pageHeight = docPDF.internal.pageSize.height;
             docPDF.setFontSize(9);
             docPDF.setTextColor(148, 163, 184);

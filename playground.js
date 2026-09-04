@@ -59,7 +59,7 @@ btn.addEventListener('click', () => {
 });`
 };
 
-// Renderizar el código combinado en el iframe
+
 function updatePreview() {
     const html = htmlInput.value;
     const css = cssInput.value;
@@ -86,13 +86,13 @@ function updatePreview() {
 
     previewFrame.srcdoc = source;
 
-    // Guardar borrador local
+   
     localStorage.setItem("devlab-playground-html", html);
     localStorage.setItem("devlab-playground-css", css);
     localStorage.setItem("devlab-playground-js", js);
 }
 
-// Cargar estado inicial o borrador previo
+
 function loadInitialState() {
     htmlInput.value = localStorage.getItem("devlab-playground-html") ?? starterTemplate.html;
     cssInput.value = localStorage.getItem("devlab-playground-css") ?? starterTemplate.css;
@@ -100,7 +100,7 @@ function loadInitialState() {
     updatePreview();
 }
 
-// Debounce para optimizar el tipeo rápido
+
 let timeout = null;
 function handleInput() {
     clearTimeout(timeout);
@@ -111,7 +111,7 @@ htmlInput.addEventListener("input", handleInput);
 cssInput.addEventListener("input", handleInput);
 jsInput.addEventListener("input", handleInput);
 
-// Botones de acción
+
 resetBtn.addEventListener("click", () => {
     if (confirm("¿Restablecer el código de la plantilla base?")) {
         htmlInput.value = starterTemplate.html;

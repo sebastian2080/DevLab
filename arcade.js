@@ -1,7 +1,7 @@
-// arcade.js
+
 import { saveGameStats } from "./sync-games.js";
 
-// Pool ampliado de preguntas rápidas (HTML, CSS, JS, Git)
+
 const challengePool = [
     {
         prompt: "¿Qué etiqueta crea un enlace web?",
