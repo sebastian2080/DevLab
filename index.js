@@ -14,7 +14,7 @@ function initHeroDemo() {
         previewBtn.style.transform = "scale(1.05)";
     });
 
-    previewBtn.addEventListener("mouseleave", () => {
+    previewBtn.addEventListener("mouseleave", () => { 
         previewBtn.style.transform = "scale(1)";
     });
 }
